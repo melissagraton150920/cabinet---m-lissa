@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -299,13 +299,23 @@
   </footer>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
   var EJS_PUBLIC_KEY  = 'RbxwnaUkV8uP7M3-z';
   var EJS_SERVICE_ID  = 'service_uvlzhn4';
   var EJS_TEMPLATE_ID = 'q5901bu';
   var DEST_EMAIL      = 'melissagraton8@gmail.com';
-  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+
+  var pjFiles = [null, null, null];
+  var pjNames = ['', '', ''];
+
+  // Init EmailJS après chargement
+  window.addEventListener('load', function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+    }
+  });
 
   // ── MODE ──
   function selectMode(mode) {

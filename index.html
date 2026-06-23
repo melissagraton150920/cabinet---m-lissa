@@ -718,9 +718,9 @@
     s2v: '7j/7', s2l: "Soins tous les jours",
     s3v: 'Secteur 1', s3l: 'Conventionnée Assurance Maladie',
     s4v: 'IDE',      s4l: "Infirmière Diplômée d'État",
-    p1: "Installée à Haute-Goulaine, j'interviens dans le secteur de Loire-Atlantique sur les communes de Haute-Goulaine et Basse-Goulaine. Mon objectif est de vous offrir des soins de qualité dans un cadre rassurant, sans que vous ayez à vous déplacer.",
-    p2: "Diplômée d'État, je collabore étroitement avec votre médecin traitant et les spécialistes afin d'assurer la continuité des soins et la cohérence de votre parcours de soins. Cette approche intégrée permet de personnaliser les traitements en fonction de vos besoins spécifiques et de garantir un suivi optimal de votre santé. Je m'engage à créer un environnement accueillant, où chaque patient se sent écouté et compris. Grâce à cette proximité, je peux adapter mes interventions et répondre rapidement à vos préoccupations. Mon but est de vous accompagner dans votre rétablissement, tout en veillant à votre confort et bien-être.",
-    p3: "Les honoraires appliqués sont conformes aux conventions de l'Assurance Maladie, assurant une facturation claire et transparente. Nous pratiquons le tiers payant intégral, ce qui vous permet de ne pas avancer les frais selon les conditions de votre mutuelle. Si vous êtes éligible à l'ALD (Affection de Longue Durée — maladie chronique reconnue par l'Assurance Maladie), à la CMU (Couverture Maladie Universelle — pour les personnes aux revenus modestes), à l'AME (Aide Médicale d'État — pour les personnes en situation irrégulière sur le territoire), ou si vous êtes en situation d'accident du travail ou de congé maternité, aucun frais ne sera à votre charge pour vos soins.",
+    p1: "Diplômée de l'Institut de Formation en Soins Infirmiers de la Pitié-Salpêtrière à Paris en 2022, j'ai exercé pendant quatre ans au sein du service de pneumologie de cet hôpital universitaire de référence. Cette expérience hospitalière m'a forgé une rigueur clinique solide et une capacité à accompagner des patients atteints de pathologies complexes, souvent lourdes à vivre au quotidien.",
+    p2: "C'est lors d'un remplacement d'avril à août dans un cabinet libéral que j'ai compris ce qui me manquait à l'hôpital : le temps. Le temps d'écouter, de rassurer, de vraiment connaître la personne en face de soi. Le libéral, c'est la possibilité de tisser une vraie relation de confiance avec chaque patient, dans son environnement, à son rythme. C'est ce lien humain, au cœur du soin, qui m'a convaincue de m'installer à mon compte.",
+    p3: "Originaire de Saint-Jean-de-Monts en Vendée, j'ai trouvé en Loire-Atlantique un territoire qui me ressemble — entre bocage et estuaire, à taille humaine, où les gens se connaissent et se font confiance. Je me suis installée à Haute-Goulaine avec l'envie d'y construire quelque chose de durable : un suivi infirmier de proximité, attentif, où chaque patient est reconnu pour ce qu'il est, pas seulement pour sa pathologie.",
     horMatin: '6h – 12h30', horApm: '14h – 20h', horDim: '',
     tel: '06 72 31 12 79',
     adr1: "12 place de l'Église", adr2: '44120 Haute-Goulaine',
@@ -787,9 +787,9 @@
     document.getElementById('heroQuote').textContent = d.quote;
     document.getElementById('zone1').textContent = d.zone1;
     document.getElementById('zone2').textContent = d.zone2;
-    document.getElementById('presText1').textContent = d.p1;
-    document.getElementById('presText2').textContent = d.p2;
-    document.getElementById('presText3').textContent = d.p3;
+    document.getElementById('presText1').textContent = d.p1 || document.getElementById('presText1').textContent;
+    document.getElementById('presText2').textContent = d.p2 || document.getElementById('presText2').textContent;
+    document.getElementById('presText3').textContent = d.p3 || document.getElementById('presText3').textContent;
     document.getElementById('stat1Val').textContent = d.s1v;
     document.getElementById('stat1Lab').textContent = d.s1l;
     document.getElementById('stat2Val').textContent = d.s2v;

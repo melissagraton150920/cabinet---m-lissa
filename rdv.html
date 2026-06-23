@@ -105,15 +105,15 @@
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Choisissez votre mode de contact.</p>
 
       <div class="mode-grid">
-        <button class="mode-card" id="modePhone" onclick="selectMode('phone')" type="button">
+        <button class="mode-card" id="modePhone" type="button">
           <span class="mode-icon">📞</span>
           <div class="mode-title">Par téléphone</div>
           <div class="mode-desc">Appelez directement le cabinet pour prendre rendez-vous ou pour tout renseignement.</div>
         </button>
-        <button class="mode-card" id="modeOnline" onclick="selectMode('online')" type="button">
+        <button class="mode-card" id="modeOnline" type="button">
           <span class="mode-icon">📅</span>
           <div class="mode-title">En ligne</div>
-          <div class="mode-desc">Choisissez votre créneau, joignez vos documents et recevez une confirmation sous 24h.</div>
+          <div class="mode-desc">Choisissez votre créneau et recevez une confirmation sous 24h.</div>
         </button>
       </div>
 
@@ -219,6 +219,12 @@
     if (typeof emailjs !== 'undefined') {
       emailjs.init({ publicKey: EJS_PUBLIC_KEY });
     }
+  });
+
+  // ── INIT BOUTONS ──
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('modePhone').addEventListener('click', function() { selectMode('phone'); });
+    document.getElementById('modeOnline').addEventListener('click', function() { selectMode('online'); });
   });
 
   // ── MODE ──

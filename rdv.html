@@ -48,7 +48,7 @@
 
     /* CHOIX MODE */
     .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); margin-bottom: 2.5rem; }
-    .mode-card { background: var(--cream); padding: 2.5rem 2rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; text-align: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; }
+    .mode-card { background: var(--cream); padding: 2.5rem 2rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; text-align: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; width: 100%; font-family: inherit; }
     .mode-card:hover { background: var(--cream-dark); }
     .mode-card.selected { border-color: var(--accent); background: #fff; }
     .mode-icon { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
@@ -105,16 +105,16 @@
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Choisissez votre mode de contact.</p>
 
       <div class="mode-grid">
-        <div class="mode-card" id="modePhone" onclick="selectMode('phone')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')selectMode('phone')">
+        <button class="mode-card" id="modePhone" onclick="selectMode('phone')" type="button">
           <span class="mode-icon">📞</span>
           <div class="mode-title">Par téléphone</div>
           <div class="mode-desc">Appelez directement le cabinet pour prendre rendez-vous ou pour tout renseignement.</div>
-        </div>
-        <div class="mode-card" id="modeOnline" onclick="selectMode('online')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')selectMode('online')">
+        </button>
+        <button class="mode-card" id="modeOnline" onclick="selectMode('online')" type="button">
           <span class="mode-icon">📅</span>
           <div class="mode-title">En ligne</div>
           <div class="mode-desc">Choisissez votre créneau, joignez vos documents et recevez une confirmation sous 24h.</div>
-        </div>
+        </button>
       </div>
 
       <!-- TÉLÉPHONE -->

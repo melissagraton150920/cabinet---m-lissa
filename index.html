@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<!-- v1781872032 -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mélissa Graton – Infirmière Libérale | Haute-Goulaine & Basse-Goulaine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F2EDE4; --cream-dark: #E8E0D3; --black: #1A1A1A; --black-soft: #2C2C2C;
+      --script: 'Dancing Script', cursive; --serif: 'Cormorant Garamond', serif;
+      --sans: 'Jost', sans-serif; --accent: #C4A882;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--black); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 4rem; background: var(--cream); border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .nav-logo { font-family: var(--script); font-size: 1.6rem; color: var(--black); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--sans); font-weight: 400; font-size: 0.74rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 0.45; }
+    .nav-admin-btn { background: none; border: 1px solid rgba(0,0,0,0.2); color: var(--black); font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.45rem 1rem; cursor: pointer; transition: all 0.2s; opacity: 0.4; }
+    .nav-admin-btn:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .hero-left { background: var(--black); display: flex; flex-direction: column; justify-content: center; padding: 5rem 5rem 5rem 6rem; }
+    .hero-eyebrow { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .hero-name { font-family: var(--script); font-size: clamp(3.2rem, 5vw, 5rem); color: #fff; line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero-title { font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 3rem; }
+    .hero-cta { display: inline-block; border: 1px solid var(--accent); color: var(--accent); font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem 2.2rem; text-decoration: none; transition: background 0.25s, color 0.25s; align-self: flex-start; }
+    .hero-cta:hover { background: var(--accent); color: var(--black); }
+    .hero-right { background: var(--cream); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 5rem; }
+    .hero-quote { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 2.5vw, 2.2rem); line-height: 1.55; color: var(--black-soft); max-width: 420px; margin-bottom: 2.5rem; }
+    .hero-quote::before { content: '\201C'; font-size: 4rem; color: var(--accent); line-height: 0; vertical-align: -1rem; margin-right: 0.2rem; }
+    .hero-zones { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); opacity: 0.5; }
+    .hero-zones span { opacity: 1; font-weight: 500; }
+
+    /* SECTIONS */
+    section { padding: 7rem 6rem; }
+    .section-label { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.2; margin-bottom: 3rem; max-width: 560px; }
+
+    /* PRÉSENTATION */
+    .presentation { background: var(--cream-dark); }
+    .presentation-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .presentation-text p { font-family: var(--serif); font-size: 1.15rem; line-height: 1.85; color: var(--black-soft); margin-bottom: 1.4rem; font-weight: 300; }
+    .presentation-text p:last-child { margin-bottom: 0; }
+    .presentation-stats { display: flex; flex-direction: column; gap: 2px; background: rgba(0,0,0,0.08); }
+    .stat-item { background: var(--cream-dark); padding: 2.2rem 2.5rem; }
+    .stat-val { font-family: var(--script); font-size: 2.8rem; color: var(--black); display: block; line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; }
+
+    /* SOINS */
+    .soins { background: var(--cream); }
+    .soins-grid { display: block !important; }
+    .soin-card { background: var(--cream); padding: 2.5rem 2rem; }
+    .soin-num { font-family: var(--serif); font-size: 2.5rem; color: var(--accent); opacity: 0.4; font-style: italic; display: block; margin-bottom: 1rem; }
+    .soin-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.8rem; }
+    .soin-desc { font-size: 0.85rem; line-height: 1.7; opacity: 0.65; }
+
+    /* RDV */
+    .rdv-intro { font-family: var(--serif); font-size: 1.1rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 580px; margin-bottom: 3.5rem; }
+    .rdv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.07); margin-bottom: 3.5rem; }
+    .rdv-card { background: var(--black); padding: 2.5rem; cursor: pointer; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
+    .rdv-card:hover { background: #252525; border-color: var(--accent); }
+    .rdv-card.selected { background: #252525; border-color: var(--accent); }
+    .rdv-card-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+    .rdv-card-name { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+    .rdv-card-detail { font-size: 0.78rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
+    .rdv-form { display: none; flex-direction: column; gap: 1.5rem; max-width: 680px; }
+    .rdv-form.visible { display: flex; }
+    .rdv-form-title { font-family: var(--serif); font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+    .rdv-form-subtitle { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-family: var(--sans); font-size: 0.9rem; font-weight: 300; padding: 0.85rem 1.1rem; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select option { background: var(--black); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    /* Sélection multiple actes */
+    .rdv-card { position: relative; }
+    .rdv-card .rdv-check { position: absolute; top: 0.8rem; right: 0.8rem; width: 18px; height: 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: transparent; transition: all 0.15s; }
+    .rdv-card.selected .rdv-check { background: var(--accent); border-color: var(--accent); color: var(--black); }
+    .rdv-selection-bar { display: none; position: sticky; bottom: 0; background: #111; border-top: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; margin-top: 1.5rem; align-items: center; gap: 1.5rem; flex-wrap: wrap; z-index: 10; }
+    .rdv-selection-bar.visible { display: flex; }
+    .rdv-selection-count { font-family: var(--serif); font-size: 1.05rem; color: #fff; }
+    .rdv-selection-count span { color: var(--accent); font-weight: 400; }
+    .rdv-selection-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; flex: 1; }
+    .rdv-tag { background: rgba(196,168,130,0.15); border: 1px solid rgba(196,168,130,0.3); color: var(--accent); font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
+    .rdv-tag-remove { cursor: pointer; opacity: 0.6; transition: opacity 0.15s; font-size: 0.8rem; }
+    .rdv-tag-remove:hover { opacity: 1; }
+    .rdv-next-btn { border: 1px solid var(--accent); background: var(--accent); color: var(--black); font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.8rem 2rem; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; font-weight: 500; }
+    .rdv-next-btn:hover { opacity: 0.85; }
+    .rdv-submit { border: 1px solid var(--accent); background: transparent; color: var(--accent); font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.8rem; cursor: pointer; transition: background 0.25s, color 0.25s; align-self: flex-start; }
+    .rdv-submit:hover { background: var(--accent); color: var(--black); }
+    /* Ordonnance upload */
+    .ordonnance-zone { border: 1px dashed rgba(255,255,255,0.2); padding: 1.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative; }
+    .ordonnance-zone:hover { border-color: var(--accent); }
+    .ordonnance-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .ordonnance-zone p { font-family: var(--serif); font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; }
+    .ordonnance-zone small { font-size: 0.72rem; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; }
+    .ordonnance-preview { display: none; background: rgba(196,168,130,0.1); border: 1px solid rgba(196,168,130,0.3); padding: 0.8rem 1.2rem; align-items: center; gap: 1rem; margin-top: 0.6rem; }
+    .ordonnance-preview.visible { display: flex; }
+    .ordonnance-preview span { font-family: var(--sans); font-size: 0.8rem; color: var(--accent); flex: 1; }
+    .ordonnance-preview button { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 1rem; transition: color 0.15s; }
+    .ordonnance-preview button:hover { color: #fff; }
+    .rdv-confirm { display: none; background: rgba(196,168,130,0.1); border: 1px solid var(--accent); padding: 2rem 2.5rem; max-width: 680px; }
+    .rdv-confirm.visible { display: block; }
+    .rdv-confirm p { font-family: var(--serif); font-size: 1.1rem; color: #fff; line-height: 1.7; }
+    .rdv-confirm-actes { margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .rdv-confirm-actes .rdv-tag { background: rgba(196,168,130,0.12); }
+    .rdv-back { background: none; border: none; color: rgba(255,255,255,0.4); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; margin-top: 1rem; padding: 0; transition: color 0.2s; }
+    .rdv-back:hover { color: var(--accent); }
+
+    /* INFOS */
+    .infos { background: var(--black); color: #fff; }
+    .infos .section-title { color: #fff; }
+    .infos-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .info-block h3 { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .info-block p { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.75); }
+    .info-block a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+    .info-block a:hover { color: var(--accent); }
+    .rpps-line { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3) !important; margin-top: 1.5rem; line-height: 2; }
+    .horaires-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .horaires-table td { font-family: var(--serif); font-size: 0.95rem; color: rgba(255,255,255,0.7); padding: 0.45rem 0; vertical-align: top; }
+    .horaires-table td:first-child { font-weight: 400; color: rgba(255,255,255,0.45); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding-right: 1.5rem; white-space: nowrap; }
+    .horaires-note { font-size: 0.75rem !important; color: rgba(255,255,255,0.3) !important; margin-top: 1rem; font-family: var(--sans) !important; letter-spacing: 0.06em; }
+
+    /* MAP */
+    #map { height: 380px; width: 100%; filter: grayscale(30%); }
+    .map-wrapper { border: 1px solid rgba(255,255,255,0.08); overflow: hidden; }
+
+    /* CONTACT */
+    .contact-section { background: var(--cream-dark); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-box { border: 1px solid rgba(0,0,0,0.12); padding: 3rem 3.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-box p { font-family: var(--serif); font-size: 1.05rem; line-height: 1.7; opacity: 0.8; }
+    .big-phone { font-family: var(--script); font-size: 2.5rem; color: var(--black); }
+    .urgence-note { font-size: 0.8rem; opacity: 0.45; font-family: var(--sans); letter-spacing: 0.06em; }
+    .contact-rdv-btn { display: inline-block; background: var(--black); color: #fff; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.5rem; text-decoration: none; transition: background 0.25s; align-self: flex-start; margin-top: 0.5rem; }
+    .contact-rdv-btn:hover { background: var(--accent); }
+
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.3); padding: 3rem 6rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.1em; }
+    .footer-logo { font-family: var(--script); font-size: 1.4rem; color: rgba(255,255,255,0.6); }
+
+    /* ═══════════════════════════════════════════
+       PANNEAU ADMIN
+    ═══════════════════════════════════════════ */
+    /* Overlay login */
+    #adminOverlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+    }
+    #adminOverlay.open { display: flex; }
+    .login-box {
+      background: var(--cream); padding: 3rem 3.5rem; width: 380px; max-width: 95vw;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .login-box h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; }
+    .login-box p { font-size: 0.8rem; opacity: 0.5; }
+    .login-box input { width: 100%; background: var(--cream-dark); border: 1px solid rgba(0,0,0,0.15); padding: 0.85rem 1rem; font-family: var(--sans); font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .login-box input:focus { border-color: var(--accent); }
+    .login-btn { background: var(--black); color: #fff; border: none; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.95rem; cursor: pointer; transition: background 0.2s; }
+    .login-btn:hover { background: var(--accent); color: var(--black); }
+    .login-error { color: #c0392b; font-size: 0.78rem; display: none; }
+    .login-error.show { display: block; }
+    .login-cancel { background: none; border: none; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.4; cursor: pointer; padding: 0; transition: opacity 0.2s; }
+    .login-cancel:hover { opacity: 1; }
+
+    /* Panneau admin principal */
+    #adminPanel {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: #111; overflow-y: auto;
+    }
+    #adminPanel.open { display: block; }
+    .admin-header {
+      background: #1A1A1A; border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1.4rem 3rem; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .admin-header-left { display: flex; align-items: center; gap: 1.5rem; }
+    .admin-logo { font-family: var(--script); font-size: 1.4rem; color: var(--accent); }
+    .admin-badge { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem 0.7rem; }
+    .admin-header-right { display: flex; gap: 1rem; }
+    .admin-save-btn { background: var(--accent); color: var(--black); border: none; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.7rem 1.8rem; cursor: pointer; transition: opacity 0.2s; font-weight: 500; }
+    .admin-save-btn:hover { opacity: 0.85; }
+    .admin-close-btn { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.7rem 1.5rem; cursor: pointer; transition: all 0.2s; }
+    .admin-close-btn:hover { border-color: #fff; color: #fff; }
+
+    .admin-body { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 65px); }
+    .admin-sidebar { background: #161616; border-right: 1px solid rgba(255,255,255,0.06); padding: 2rem 0; }
+    .admin-nav-item { display: block; width: 100%; background: none; border: none; text-align: left; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 0.9rem 1.8rem; cursor: pointer; transition: all 0.2s; border-left: 2px solid transparent; }
+    .admin-nav-item:hover { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.03); }
+    .admin-nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(196,168,130,0.06); }
+
+    .admin-content { padding: 3rem; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+    .admin-section-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 0.5rem; }
+    .admin-section-sub { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-bottom: 2.5rem; letter-spacing: 0.06em; }
+
+    .admin-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.07); padding: 2rem; margin-bottom: 1.5rem; }
+    .admin-card-title { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .admin-field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .admin-field:last-child { margin-bottom: 0; }
+    .admin-field label { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .admin-field input, .admin-field textarea {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; font-family: var(--sans); font-size: 0.88rem; font-weight: 300;
+      padding: 0.8rem 1rem; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .admin-field input:focus, .admin-field textarea:focus { border-color: var(--accent); }
+    .admin-field textarea { resize: vertical; min-height: 80px; }
+    .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .admin-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+
+    /* Actes admin */
+    .acte-admin-block { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.07); padding: 1.8rem; margin-bottom: 1rem; }
+    .acte-admin-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .acte-icon-input { font-size: 1.4rem; width: 3rem; text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem; color: #fff; outline: none; }
+
+    /* Toast */
+    #adminToast { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: var(--black); font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; z-index: 99999; transform: translateY(100px); opacity: 0; transition: all 0.3s; pointer-events: none; }
+    #adminToast.show { transform: translateY(0); opacity: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) { .presentation-inner, .infos-layout, .contact-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.8rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left, .hero-right { padding: 4rem 2rem; }
+      section { padding: 5rem 2rem; }
+      .infos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; padding: 2.5rem 2rem; text-align: center; }
+      .admin-body { grid-template-columns: 1fr; }
+      .admin-sidebar { display: flex; flex-wrap: wrap; padding: 1rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .admin-nav-item { width: auto; border-left: none; border-bottom: 2px solid transparent; padding: 0.6rem 1rem; }
+      .admin-nav-item.active { border-bottom-color: var(--accent); border-left-color: transparent; }
+      .admin-row, .admin-row3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-left > * { animation: fadeUp 0.7s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo" id="navLogo">Mélissa Graton</a>
+    <ul class="nav-links">
+      <li><a href="#presentation">Le cabinet</a></li>
+      <li><a href="#soins">Soins</a></li>
+      <li><a href="rdv.html" style="color:var(--accent);border:1px solid var(--accent);padding:0.35rem 1rem;">Rendez-vous</a></li>
+      <li><a href="#infos">Infos pratiques</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="nav-admin-btn" onclick="openLogin()">⚙ Admin</button></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow" id="heroEyebrow">Cabinet infirmier libéral</p>
+      <h1 class="hero-name" id="heroName">Mélissa<br>Graton</h1>
+      <p class="hero-title" id="heroTitle">Infirmière Diplômée d'État</p>
+      <a href="rdv.html" class="hero-cta">Prendre rendez-vous</a>
+    </div>
+    <div class="hero-right">
+      <p class="hero-quote" id="heroQuote">Des soins à domicile, avec attention et discrétion, dans le confort de votre quotidien.</p>
+      <p class="hero-zones">Zones d'intervention &nbsp;·&nbsp; <span id="zone1">Haute-Goulaine</span> &amp; <span id="zone2">Basse-Goulaine</span></p>
+    </div>
+  </section>
+
+  <!-- PRÉSENTATION -->
+  <section class="presentation" id="presentation">
+    <p class="section-label">Le cabinet</p>
+    <h2 class="section-title">Un suivi infirmier de proximité, à votre domicile</h2>
+    <div class="presentation-inner">
+      <div class="presentation-text">
+        <p id="presText1">Installée à Haute-Goulaine, j'interviens dans le secteur de Loire-Atlantique sur les communes de Haute-Goulaine et Basse-Goulaine. Mon objectif est de vous offrir des soins de qualité dans un cadre rassurant, sans que vous ayez à vous déplacer.</p>
+        <p id="presText2">Diplômée d'État, je collabore étroitement avec votre médecin traitant et les spécialistes afin d'assurer la continuité des soins et la cohérence de votre parcours de soins. Cette approche intégrée permet de personnaliser les traitements en fonction de vos besoins spécifiques et de garantir un suivi optimal de votre santé. Je m'engage à créer un environnement accueillant, où chaque patient se sent écouté et compris. Grâce à cette proximité, je peux adapter mes interventions et répondre rapidement à vos préoccupations. Mon but est de vous accompagner dans votre rétablissement, tout en veillant à votre confort et bien-être.</p>
+        <p id="presText3">Les honoraires appliqués sont conformes aux conventions de l'Assurance Maladie, assurant une facturation claire et transparente. Nous pratiquons le tiers payant intégral, ce qui vous permet de ne pas avancer les frais selon les conditions de votre mutuelle. Si vous êtes éligible à l'ALD (Affection de Longue Durée — maladie chronique reconnue par l'Assurance Maladie), à la CMU (Couverture Maladie Universelle — pour les personnes aux revenus modestes), à l'AME (Aide Médicale d'État — pour les personnes en situation irrégulière sur le territoire), ou si vous êtes en situation d'accident du travail ou de congé maternité, aucun frais ne sera à votre charge pour vos soins.</p>
+      </div>
+      <div class="presentation-stats">
+        <div class="stat-item"><span class="stat-val" id="stat1Val">2</span><span class="stat-label" id="stat1Lab">Communes couvertes</span></div>
+        <div class="stat-item"><span class="stat-val" id="stat2Val">6h – 20h</span><span class="stat-label" id="stat2Lab">Horaires d'intervention</span></div>
+        <div class="stat-item"><span class="stat-val" id="stat3Val">Secteur 1</span><span class="stat-label" id="stat3Lab">Conventionnée Assurance Maladie</span></div>
+        <div class="stat-item"><span class="stat-val" id="stat4Val">IDE</span><span class="stat-label" id="stat4Lab">Infirmière Diplômée d'État</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOINS -->
+  <section class="soins" id="soins">
+    <p class="section-label">Prestations</p>
+    <h2 class="section-title">Des soins infirmiers adaptés à chaque patient</h2>
+    <div class="soins-grid" id="soinsGrid">
+
+      <!-- Plaies & Pansements — 2 cases → 2 colonnes -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:none">🩹 Plaies &amp; Pansements</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">01</span><h3 class="soin-name">Pansements &amp; plaies</h3><p class="soin-desc">Pansements de tout type — simples, lourds et complexes. Plaies chroniques, post-opératoires, escarres, ulcères veineux ou artériels, cicatrisation.</p></div>
+        <div class="soin-card"><span class="soin-num">02</span><h3 class="soin-name">Ablation fils &amp; agrafes</h3><p class="soin-desc">Ablation de fils et agrafes chirurgicales après intervention, soins de cicatrice.</p></div>
+      </div>
+
+      <!-- Injections & Prélèvements — 4 cases → 4 colonnes -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">💉 Injections &amp; Prélèvements</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">03</span><h3 class="soin-name">Injections</h3><p class="soin-desc">Injections sous-cutanées, intramusculaires, intraveineuses. Injections pour protocoles FIV. Vaccinations.</p></div>
+        <div class="soin-card"><span class="soin-num">04</span><h3 class="soin-name">Prélèvements sanguins</h3><p class="soin-desc">Prélèvements veineux à domicile transmis au laboratoire partenaire. Bilan de soins infirmiers.</p></div>
+        <div class="soin-card"><span class="soin-num">05</span><h3 class="soin-name">Prélèvements urine &amp; selles</h3><p class="soin-desc">Recueil et acheminement d'échantillons urinaires (ECBU) et de selles (coproculture, parasitologie).</p></div>
+        <div class="soin-card"><span class="soin-num">06</span><h3 class="soin-name">Tests COVID &amp; vaccins</h3><p class="soin-desc">Prélèvement naso-pharyngé pour test PCR, test antigénique COVID-19, vaccinations à domicile.</p></div>
+      </div>
+
+      <!-- Perfusions & Traitements — 3 cases → 3 colonnes -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">🫧 Perfusions &amp; Traitements</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">07</span><h3 class="soin-name">Perfusion</h3><p class="soin-desc">Pose et surveillance de voie veineuse périphérique, perfusion de médicaments, sérums et solutés.</p></div>
+        <div class="soin-card"><span class="soin-num">08</span><h3 class="soin-name">Chimiothérapie à domicile</h3><p class="soin-desc">Administration et surveillance de chimiothérapies à domicile dans le cadre d'un protocole oncologique validé.</p></div>
+        <div class="soin-card"><span class="soin-num">09</span><h3 class="soin-name">Gestion médicamenteuse</h3><p class="soin-desc">Préparation de piluliers, délivrance et surveillance de la prise médicamenteuse, éducation à l'observance.</p></div>
+      </div>
+
+      <!-- Soins Spécialisés — 5 cases → ligne 1 : 3 col, ligne 2 : 2 col -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">🫁 Soins Spécialisés</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">10</span><h3 class="soin-name">Aérosol &amp; aspiration</h3><p class="soin-desc">Aérosolthérapie (nébulisation). Aspiration endotrachéale. Cough assist (aide à la toux mécanique). Soins de trachéotomie.</p></div>
+        <div class="soin-card"><span class="soin-num">11</span><h3 class="soin-name">Stomies digestives &amp; urinaires</h3><p class="soin-desc">Soins de stomie digestive (colostomie, iléostomie) et urinaire (urostomie). Éducation thérapeutique du patient et de l'entourage.</p></div>
+        <div class="soin-card"><span class="soin-num">12</span><h3 class="soin-name">Sonde naso-gastrique</h3><p class="soin-desc">Pose et surveillance de sonde naso-gastrique. Nutrition entérale par pompe. Nutrition parentérale.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">13</span><h3 class="soin-name">Lavement rectal &amp; étui pénien</h3><p class="soin-desc">Lavement rectal thérapeutique. Pose et surveillance d'étui pénien pour incontinence urinaire.</p></div>
+        <div class="soin-card"><span class="soin-num">14</span><h3 class="soin-name">Compression veineuse</h3><p class="soin-desc">Pose de bas de contention. Pose de compression veineuse de type K2 ou Rosida. Bandages multi-couches.</p></div>
+      </div>
+
+      <!-- Pompes & Dispositifs — 1 case → pleine largeur -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">⚙️ Pompes &amp; Dispositifs</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">15</span><h3 class="soin-name">Pompes médicales</h3><p class="soin-desc">Manipulation et surveillance de pompes type Apokyn (apomorphine). Pompes à morphine et midazolam (soins palliatifs). Suivi et traçabilité.</p></div>
+      </div>
+
+      <!-- Éducation & Prévention — 1 case → pleine largeur -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">📊 Éducation &amp; Prévention</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">16</span><h3 class="soin-name">Éducation thérapeutique</h3><p class="soin-desc">Éducation thérapeutique sur le diabète (insuline, glycémie, alimentation). Stomies en tout genre. Protocoles FIV. Apprentissage de l'auto-sondage.</p></div>
+      </div>
+
+      <!-- Nursing & Fin de Vie — 3 cases → 3 colonnes -->
+      <div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:2px solid rgba(0,0,0,0.06)">🛁 Nursing &amp; Fin de Vie</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.08);margin-bottom:2px;width:100%">
+        <div class="soin-card"><span class="soin-num">17</span><h3 class="soin-name">Soins de nursing</h3><p class="soin-desc">Aide à la toilette, hygiène corporelle, soins de bouche, prévention des escarres. Soins de confort pour patients à mobilité réduite.</p></div>
+        <div class="soin-card"><span class="soin-num">18</span><h3 class="soin-name">Maintien à domicile – pathologies lourdes</h3><p class="soin-desc">Prise en charge et suivi infirmier à domicile pour toutes pathologies lourdes et invalidantes : maladie d'Alzheimer, maladie de Parkinson, sclérose en plaques (SEP), sclérose latérale amyotrophique (SLA) et autres affections neurologiques ou chroniques.</p></div>
+        <div class="soin-card"><span class="soin-num">19</span><h3 class="soin-name">Soins palliatifs &amp; fin de vie</h3><p class="soin-desc">Prise en charge globale des soins palliatifs et de fin de vie à domicile. Gestion de la douleur, soins de confort, soutien à l'entourage, coordination pluridisciplinaire.</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA RENDEZ-VOUS -->
+  <section style="background:var(--black); padding:5rem 6rem;" id="rdv">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(255,255,255,0.07);">
+      <div style="background:var(--black); padding:3rem 3.5rem;">
+        <p style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">Par téléphone</p>
+        <p style="font-family:var(--script);font-size:3rem;color:#fff;margin-bottom:1rem;line-height:1;" id="ctaPhone">06 72 31 12 79</p>
+        <p style="font-family:var(--serif);font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:0.6rem;">Pour prendre rendez-vous ou pour toute demande de renseignement.</p>
+        <p style="font-family:var(--sans);font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.06em;">Lun – Dim · 6h–12h30 / 14h–20h</p>
+      </div>
+      <div style="background:var(--black); padding:3rem 3.5rem; display:flex; flex-direction:column; justify-content:center;">
+        <p style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">En ligne</p>
+        <p style="font-family:var(--serif);font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:2rem;">Sélectionnez vos actes, joignez votre ordonnance et recevez une confirmation sous 24h.</p>
+        <a href="rdv.html" style="display:inline-block;border:1px solid var(--accent);color:var(--accent);font-family:var(--sans);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;transition:background 0.25s,color 0.25s;align-self:flex-start;" onmouseover="this.style.background='var(--accent)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">Prendre rendez-vous →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS + MAP -->
+  <section class="infos" id="infos">
+    <p class="section-label" style="color:var(--accent)">Organisation</p>
+    <h2 class="section-title">Infos pratiques</h2>
+    <div class="infos-layout">
+      <div class="infos-grid">
+        <div class="info-block">
+          <h3>Adresse du cabinet</h3>
+          <p id="infoAdresse">12 place de l'Église<br>44120 Haute-Goulaine</p>
+        </div>
+        <div class="info-block">
+          <h3>Zones d'intervention</h3>
+          <p id="infoZones">Haute-Goulaine<br>Basse-Goulaine</p>
+        </div>
+        <div class="info-block">
+          <h3>Horaires</h3>
+          <table class="horaires-table">
+            <tr><td>Lun – Dim</td><td id="horMatin">6h – 12h30</td></tr>
+            <tr><td></td><td id="horApm">14h – 20h</td></tr>
+            
+          </table>
+          <p class="horaires-note">Interventions uniquement à domicile</p>
+        </div>
+        <div class="info-block">
+          <h3>Conventionnée Secteur 1</h3>
+          <p>Remboursement Sécurité Sociale<br>Carte Vitale acceptée</p>
+          <p class="rpps-line">N° RPPS : <span id="infoRpps">810108443895</span><br>N° ADELI : <span id="infoAdeli">3300452990</span></p>
+        </div>
+      </div>
+      <div><div class="map-wrapper"><div id="map"></div></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Me contacter</h2>
+    <div class="contact-inner">
+      <div class="contact-box">
+        <p>Pour prendre rendez-vous ou pour toute demande de renseignement, contactez-moi par téléphone ou en ligne.</p>
+        <p class="big-phone" id="contactPhone">06 72 31 12 79</p>
+        <a href="rdv.html" class="contact-rdv-btn">Prendre rendez-vous en ligne</a>
+        <p class="urgence-note">Urgence médicale : composez le 15 (SAMU)</p>
+      </div>
+      <div>
+        <p style="font-family:var(--serif); font-size:1.05rem; line-height:1.9; opacity:0.7;">
+          N'hésitez pas à appeler directement.<br><br>
+          Les demandes en ligne sont traitées sous 24h (jours ouvrés).<br><br>
+          <span id="contactAdresseFooter" style="font-size:0.8rem; opacity:0.5; font-family:var(--sans); letter-spacing:0.06em;">Cabinet : 12 place de l'Église, 44120 Haute-Goulaine</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo" id="footerLogo">Mélissa Graton</span>
+    <span id="footerMiddle">Infirmière Libérale Diplômée d'État &nbsp;·&nbsp; 44120 Haute-Goulaine</span>
+    <span>© 2025</span>
+  </footer>
+
+  <!-- ═══════ OVERLAY LOGIN ═══════ -->
+  <div id="adminOverlay">
+    <div class="login-box">
+      <h2>Espace administration</h2>
+      <p>Accès réservé à Mélissa Graton</p>
+      <input type="password" id="adminPwd" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkLogin()" />
+      <span class="login-error" id="loginError">Mot de passe incorrect.</span>
+      <button class="login-btn" onclick="checkLogin()">Accéder</button>
+      <button class="login-cancel" onclick="closeLogin()">Annuler</button>
+    </div>
+  </div>
+
+  <!-- ═══════ PANNEAU ADMIN ═══════ -->
+  <div id="adminPanel">
+    <div class="admin-header">
+      <div class="admin-header-left">
+        <span class="admin-logo">Admin</span>
+        <span class="admin-badge">Mélissa Graton · Cabinet</span>
+      </div>
+      <div class="admin-header-right">
+        <button class="admin-save-btn" onclick="saveAll()">💾 Enregistrer</button>
+        <button class="admin-close-btn" onclick="closeAdmin()">✕ Fermer</button>
+      </div>
+    </div>
+    <div class="admin-body">
+      <div class="admin-sidebar">
+        <button class="admin-nav-item active" onclick="showTab('tabIdentite', this)">Identité</button>
+        <button class="admin-nav-item" onclick="showTab('tabPresentation', this)">Présentation</button>
+        <button class="admin-nav-item" onclick="showTab('tabHoraires', this)">Horaires</button>
+        <button class="admin-nav-item" onclick="showTab('tabActes', this)">Actes de soins</button>
+        <button class="admin-nav-item" onclick="showTab('tabContact', this)">Contact</button>
+        <button class="admin-nav-item" onclick="showTab('tabMdp', this)">Mot de passe</button>
+      </div>
+      <div class="admin-content">
+
+        <!-- IDENTITÉ -->
+        <div class="admin-section active" id="tabIdentite">
+          <div class="admin-section-title">Identité</div>
+          <div class="admin-section-sub">Nom, titre, accroche et zones d'intervention affichés sur la page d'accueil.</div>
+          <div class="admin-card">
+            <div class="admin-card-title">Informations principales</div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Prénom</label><input id="a-prenom" type="text" /></div>
+              <div class="admin-field"><label>Nom</label><input id="a-nom" type="text" /></div>
+            </div>
+            <div class="admin-field"><label>Titre professionnel</label><input id="a-titre" type="text" /></div>
+            <div class="admin-field"><label>Sous-titre hero (ex. Cabinet infirmier libéral)</label><input id="a-eyebrow" type="text" /></div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Citation d'accueil</div>
+            <div class="admin-field"><textarea id="a-quote" rows="3"></textarea></div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Zones d'intervention</div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Zone 1</label><input id="a-zone1" type="text" /></div>
+              <div class="admin-field"><label>Zone 2</label><input id="a-zone2" type="text" /></div>
+            </div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Chiffres clés (encadrés)</div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Valeur 1</label><input id="a-s1v" type="text" /></div>
+              <div class="admin-field"><label>Label 1</label><input id="a-s1l" type="text" /></div>
+            </div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Valeur 2</label><input id="a-s2v" type="text" /></div>
+              <div class="admin-field"><label>Label 2</label><input id="a-s2l" type="text" /></div>
+            </div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Valeur 3</label><input id="a-s3v" type="text" /></div>
+              <div class="admin-field"><label>Label 3</label><input id="a-s3l" type="text" /></div>
+            </div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Valeur 4</label><input id="a-s4v" type="text" /></div>
+              <div class="admin-field"><label>Label 4</label><input id="a-s4l" type="text" /></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRÉSENTATION -->
+        <div class="admin-section" id="tabPresentation">
+          <div class="admin-section-title">Présentation du cabinet</div>
+          <div class="admin-section-sub">Trois paragraphes affichés dans la section "Le cabinet".</div>
+          <div class="admin-card">
+            <div class="admin-field"><label>Paragraphe 1</label><textarea id="a-p1" rows="4"></textarea></div>
+            <div class="admin-field"><label>Paragraphe 2</label><textarea id="a-p2" rows="4"></textarea></div>
+            <div class="admin-field"><label>Paragraphe 3</label><textarea id="a-p3" rows="4"></textarea></div>
+          </div>
+        </div>
+
+        <!-- HORAIRES -->
+        <div class="admin-section" id="tabHoraires">
+          <div class="admin-section-title">Horaires</div>
+          <div class="admin-section-sub">Horaires affichés dans "Infos pratiques".</div>
+          <div class="admin-card">
+            <div class="admin-card-title">Lun – Dim</div>
+            <div class="admin-row">
+              <div class="admin-field"><label>Matin</label><input id="a-horMatin" type="text" placeholder="6h – 12h30" /></div>
+              <div class="admin-field"><label>Après-midi</label><input id="a-horApm" type="text" placeholder="14h – 20h" /></div>
+            </div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Dimanche</div>
+            <div class="admin-field"><input id="a-horDim" type="text" placeholder="Sur prescription médicale" /></div>
+          </div>
+        </div>
+
+        <!-- ACTES -->
+        <div class="admin-section" id="tabActes">
+          <div class="admin-section-title">Actes de soins</div>
+          <div class="admin-section-sub">18 actes affichés dans "Prestations" et dans le formulaire de RDV.</div>
+          <div id="actesAdminList"></div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="admin-section" id="tabContact">
+          <div class="admin-section-title">Contact & coordonnées</div>
+          <div class="admin-section-sub">Adresse, téléphone et numéros réglementaires.</div>
+          <div class="admin-card">
+            <div class="admin-card-title">Téléphone</div>
+            <div class="admin-field"><input id="a-tel" type="tel" /></div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Adresse du cabinet</div>
+            <div class="admin-field"><label>Ligne 1</label><input id="a-adr1" type="text" /></div>
+            <div class="admin-field"><label>Ligne 2 (code postal + ville)</label><input id="a-adr2" type="text" /></div>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Numéros réglementaires</div>
+            <div class="admin-row">
+              <div class="admin-field"><label>N° RPPS</label><input id="a-rpps" type="text" /></div>
+              <div class="admin-field"><label>N° ADELI</label><input id="a-adeli" type="text" /></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOT DE PASSE -->
+        <div class="admin-section" id="tabMdp">
+          <div class="admin-section-title">Mot de passe</div>
+          <div class="admin-section-sub">Changer le mot de passe d'accès à ce panneau.</div>
+          <div class="admin-card">
+            <div class="admin-field"><label>Nouveau mot de passe</label><input id="a-newpwd" type="password" placeholder="••••••••" /></div>
+            <div class="admin-field"><label>Confirmer</label><input id="a-newpwd2" type="password" placeholder="••••••••" /></div>
+            <button class="admin-save-btn" style="margin-top:1rem" onclick="changePwd()">Changer le mot de passe</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="adminToast">✓ Modifications enregistrées</div>
+
+  <script>
+  // ═══════════════════════════════════════
+  // DONNÉES PAR DÉFAUT
+  // ═══════════════════════════════════════
+  var DEFAULTS = {
+    prenom: 'Mélissa', nom: 'Graton',
+    titre: "Infirmière Diplômée d'État",
+    eyebrow: 'Cabinet infirmier libéral',
+    quote: "Des soins à domicile, avec attention et discrétion, dans le confort de votre quotidien.",
+    zone1: 'Haute-Goulaine', zone2: 'Basse-Goulaine',
+    s1v: '2',       s1l: 'Communes couvertes',
+    s2v: '7j/7', s2l: "Soins tous les jours",
+    s3v: 'Secteur 1', s3l: 'Conventionnée Assurance Maladie',
+    s4v: 'IDE',      s4l: "Infirmière Diplômée d'État",
+    p1: "Installée à Haute-Goulaine, j'interviens dans le secteur de Loire-Atlantique sur les communes de Haute-Goulaine et Basse-Goulaine. Mon objectif est de vous offrir des soins de qualité dans un cadre rassurant, sans que vous ayez à vous déplacer.",
+    p2: "Diplômée d'État, je collabore étroitement avec votre médecin traitant et les spécialistes afin d'assurer la continuité des soins et la cohérence de votre parcours de soins. Cette approche intégrée permet de personnaliser les traitements en fonction de vos besoins spécifiques et de garantir un suivi optimal de votre santé. Je m'engage à créer un environnement accueillant, où chaque patient se sent écouté et compris. Grâce à cette proximité, je peux adapter mes interventions et répondre rapidement à vos préoccupations. Mon but est de vous accompagner dans votre rétablissement, tout en veillant à votre confort et bien-être.",
+    p3: "Les honoraires appliqués sont conformes aux conventions de l'Assurance Maladie, assurant une facturation claire et transparente. Nous pratiquons le tiers payant intégral, ce qui vous permet de ne pas avancer les frais selon les conditions de votre mutuelle. Si vous êtes éligible à l'ALD (Affection de Longue Durée — maladie chronique reconnue par l'Assurance Maladie), à la CMU (Couverture Maladie Universelle — pour les personnes aux revenus modestes), à l'AME (Aide Médicale d'État — pour les personnes en situation irrégulière sur le territoire), ou si vous êtes en situation d'accident du travail ou de congé maternité, aucun frais ne sera à votre charge pour vos soins.",
+    horMatin: '6h – 12h30', horApm: '14h – 20h', horDim: '',
+    tel: '06 72 31 12 79',
+    adr1: "12 place de l'Église", adr2: '44120 Haute-Goulaine',
+    rpps: '810108443895', adeli: '3300452990',
+    pwd: 'melissa2025',
+    actes: [
+      // ── PLAIES & PANSEMENTS ──
+      { icon: '🩹', name: 'Pansements & plaies', detail: 'Simple · lourd · complexe · chronique', desc: 'Pansements de tout type — simples, lourds et complexes. Plaies chroniques, post-opératoires, escarres, ulcères veineux ou artériels, cicatrisation.', cat: 'Plaies & Pansements' },
+      { icon: '✂️', name: 'Ablation fils & agrafes', detail: 'Soins post-opératoires', desc: 'Ablation de fils et agrafes chirurgicales après intervention, soins de cicatrice.', cat: 'Plaies & Pansements' },
+      // ── INJECTIONS & PRÉLÈVEMENTS ──
+      { icon: '💉', name: 'Injections', detail: 'SC · IM · IV · FIV · vaccins', desc: "Injections sous-cutanées, intramusculaires, intraveineuses. Injections pour protocoles FIV (stimulation ovarienne). Vaccinations.", cat: 'Injections & Prélèvements' },
+      { icon: '🧪', name: 'Prélèvements sanguins', detail: 'Prise de sang à domicile', desc: 'Prélèvements veineux à domicile transmis au laboratoire partenaire. Bilan de soins infirmiers.', cat: 'Injections & Prélèvements' },
+      { icon: '🧫', name: 'Prélèvements urine & selles', detail: 'ECBU · coproculture', desc: "Recueil et acheminement d'échantillons urinaires (ECBU) et de selles (coproculture, parasitologie).", cat: 'Injections & Prélèvements' },
+      { icon: '🦠', name: 'Tests COVID & vaccins', detail: 'PCR · antigénique · vaccination', desc: 'Prélèvement naso-pharyngé pour test PCR, test antigénique COVID-19, vaccinations à domicile.', cat: 'Injections & Prélèvements' },
+      // ── PERFUSIONS & CHIMIOTHÉRAPIE ──
+      { icon: '🫧', name: 'Perfusion', detail: 'Pose · surveillance · voie veineuse', desc: 'Pose et surveillance de voie veineuse périphérique, perfusion de médicaments, sérums et solutés.', cat: 'Perfusions & Traitements' },
+      { icon: '⚗️', name: 'Chimiothérapie à domicile', detail: 'Surveillance · protocole oncologique', desc: "Administration et surveillance de chimiothérapies à domicile dans le cadre d'un protocole oncologique validé.", cat: 'Perfusions & Traitements' },
+      { icon: '💊', name: 'Gestion médicamenteuse', detail: 'Piluliers · surveillance · observance', desc: "Préparation de piluliers, délivrance et surveillance de la prise médicamenteuse, éducation à l'observance.", cat: 'Perfusions & Traitements' },
+      // ── SOINS SPÉCIALISÉS ──
+      { icon: '🫁', name: 'Aérosol & aspiration', detail: 'Nébulisation · trachéotomie · cough assist', desc: "Aérosolthérapie (nébulisation). Aspiration endotrachéale. Cough assist (aide à la toux mécanique). Soins de trachéotomie.", cat: 'Soins Spécialisés' },
+      { icon: '🩺', name: 'Stomies digestives & urinaires', detail: 'Soins · éducation · suivi', desc: "Soins de stomie digestive (colostomie, iléostomie) et urinaire (urostomie). Éducation thérapeutique du patient et de l'entourage.", cat: 'Soins Spécialisés' },
+      { icon: '🔬', name: 'Sonde naso-gastrique', detail: 'Pose · surveillance · nutrition entérale', desc: "Pose et surveillance de sonde naso-gastrique. Nutrition entérale par pompe. Nutrition parentérale.", cat: 'Soins Spécialisés' },
+      { icon: '🚿', name: 'Lavement rectal & étui pénien', detail: 'Soins d\'hygiène spécialisés', desc: "Lavement rectal thérapeutique. Pose et surveillance d'étui pénien pour incontinence urinaire.", cat: 'Soins Spécialisés' },
+      { icon: '🩻', name: 'Compression veineuse', detail: 'Bas · K2 · Rosida · bandages', desc: "Pose de bas de contention. Pose de compression veineuse de type K2 ou Rosida. Bandages multi-couches.", cat: 'Soins Spécialisés' },
+      // ── POMPES & DISPOSITIFS ──
+      { icon: '⚙️', name: 'Pompes médicales', detail: 'Apomorphine · morphine · midazolam', desc: "Manipulation et surveillance de pompes type Apokyn (apomorphine). Pompes à morphine et midazolam (soins palliatifs). Suivi et traçabilité.", cat: 'Pompes & Dispositifs' },
+      // ── ÉDUCATION & PRÉVENTION ──
+      { icon: '📊', name: 'Éducation thérapeutique', detail: 'Diabète · stomies · FIV · auto-sondage', desc: "Éducation thérapeutique sur le diabète (insuline, glycémie, alimentation). Stomies en tout genre. Protocoles FIV. Apprentissage de l'auto-sondage.", cat: 'Éducation & Prévention' },
+      // ── NURSING & FIN DE VIE ──
+      { icon: '🛁', name: 'Soins de nursing', detail: 'Toilette · hygiène · prévention escarres', desc: "Aide à la toilette, hygiène corporelle, soins de bouche, prévention des escarres. Soins de confort pour patients à mobilité réduite.", cat: 'Nursing & Fin de Vie' },
+      { icon: '🏠', name: 'Maintien à domicile – pathologies lourdes', detail: 'Alzheimer · Parkinson · SEP · SLA · autres', desc: "Prise en charge et suivi infirmier à domicile pour toutes pathologies lourdes et invalidantes : maladie d'Alzheimer, maladie de Parkinson, sclérose en plaques (SEP), sclérose latérale amyotrophique (SLA) et autres affections neurologiques ou chroniques nécessitant un accompagnement régulier.", cat: 'Nursing & Fin de Vie' },
+      { icon: '🕊️', name: 'Soins palliatifs & fin de vie', detail: 'Accompagnement · confort · coordination', desc: "Prise en charge globale des soins palliatifs et de fin de vie à domicile. Gestion de la douleur, soins de confort, soutien à l'entourage, coordination pluridisciplinaire.", cat: 'Nursing & Fin de Vie' }
+    ]
+  };
+
+  // ═══════════════════════════════════════
+  // LOAD / SAVE localStorage
+  // ═══════════════════════════════════════
+  var DATA_VERSION = 2;
+  function getData() {
+    try {
+      var saved = JSON.parse(localStorage.getItem('mgData') || '{}');
+      var d = Object.assign({}, DEFAULTS, saved);
+      // Si version ancienne ou actes manquants/incomplets → on repart des DEFAULTS.actes
+      if (!saved._v || saved._v < DATA_VERSION || !saved.actes || saved.actes.length < 18) {
+        d.actes = DEFAULTS.actes;
+        d._v = DATA_VERSION;
+      }
+      return d;
+    }
+    catch(e) { return Object.assign({}, DEFAULTS); }
+  }
+  function setData(d) { d._v = DATA_VERSION; localStorage.setItem('mgData', JSON.stringify(d)); }
+
+  // ═══════════════════════════════════════
+  // RENDER SITE depuis les données
+  // ═══════════════════════════════════════
+  function renderSite(d) {
+    var n = d.prenom + '\n' + d.nom;
+    document.getElementById('navLogo').textContent = d.prenom + ' ' + d.nom;
+    document.getElementById('heroEyebrow').textContent = d.eyebrow;
+    document.getElementById('heroName').innerHTML = d.prenom + '<br>' + d.nom;
+    document.getElementById('heroTitle').textContent = d.titre;
+    document.getElementById('heroQuote').textContent = d.quote;
+    document.getElementById('zone1').textContent = d.zone1;
+    document.getElementById('zone2').textContent = d.zone2;
+    document.getElementById('presText1').textContent = d.p1;
+    document.getElementById('presText2').textContent = d.p2;
+    document.getElementById('presText3').textContent = d.p3;
+    document.getElementById('stat1Val').textContent = d.s1v;
+    document.getElementById('stat1Lab').textContent = d.s1l;
+    document.getElementById('stat2Val').textContent = d.s2v;
+    document.getElementById('stat2Lab').textContent = d.s2l;
+    document.getElementById('stat3Val').textContent = d.s3v;
+    document.getElementById('stat3Lab').textContent = d.s3l;
+    document.getElementById('stat4Val').textContent = d.s4v;
+    document.getElementById('stat4Lab').textContent = d.s4l;
+    document.getElementById('horMatin').textContent = d.horMatin;
+    document.getElementById('horApm').textContent = d.horApm;
+    
+    document.getElementById('infoAdresse').innerHTML = d.adr1 + '<br>' + d.adr2;
+    document.getElementById('infoZones').innerHTML = d.zone1 + '<br>' + d.zone2;
+    document.getElementById('infoRpps').textContent = d.rpps;
+    document.getElementById('infoAdeli').textContent = d.adeli;
+    document.getElementById('contactPhone').textContent = d.tel;
+    if (document.getElementById('ctaPhone')) document.getElementById('ctaPhone').textContent = d.tel;
+    document.getElementById('contactAdresseFooter').textContent = 'Cabinet : ' + d.adr1 + ', ' + d.adr2;
+    document.getElementById('footerLogo').textContent = d.prenom + ' ' + d.nom;
+    document.getElementById('footerMiddle').innerHTML = d.titre + ' &nbsp;·&nbsp; ' + d.adr2;
+
+    // Soins grid — ne régénère que si l'admin a sauvegardé des modifications
+    var sg = document.getElementById('soinsGrid');
+    if (sg && d.actes && d.actes.length > 0 && localStorage.getItem('mgData')) {
+      sg.innerHTML = '';
+      var lastCat = '';
+      d.actes.forEach(function(a, i) {
+        var num = (i+1 < 10 ? '0' : '') + (i+1);
+        var catHdr = '';
+        if (a.cat && a.cat !== lastCat) {
+          catHdr = '<div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:'+(lastCat?'2px solid rgba(0,0,0,0.06)':'none')+'">'+a.cat+'</div>';
+          lastCat = a.cat;
+        }
+        sg.innerHTML += catHdr + '<div class="soin-card"><span class="soin-num">'+num+'</span><h3 class="soin-name">'+a.name+'</h3><p class="soin-desc">'+a.desc+'</p></div>';
+      });
+    }
+
+  }
+
+  // ═══════════════════════════════════════
+  // ADMIN – LOGIN
+  // ═══════════════════════════════════════
+  function openLogin() {
+    document.getElementById('adminOverlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('adminPwd').focus(); }, 100);
+  }
+  function closeLogin() {
+    document.getElementById('adminOverlay').classList.remove('open');
+    document.getElementById('adminPwd').value = '';
+    document.getElementById('loginError').classList.remove('show');
+  }
+  function checkLogin() {
+    var d = getData();
+    var pwd = document.getElementById('adminPwd').value;
+    if (pwd === d.pwd) {
+      closeLogin();
+      openAdmin();
+    } else {
+      document.getElementById('loginError').classList.add('show');
+      document.getElementById('adminPwd').value = '';
+      document.getElementById('adminPwd').focus();
+    }
+  }
+
+  // ═══════════════════════════════════════
+  // ADMIN – PANNEAU
+  // ═══════════════════════════════════════
+  function openAdmin() {
+    var d = getData();
+    // Remplir les champs
+    ['prenom','nom','titre','eyebrow','quote','zone1','zone2',
+     's1v','s1l','s2v','s2l','s3v','s3l','s4v','s4l',
+     'p1','p2','p3','horMatin','horApm','horDim',
+     'tel','adr1','adr2','rpps','adeli'].forEach(function(k) {
+      var el = document.getElementById('a-'+k);
+      if (el) el.value = d[k] || '';
+    });
+    // Actes
+    var list = document.getElementById('actesAdminList');
+    list.innerHTML = '';
+    d.actes.forEach(function(a, i) {
+      var catHeader = (i===0||a.cat!==d.actes[i-1].cat) ? '<div style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);padding:1.5rem 0 0.8rem;border-top:'+(i>0?'1px solid rgba(255,255,255,0.06)':'none')+'">'+a.cat+'</div>' : '';
+      list.innerHTML += catHeader+'<div class="acte-admin-block"><div class="acte-admin-header"><input class="acte-icon-input" id="a-icon-'+i+'" type="text" value="'+a.icon+'" title="Emoji" /><div style="flex:1"><div class="admin-field" style="margin:0"><label>Nom de l\'acte</label><input id="a-aname-'+i+'" type="text" value="'+a.name.replace(/"/g,'&quot;')+'" /></div></div></div><div class="admin-field"><label>Sous-titre RDV</label><input id="a-adetail-'+i+'" type="text" value="'+a.detail.replace(/"/g,'&quot;')+'" /></div><div class="admin-field"><label>Description (carte soin)</label><textarea id="a-adesc-'+i+'" rows="2">'+a.desc+'</textarea></div></div>';
+    });
+    document.getElementById('adminPanel').classList.add('open');
+  }
+
+  function closeAdmin() { document.getElementById('adminPanel').classList.remove('open'); }
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.admin-section').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.admin-nav-item').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function saveAll() {
+    var d = getData();
+    ['prenom','nom','titre','eyebrow','quote','zone1','zone2',
+     's1v','s1l','s2v','s2l','s3v','s3l','s4v','s4l',
+     'p1','p2','p3','horMatin','horApm','horDim',
+     'tel','adr1','adr2','rpps','adeli'].forEach(function(k) {
+      var el = document.getElementById('a-'+k);
+      if (el) d[k] = el.value;
+    });
+    for (var i = 0; i < 19; i++) {
+      if (document.getElementById('a-icon-'+i)) {
+        d.actes[i] = {
+          icon:   document.getElementById('a-icon-'+i).value,
+          name:   document.getElementById('a-aname-'+i).value,
+          detail: document.getElementById('a-adetail-'+i).value,
+          desc:   document.getElementById('a-adesc-'+i).value
+        };
+      }
+    }
+    setData(d);
+    renderSite(d);
+    showToast();
+  }
+
+  function changePwd() {
+    var p1 = document.getElementById('a-newpwd').value;
+    var p2 = document.getElementById('a-newpwd2').value;
+    if (!p1) { alert('Entrez un nouveau mot de passe.'); return; }
+    if (p1 !== p2) { alert('Les mots de passe ne correspondent pas.'); return; }
+    var d = getData(); d.pwd = p1; setData(d);
+    document.getElementById('a-newpwd').value = '';
+    document.getElementById('a-newpwd2').value = '';
+    showToast('✓ Mot de passe modifié');
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('adminToast');
+    t.textContent = msg || '✓ Modifications enregistrées';
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2800);
+  }
+
+  // ═══════════════════════════════════════
+  // MAP — chargement Leaflet dynamique
+  // ═══════════════════════════════════════
+  function initMap() {
+    var lat = 47.1711, lng = -1.4508;
+    var map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19
+    }).addTo(map);
+    var icon = L.divIcon({
+      className: '',
+      html: '<div style="background:#C4A882;width:14px;height:14px;border-radius:50%;border:3px solid #1A1A1A;box-shadow:0 2px 8px rgba(0,0,0,0.4)"></div>',
+      iconSize: [14,14], iconAnchor: [7,7]
+    });
+    L.marker([lat, lng], { icon: icon }).addTo(map)
+      .bindPopup('<strong style="font-family:serif">Mélissa Graton</strong><br>Infirmière Libérale<br>12 place de l\'Église<br>44120 Haute-Goulaine')
+      .openPopup();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Init site d'abord (indépendant de la carte)
+    renderSite(getData());
+
+    // Charger Leaflet — CDN principal cdnjs, fallback jsdelivr
+    function loadLeaflet(src, fallback) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.onload = function() { initMap(); };
+      script.onerror = function() {
+        if (fallback) { loadLeaflet(fallback, null); }
+        else {
+          // Afficher message dans le bloc carte
+          var mapEl = document.getElementById('map');
+          if (mapEl) mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--serif);font-size:1rem;opacity:0.4;color:#fff;">12 place de l\'Église, 44120 Haute-Goulaine</div>';
+        }
+      };
+      document.body.appendChild(script);
+    }
+    loadLeaflet(
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
+      'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js'
+    );
+  });
+  </script>
+</body>
+</html>

@@ -294,6 +294,15 @@
       .admin-row, .admin-row3 { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) { .nav-links { display: none; } }
+    /* Section RDV CTA */
+    .rdv-cta-section { padding: 5rem 6rem !important; }
+    .rdv-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.07); }
+    .rdv-cta-col { background: var(--black); padding: 3rem 3.5rem; }
+    @media (max-width: 768px) {
+      .rdv-cta-section { padding: 3rem 1.5rem !important; }
+      .rdv-cta-grid { grid-template-columns: 1fr; }
+      .rdv-cta-col { padding: 2rem 1.5rem; }
+    }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .hero-left > * { animation: fadeUp 0.7s ease both; }
@@ -417,15 +426,15 @@
   </section>
 
   <!-- CTA RENDEZ-VOUS -->
-  <section style="background:var(--black); padding:5rem 6rem;" id="rdv">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(255,255,255,0.07);">
-      <div style="background:var(--black); padding:3rem 3.5rem;">
+  <section style="background:var(--black); padding:5rem 6rem;" id="rdv" class="rdv-cta-section">
+    <div class="rdv-cta-grid">
+      <div class="rdv-cta-col">
         <p style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">Par téléphone</p>
-        <p style="font-family:var(--script);font-size:3rem;color:#fff;margin-bottom:1rem;line-height:1;" id="ctaPhone">06 72 31 12 79</p>
+        <a href="tel:0672311279" style="font-family:var(--script);font-size:3rem;color:#fff;margin-bottom:1rem;line-height:1;display:block;text-decoration:none;white-space:nowrap;" id="ctaPhone">06 72 31 12 79</a>
         <p style="font-family:var(--serif);font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:0.6rem;">Pour prendre rendez-vous ou pour toute demande de renseignement.</p>
         <p style="font-family:var(--sans);font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.06em;">Lun – Dim · 6h–12h30 / 14h–20h</p>
       </div>
-      <div style="background:var(--black); padding:3rem 3.5rem; display:flex; flex-direction:column; justify-content:center;">
+      <div class="rdv-cta-col" style="display:flex; flex-direction:column; justify-content:center;">
         <p style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">En ligne</p>
         <p style="font-family:var(--serif);font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:2rem;">Sélectionnez vos actes, joignez votre ordonnance et recevez une confirmation sous 24h.</p>
         <a href="rdv.html" style="display:inline-block;border:1px solid var(--accent);color:var(--accent);font-family:var(--sans);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;transition:background 0.25s,color 0.25s;align-self:flex-start;" onmouseover="this.style.background='var(--accent)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">Prendre rendez-vous →</a>

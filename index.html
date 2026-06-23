@@ -294,6 +294,16 @@
       .admin-row, .admin-row3 { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) { .nav-links { display: none; } }
+    /* FAQ */
+    .faq-item { background: var(--cream); }
+    .faq-question { width: 100%; background: none; border: none; padding: 1.4rem 1.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--black); text-align: left; transition: background 0.2s; }
+    .faq-question:hover { background: var(--cream-dark); }
+    .faq-icon { font-size: 1.4rem; color: var(--accent); flex-shrink: 0; margin-left: 1rem; transition: transform 0.2s; }
+    .faq-question.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { display: none; padding: 0 1.8rem 1.4rem; }
+    .faq-answer p { font-family: var(--serif); font-size: 1rem; line-height: 1.8; color: var(--black-soft); opacity: 0.8; }
+    .faq-answer.open { display: block; }
+
     /* Section RDV CTA */
     .rdv-cta-section { padding: 5rem 6rem !important; }
     .rdv-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.07); }
@@ -349,9 +359,9 @@
     <h2 class="section-title">Un suivi infirmier de proximité, à votre domicile</h2>
     <div class="presentation-inner">
       <div class="presentation-text">
-        <p id="presText1">Installée à Haute-Goulaine, j'interviens dans le secteur de Loire-Atlantique sur les communes de Haute-Goulaine et Basse-Goulaine. Mon objectif est de vous offrir des soins de qualité dans un cadre rassurant, sans que vous ayez à vous déplacer.</p>
-        <p id="presText2">Diplômée d'État, je collabore étroitement avec votre médecin traitant et les spécialistes afin d'assurer la continuité des soins et la cohérence de votre parcours de soins. Cette approche intégrée permet de personnaliser les traitements en fonction de vos besoins spécifiques et de garantir un suivi optimal de votre santé. Je m'engage à créer un environnement accueillant, où chaque patient se sent écouté et compris. Grâce à cette proximité, je peux adapter mes interventions et répondre rapidement à vos préoccupations. Mon but est de vous accompagner dans votre rétablissement, tout en veillant à votre confort et bien-être.</p>
-        <p id="presText3">Les honoraires appliqués sont conformes aux conventions de l'Assurance Maladie, assurant une facturation claire et transparente. Nous pratiquons le tiers payant intégral, ce qui vous permet de ne pas avancer les frais selon les conditions de votre mutuelle. Si vous êtes éligible à l'ALD (Affection de Longue Durée — maladie chronique reconnue par l'Assurance Maladie), à la CMU (Couverture Maladie Universelle — pour les personnes aux revenus modestes), à l'AME (Aide Médicale d'État — pour les personnes en situation irrégulière sur le territoire), ou si vous êtes en situation d'accident du travail ou de congé maternité, aucun frais ne sera à votre charge pour vos soins.</p>
+        <p id="presText1">Diplômée de l'Institut de Formation en Soins Infirmiers de la Pitié-Salpêtrière à Paris en 2022, j'ai exercé pendant quatre ans au sein du service de pneumologie de cet hôpital universitaire de référence. Cette expérience hospitalière m'a forgé une rigueur clinique solide et une capacité à accompagner des patients atteints de pathologies complexes, souvent lourdes à vivre au quotidien.</p>
+        <p id="presText2">C'est lors d'un remplacement d'avril à août dans un cabinet libéral que j'ai compris ce qui me manquait à l'hôpital : le temps. Le temps d'écouter, de rassurer, de vraiment connaître la personne en face de soi. Le libéral, c'est la possibilité de tisser une vraie relation de confiance avec chaque patient, dans son environnement, à son rythme. C'est ce lien humain, au cœur du soin, qui m'a convaincue de m'installer à mon compte.</p>
+        <p id="presText3">Originaire de Saint-Jean-de-Monts en Vendée, j'ai trouvé en Loire-Atlantique un territoire qui me ressemble — entre bocage et estuaire, à taille humaine, où les gens se connaissent et se font confiance. Je me suis installée à Haute-Goulaine avec l'envie d'y construire quelque chose de durable : un suivi infirmier de proximité, attentif, où chaque patient est reconnu pour ce qu'il est, pas seulement pour sa pathologie.</p>
       </div>
       <div class="presentation-stats">
         <div class="stat-item"><span class="stat-val" id="stat1Val">2</span><span class="stat-label" id="stat1Lab">Communes couvertes</span></div>
@@ -428,6 +438,40 @@
   </section>
 
   <!-- CTA RENDEZ-VOUS -->
+  <!-- FAQ -->
+  <section style="background:var(--cream-dark);padding:5rem 6rem;" id="faq">
+    <p class="section-label">Questions fréquentes</p>
+    <h2 class="section-title">Tout ce que vous souhaitez savoir</h2>
+    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:2px;background:rgba(0,0,0,0.08);">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" type="button"><span>Ai-je besoin d'une ordonnance ?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Pour la plupart des soins infirmiers (pansements, injections, prélèvements...), une ordonnance de votre médecin traitant est nécessaire. Elle permet la prise en charge par l'Assurance Maladie. En cas de doute, appelez-moi directement — je vous orienterai.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" type="button"><span>Comment se passe le premier soin ?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Lors du premier passage, je prends le temps de faire connaissance, de consulter votre ordonnance et vos documents (carte Vitale, mutuelle) et d'évaluer vos besoins. Il n'y a rien de particulier à préparer — soyez simplement chez vous à l'heure convenue.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" type="button"><span>Que se passe-t-il en cas d'urgence ?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Pour toute urgence médicale, composez le <strong>15</strong> (SAMU) ou le <strong>18</strong> (pompiers) qui disposent des moyens adaptés pour vous prendre en charge rapidement. En dehors des urgences, vous pouvez me joindre par téléphone aux heures d'intervention — je ferai mon possible pour vous répondre dans les meilleurs délais.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" type="button"><span>Puis-je bénéficier du tiers payant ?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Oui, je pratique le tiers payant intégral. Vous n'avancez pas les frais — l'Assurance Maladie est facturée directement. Si vous bénéficiez de la complémentaire santé solidaire (CSS), d'une ALD ou de l'AME, aucun reste à charge ne vous sera demandé.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)" type="button"><span>Intervenez-vous le week-end et les jours fériés ?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Oui, j'interviens 7 jours sur 7, y compris les week-ends et jours fériés, de 6h à 12h30 et de 14h à 20h.</p></div>
+      </div>
+
+    </div>
+  </section>
+
   <section style="background:var(--black); padding:5rem 6rem;" id="rdv" class="rdv-cta-section">
     <div class="rdv-cta-grid">
       <div class="rdv-cta-col">
@@ -901,6 +945,14 @@
     L.marker([lat, lng], { icon: icon }).addTo(map)
       .bindPopup('<strong style="font-family:serif">Mélissa Graton</strong><br>Infirmière Libérale<br>12 place de l\'Église<br>44120 Haute-Goulaine')
       .openPopup();
+  }
+
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-question').forEach(function(b) { b.classList.remove('open'); });
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
   }
 
   document.addEventListener('DOMContentLoaded', function() {

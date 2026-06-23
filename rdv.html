@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prise de rendez-vous – Mélissa Graton, Infirmière Libérale</title>
   <meta name="description" content="Prenez rendez-vous en ligne avec Mélissa Graton, infirmière libérale à Haute-Goulaine. Soins à domicile 7j/7." />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://project-gyp0g.vercel.app/rdv.html" />
   <meta property="og:title" content="Prise de rendez-vous – Mélissa Graton, Infirmière Libérale" />
   <meta property="og:description" content="Prenez rendez-vous en ligne avec Mélissa Graton, infirmière libérale à Haute-Goulaine. Soins à domicile 7j/7." />
@@ -74,6 +74,7 @@
       .rdv-main { padding: 2rem 1rem 4rem; }
       .mode-grid { grid-template-columns: 1fr; }
       .calendly-inline-widget { height: 600px; }
+      .mode-card { padding: 1.8rem 1.5rem; }
     }
   </style>
 </head>
@@ -104,12 +105,12 @@
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Choisissez votre mode de contact.</p>
 
       <div class="mode-grid">
-        <div class="mode-card" id="modePhone" onclick="selectMode('phone')">
+        <div class="mode-card" id="modePhone" onclick="selectMode('phone')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')selectMode('phone')">
           <span class="mode-icon">📞</span>
           <div class="mode-title">Par téléphone</div>
           <div class="mode-desc">Appelez directement le cabinet pour prendre rendez-vous ou pour tout renseignement.</div>
         </div>
-        <div class="mode-card" id="modeOnline" onclick="selectMode('online')">
+        <div class="mode-card" id="modeOnline" onclick="selectMode('online')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')selectMode('online')">
           <span class="mode-icon">📅</span>
           <div class="mode-title">En ligne</div>
           <div class="mode-desc">Choisissez votre créneau, joignez vos documents et recevez une confirmation sous 24h.</div>

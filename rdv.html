@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prise de rendez-vous – Mélissa Graton, Infirmière Libérale</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -305,7 +305,11 @@
   var EJS_SERVICE_ID  = 'service_uvlzhn4';
   var EJS_TEMPLATE_ID = 'q5901bu';
   var DEST_EMAIL      = 'melissagraton8@gmail.com';
-  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+  window.addEventListener('load', function() {
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+  }
+});
 
   // ── MODE ──
   function selectMode(mode) {

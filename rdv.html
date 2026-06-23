@@ -48,32 +48,6 @@
     .mode-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
     .mode-desc { font-size: 0.8rem; opacity: 0.55; line-height: 1.6; }
 
-    /* PIÈCES JOINTES */
-    .pj-section { margin-bottom: 2.5rem; }
-    .pj-intro { font-family: var(--serif); font-size: 1rem; color: var(--black-soft); line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.75; }
-    .pj-title { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .pj-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
-    .pj-item { background: #fff; border: 1px solid rgba(0,0,0,0.08); }
-    .pj-item-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; }
-    .pj-icon { font-size: 1.3rem; flex-shrink: 0; }
-    .pj-info { flex: 1; }
-    .pj-name { font-family: var(--sans); font-size: 0.88rem; font-weight: 400; }
-    .pj-hint { font-size: 0.72rem; opacity: 0.45; margin-top: 0.15rem; }
-    .pj-badge { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; }
-    .pj-badge.optional { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.4); border: 1px solid rgba(0,0,0,0.1); }
-    .pj-upload-zone { border-top: 1px dashed rgba(0,0,0,0.12); padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.8rem; cursor: pointer; position: relative; transition: background 0.15s; }
-    .pj-upload-zone:hover { background: var(--cream); }
-    .pj-upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .pj-upload-label { font-size: 0.78rem; color: rgba(0,0,0,0.45); flex: 1; }
-    .pj-upload-btn { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); background: none; padding: 0.35rem 0.9rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
-    .pj-upload-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .pj-preview { display: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 0.6rem 1.2rem; align-items: center; gap: 0.8rem; background: #f9f7f3; }
-    .pj-preview.visible { display: flex; }
-    .pj-preview-name { font-size: 0.8rem; flex: 1; color: var(--black-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .pj-preview-size { font-size: 0.7rem; opacity: 0.4; white-space: nowrap; }
-    .pj-remove { background: none; border: none; cursor: pointer; opacity: 0.4; font-size: 1rem; transition: opacity 0.15s; flex-shrink: 0; }
-    .pj-remove:hover { opacity: 1; }
-
     /* BOUTON CONTINUER */
     .btn-primary { background: var(--black); color: #fff; border: none; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.8rem; cursor: pointer; transition: background 0.2s; display: inline-block; }
     .btn-primary:hover { background: var(--accent); color: var(--black); }
@@ -149,7 +123,7 @@
     <!-- ÉTAPE 2 : FORMULAIRE + PIÈCES JOINTES -->
     <div id="step2" style="display:none">
       <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:0.4rem;">Vos informations</h2>
-      <p class="pj-intro">Renseignez vos coordonnées et joignez vos documents si vous les avez à portée. Vous pouvez aussi apporter les documents lors du premier passage.</p>
+      <p class="pj-intro">Renseignez vos coordonnées. Pensez à avoir votre ordonnance, carte Vitale et attestation mutuelle lors du premier passage.</p>
 
       <!-- FORMULAIRE PATIENT -->
       <div class="pj-section">
@@ -188,77 +162,7 @@
         </div>
       </div>
 
-      <!-- PIÈCES JOINTES -->
-      <div class="pj-section">
-        <div class="pj-title">Documents à joindre (facultatifs)</div>
-        <div class="pj-list">
-
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">📋</span>
-              <div class="pj-info">
-                <div class="pj-name">Ordonnance médicale</div>
-                <div class="pj-hint">Prescription de votre médecin traitant ou spécialiste</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(0,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview0">
-              <span class="pj-preview-name" id="pjName0"></span>
-              <span class="pj-preview-size" id="pjSize0"></span>
-              <button class="pj-remove" onclick="removePJ(0)" type="button">✕</button>
-            </div>
-          </div>
-
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">💳</span>
-              <div class="pj-info">
-                <div class="pj-name">Carte Vitale</div>
-                <div class="pj-hint">Recto de votre carte d'assuré social</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(1,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview1">
-              <span class="pj-preview-name" id="pjName1"></span>
-              <span class="pj-preview-size" id="pjSize1"></span>
-              <button class="pj-remove" onclick="removePJ(1)" type="button">✕</button>
-            </div>
-          </div>
-
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">🛡️</span>
-              <div class="pj-info">
-                <div class="pj-name">Complémentaire santé / Mutuelle</div>
-                <div class="pj-hint">Attestation ou carte de votre mutuelle</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(2,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview2">
-              <span class="pj-preview-name" id="pjName2"></span>
-              <span class="pj-preview-size" id="pjSize2"></span>
-              <button class="pj-remove" onclick="removePJ(2)" type="button">✕</button>
-            </div>
-          </div>
-
-        </div>
-
-        <div id="formError" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.82rem;padding:0.9rem 1.2rem;margin-bottom:1rem;">
+      <div id="formError" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.82rem;padding:0.9rem 1.2rem;margin-bottom:1rem;">
           Merci de renseigner votre prénom, nom, téléphone et adresse.
         </div>
 
@@ -273,12 +177,6 @@
     <div id="step3" style="display:none">
       <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:0.4rem;">Choisissez votre créneau</h2>
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Sélectionnez une date et un horaire disponible. Mélissa Graton vous confirmera le rendez-vous.</p>
-
-      <!-- Note pièces jointes si uploadées -->
-      <div id="pjRecap" style="display:none;background:var(--cream-dark);border:1px solid rgba(0,0,0,0.08);padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--black-soft);line-height:1.7;">
-        📎 <span id="pjRecapText"></span><br>
-        <span style="opacity:0.5;font-size:0.75rem;">Ces documents seront transmis avec votre demande de rendez-vous.</span>
-      </div>
 
       <div class="calendly-wrap">
         <div class="calendly-inline-widget"
@@ -307,8 +205,6 @@
   var EJS_TEMPLATE_ID = 'template_aitdh27';
   var DEST_EMAIL      = 'melissagraton8@gmail.com';
 
-  var pjFiles = [null, null, null];
-  var pjNames = ['', '', ''];
 
   // Init EmailJS après chargement
   window.addEventListener('load', function() {
@@ -366,25 +262,6 @@
     }
     err.style.display = 'none';
 
-    // Récap pièces jointes + infos patient
-    var docs = [];
-    ['Ordonnance','Carte Vitale','Mutuelle'].forEach(function(n, i){
-      if (pjFiles[i]) docs.push(n);
-    });
-
-    var recapLines = [];
-    recapLines.push('👤 ' + prenom + ' ' + nom + ' · 📞 ' + tel);
-    recapLines.push('📍 ' + adresse);
-    if (document.getElementById('f-notes').value.trim()) {
-      recapLines.push('💬 ' + document.getElementById('f-notes').value.trim());
-    }
-    if (docs.length > 0) {
-      recapLines.push('📎 ' + docs.join(', ') + ' joint(s)');
-    }
-
-    document.getElementById('pjRecapText').innerHTML = recapLines.join('<br>');
-    document.getElementById('pjRecap').style.display = 'block';
-
     // Envoi email EmailJS
     var params = {
       to_email:     DEST_EMAIL,
@@ -394,9 +271,9 @@
       ddn:          ddn,
       adresse:      adresse,
       notes:        notes,
-      ordonnance:   pjFiles[0] ? '✓ Jointe (' + pjNames[0] + ')' : 'Non fournie',
-      carte_vitale: pjFiles[1] ? '✓ Jointe (' + pjNames[1] + ')' : 'Non fournie',
-      mutuelle:     pjFiles[2] ? '✓ Jointe (' + pjNames[2] + ')' : 'Non fournie',
+      ordonnance:   'À apporter lors du premier passage',
+      carte_vitale: 'À apporter lors du premier passage',
+      mutuelle:     'À apporter lors du premier passage',
       reply_to:     DEST_EMAIL
     };
 
@@ -409,31 +286,6 @@
       });
 
     setStep(3);
-  }
-
-  // ── PIÈCES JOINTES ──
-  function handlePJ(idx, input) {
-    if (!input.files || !input.files[0]) return;
-    var f = input.files[0];
-    if (f.size > 5 * 1024 * 1024) {
-      alert('Fichier trop volumineux (max 5 Mo).');
-      input.value = ''; return;
-    }
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      pjFiles[idx] = e.target.result;
-      pjNames[idx] = f.name;
-      document.getElementById('pjName'+idx).textContent = f.name;
-      document.getElementById('pjSize'+idx).textContent = (f.size/1024).toFixed(0)+' Ko';
-      document.getElementById('pjPreview'+idx).classList.add('visible');
-    };
-    reader.readAsDataURL(f);
-  }
-
-  function removePJ(idx) {
-    pjFiles[idx] = null; pjNames[idx] = '';
-    document.querySelectorAll('.pj-upload-zone')[idx].querySelector('input').value = '';
-    document.getElementById('pjPreview'+idx).classList.remove('visible');
   }
   </script>
 </body>

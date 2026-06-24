@@ -51,7 +51,7 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -1025,22 +1025,46 @@
   }
 
   // ═══════════════════════════════════════
-  // MAP — chargement Leaflet dynamique
+  // MAP — Google Maps
   // ═══════════════════════════════════════
   function initMap() {
     var lat = 47.1711, lng = -1.4508;
-    var map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19
-    }).addTo(map);
-    var icon = L.divIcon({
-      className: '',
-      html: '<div style="background:#C4A882;width:14px;height:14px;border-radius:50%;border:3px solid #1A1A1A;box-shadow:0 2px 8px rgba(0,0,0,0.4)"></div>',
-      iconSize: [14,14], iconAnchor: [7,7]
+    var mapEl = document.getElementById('map');
+    if (!mapEl || typeof google === 'undefined') return;
+    var map = new google.maps.Map(mapEl, {
+      center: { lat: lat, lng: lng },
+      zoom: 15,
+      scrollwheel: false,
+      styles: [
+        { featureType: 'all', elementType: 'geometry', stylers: [{ saturation: -20 }] },
+        { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+        { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+        { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#f0ebe3' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#d4e8f0' }] },
+        { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#f5f0e8' }] }
+      ],
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false
     });
-    L.marker([lat, lng], { icon: icon }).addTo(map)
-      .bindPopup('<strong style="font-family:serif">Mélissa Graton</strong><br>Infirmière Libérale<br>12 place de l\'Église<br>44120 Haute-Goulaine')
-      .openPopup();
+    var marker = new google.maps.Marker({
+      position: { lat: lat, lng: lng },
+      map: map,
+      title: 'Cabinet Mélissa Graton',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: '#C4A882',
+        fillOpacity: 1,
+        strokeColor: '#5C2D3B',
+        strokeWeight: 3
+      }
+    });
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div style="font-family:\'Cormorant Garamond\',serif;padding:4px 6px;"><strong style="font-size:1rem;color:#5C2D3B;">Mélissa Graton</strong><br><span style="font-size:0.85rem;color:#666;">Infirmière Libérale · 7j/7</span><br><span style="font-size:0.82rem;color:#888;">12 place de l\'Église<br>44120 Haute-Goulaine</span></div>'
+    });
+    infoWindow.open(map, marker);
+    marker.addListener('click', function() { infoWindow.open(map, marker); });
   }
 
   function toggleFaq(btn) {
@@ -1055,25 +1079,12 @@
     // Init site d'abord (indépendant de la carte)
     renderSite(getData());
 
-    // Charger Leaflet — CDN principal cdnjs, fallback jsdelivr
-    function loadLeaflet(src, fallback) {
-      var script = document.createElement('script');
-      script.src = src;
-      script.onload = function() { initMap(); };
-      script.onerror = function() {
-        if (fallback) { loadLeaflet(fallback, null); }
-        else {
-          // Afficher message dans le bloc carte
-          var mapEl = document.getElementById('map');
-          if (mapEl) mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--serif);font-size:1rem;opacity:0.4;color:#fff;">12 place de l\'Église, 44120 Haute-Goulaine</div>';
-        }
-      };
-      document.body.appendChild(script);
-    }
-    loadLeaflet(
-      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
-      'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js'
-    );
+    // Charger Google Maps
+    var gmScript = document.createElement('script');
+    gmScript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBLmUiCgW8_xKMqsSocMX87uc2NzOyJJuY&callback=initMap';
+    gmScript.async = true;
+    gmScript.defer = true;
+    document.body.appendChild(gmScript);
   });
   </script>
 

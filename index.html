@@ -346,6 +346,46 @@
     .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
     .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
 
+
+    /* BOUTON FLOTTANT APPEL MOBILE */
+    .float-call {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 8000;
+      background: #5C2D3B;
+      color: #fff;
+      text-decoration: none;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(92,45,59,0.35);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .float-call:hover { transform: scale(1.08); }
+    .float-call svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .float-call-label {
+      display: none;
+      position: fixed;
+      bottom: 5.5rem;
+      right: 1.5rem;
+      z-index: 8000;
+      background: #5C2D3B;
+      color: rgba(255,255,255,0.85);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 0.9rem;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    @media (max-width: 768px) {
+      .float-call { display: flex; }
+      .float-call-label { display: block; }
+    }
     /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
@@ -1036,6 +1076,14 @@
     );
   });
   </script>
+
+  <!-- BOUTON FLOTTANT APPEL MOBILE -->
+  <div class="float-call-label">Appeler le cabinet</div>
+  <a href="tel:0672311279" class="float-call" aria-label="Appeler Mélissa Graton">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
 
   <!-- SCROLL REVEAL -->
   <script>

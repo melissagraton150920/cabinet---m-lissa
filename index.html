@@ -349,7 +349,7 @@
     </div>
     <div class="hero-right" style="position:relative;overflow:hidden;">
       <p class="hero-quote" id="heroQuote">Des soins à domicile, avec attention et discrétion, dans le confort de votre quotidien.</p>
-      <p class="hero-zones">Zones d'intervention &nbsp;·&nbsp; <span id="zone1">Haute-Goulaine</span>, <span id="zone2">Basse-Goulaine</span>, Vertou &amp; La Haie-Fouassière</p>
+      <p class="hero-zones">Zones d'intervention &nbsp;·&nbsp; <span id="zone1">Haute-Goulaine</span> &amp; <span id="zone2">Basse-Goulaine</span></p>
     </div>
   </section>
 
@@ -764,12 +764,12 @@
   // RESET localStorage si version obsolète
   try {
     var _v = JSON.parse(localStorage.getItem('mgData') || '{}')._v;
-    if (!_v || _v < 3) { localStorage.removeItem('mgData'); }
+    if (!_v || _v < 4) { localStorage.removeItem('mgData'); }
   } catch(e) { localStorage.removeItem('mgData'); }
 
   // LOAD / SAVE localStorage
   // ═══════════════════════════════════════
-  var DATA_VERSION = 3;
+  var DATA_VERSION = 4;
   function getData() {
     try {
       var saved = JSON.parse(localStorage.getItem('mgData') || '{}');

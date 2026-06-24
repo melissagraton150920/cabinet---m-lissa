@@ -763,12 +763,19 @@
   // ═══════════════════════════════════════
   // LOAD / SAVE localStorage
   // ═══════════════════════════════════════
-  var DATA_VERSION = 2;
+  var DATA_VERSION = 3;
   function getData() {
     try {
       var saved = JSON.parse(localStorage.getItem('mgData') || '{}');
       var d = Object.assign({}, DEFAULTS, saved);
-      // Si version ancienne ou actes manquants/incomplets → on repart des DEFAULTS.actes
+      // Toujours forcer les valeurs critiques depuis DEFAULTS
+      d.zone1 = DEFAULTS.zone1;
+      d.zone2 = DEFAULTS.zone2;
+      d.s1v = DEFAULTS.s1v;
+      d.s1l = DEFAULTS.s1l;
+      d.s3v = DEFAULTS.s3v;
+      d.s3l = DEFAULTS.s3l;
+      // Si version ancienne ou actes manquants → repart des DEFAULTS
       if (!saved._v || saved._v < DATA_VERSION || !saved.actes || saved.actes.length < 18) {
         d.actes = DEFAULTS.actes;
         d._v = DATA_VERSION;

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabète à domicile : le suivi infirmier | Mélissa Graton</title>
+  <meta name="description" content="Injections d'insuline, surveillance glycémique, soins du pied diabétique, éducation thérapeutique : tout ce que fait l'infirmière libérale pour les patients diabétiques." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --creme: #F2EDE4;
+      --bordeaux: #5C2D3B;
+      --or: #C4A882;
+      --texte: #3a2a2a;
+      --texte-doux: #7a6060;
+      --blanc: #ffffff;
+      --bordure: rgba(92,45,59,0.15);
+    }
+    body { background: var(--creme); color: var(--texte); font-family: 'Jost', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    header { background: var(--bordeaux); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--creme); text-decoration: none; }
+    nav a { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); text-decoration: none; margin-left: 1.75rem; transition: color 0.2s; }
+    nav a:hover { color: var(--creme); }
+
+    .hero-article { background: var(--bordeaux); padding: 3.5rem 2rem 3rem; text-align: center; }
+    .categorie { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--or); margin-bottom: 1rem; }
+    .hero-article h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; color: var(--creme); line-height: 1.25; max-width: 700px; margin: 0 auto 1rem; }
+    .chapeau { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(242,237,228,0.8); max-width: 580px; margin: 0 auto; }
+    .meta { margin-top: 1.5rem; font-size: 0.75rem; color: rgba(242,237,228,0.5); letter-spacing: 0.06em; }
+
+    .contenu { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .intro-encart { border-left: 3px solid var(--or); padding: 1rem 1.25rem; background: rgba(196,168,130,0.1); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--texte-doux); margin-bottom: 3rem; line-height: 1.7; }
+
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--bordeaux); margin: 2.5rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--bordure); }
+    h3 { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--or); margin: 1.75rem 0 0.75rem; }
+    p { font-size: 0.9rem; color: var(--texte-doux); margin-bottom: 1rem; line-height: 1.7; }
+    em { font-style: italic; color: var(--bordeaux); }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 1.5rem 0; }
+    .stat-card { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 8px; padding: 1.25rem; text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--bordeaux); margin-bottom: 0.4rem; line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--texte-doux); line-height: 1.5; }
+
+    .soins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 1rem 0 2rem; }
+    .soin-card { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 8px; padding: 1.1rem; }
+    .soin-icon { font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+    .soin-title { font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--bordeaux); margin-bottom: 0.4rem; }
+    .soin-desc { font-size: 0.78rem; color: var(--texte-doux); line-height: 1.5; }
+
+    .table-wrap { overflow-x: auto; margin: 0.5rem 0 1.5rem; border-radius: 8px; border: 1px solid var(--bordure); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; background: var(--blanc); }
+    thead tr { background: var(--bordeaux); }
+    thead th { text-align: left; padding: 10px 14px; font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.07em; color: var(--creme); }
+    tbody tr { border-bottom: 1px solid var(--bordure); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(242,237,228,0.5); }
+    td { padding: 10px 14px; color: var(--texte); vertical-align: top; }
+    .badge { display: inline-block; font-size: 0.7rem; font-weight: 500; background: var(--bordeaux); color: var(--creme); padding: 2px 8px; border-radius: 4px; }
+
+    .alerte { background: rgba(196,168,130,0.15); border: 1px solid var(--or); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; }
+    .alerte-titre { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bordeaux); margin-bottom: 0.5rem; }
+    .alerte ul { padding-left: 1.2rem; }
+    .alerte li { font-size: 0.85rem; color: var(--texte-doux); line-height: 1.7; }
+
+    .note { font-size: 0.82rem; color: var(--texte-doux); padding: 0.875rem 1rem; background: rgba(196,168,130,0.1); border-left: 3px solid var(--or); border-radius: 0 6px 6px 0; margin: 0.75rem 0 1.5rem; line-height: 1.6; }
+
+    .cta-bloc { background: var(--bordeaux); border-radius: 8px; padding: 2rem; margin-top: 2.5rem; text-align: center; }
+    .cta-bloc p { color: rgba(242,237,228,0.8); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 1.25rem; line-height: 1.6; }
+    .cta-btn { display: inline-block; border: 1px solid var(--or); color: var(--or); font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2.2rem; text-decoration: none; transition: background 0.25s, color 0.25s; }
+    .cta-btn:hover { background: var(--or); color: var(--bordeaux); }
+
+    .retour { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--bordure); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .retour a { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bordeaux); text-decoration: none; }
+    .retour a:hover { color: var(--or); }
+    .source { font-size: 0.75rem; color: var(--texte-doux); }
+    .source a { color: var(--bordeaux); }
+
+    footer { background: var(--bordeaux); color: rgba(242,237,228,0.6); text-align: center; padding: 1.5rem; font-size: 0.75rem; letter-spacing: 0.04em; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      nav a { margin-left: 1rem; font-size: 0.7rem; }
+      .hero-article { padding: 2.5rem 1.25rem 2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Mélissa Graton</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="index.html#soins">Soins</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="rdv.html">Rendez-vous</a>
+    </nav>
+  </header>
+
+  <div class="hero-article">
+    <p class="categorie">Conseils & informations</p>
+    <h1>Diabète à domicile : le suivi infirmier</h1>
+    <p class="chapeau">Injections d'insuline, surveillance glycémique, soins du pied diabétique — l'infirmière libérale, partenaire quotidien du patient diabétique.</p>
+    <p class="meta">Publié le 1er août 2025 &nbsp;·&nbsp; Mise à jour 2025</p>
+  </div>
+
+  <div class="contenu">
+
+    <div class="intro-encart">
+      En moyenne, 20 % de la patientèle d'une infirmière libérale est diabétique. Le diabète est une maladie chronique qui demande un suivi régulier, rigoureux et humain. L'infirmière libérale intervient à domicile pour les soins techniques, la surveillance, et l'éducation thérapeutique — sur prescription médicale.
+    </div>
+
+    <h2>Diabète de type 1 et type 2 : quelle différence ?</h2>
+    <p>Le <em>diabète de type 1</em> (DID — diabète insulinodépendant) résulte d'une destruction auto-immune des cellules bêta du pancréas. Il entraîne une absence totale d'insuline et nécessite des injections quotidiennes obligatoires. Il touche principalement les enfants et les jeunes adultes.</p>
+    <p>Le <em>diabète de type 2</em> (DNID — non insulinodépendant) est lié à une mauvaise utilisation de l'insuline par les cellules. Il représente 90 % des cas de diabète. Il peut d'abord être traité par antidiabétiques oraux, puis nécessiter une insulinothérapie avec l'évolution de la maladie.</p>
+    <p>Dans les deux cas, l'infirmière libérale joue un rôle central dans le suivi à domicile.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">20 %</div>
+        <div class="stat-label">de la patientèle d'une IDEL est en moyenne diabétique</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4 x/j</div>
+        <div class="stat-label">jusqu'à 4 interventions quotidiennes possibles pour les patients insulinotraités</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">25 %</div>
+        <div class="stat-label">des patients diabétiques développeront une plaie du pied au cours de leur vie</div>
+      </div>
+    </div>
+
+    <h2>Les soins réalisés à domicile</h2>
+
+    <div class="soins-grid">
+      <div class="soin-card">
+        <span class="soin-icon">💉</span>
+        <div class="soin-title">Injections d'insuline</div>
+        <div class="soin-desc">Insuline rapide (4h d'action) ou insuline lente (24h). Rotation des sites d'injection, surveillance des lipodystrophies, adaptation des doses selon la glycémie.</div>
+      </div>
+      <div class="soin-card">
+        <span class="soin-icon">🩸</span>
+        <div class="soin-title">Contrôle de la glycémie</div>
+        <div class="soin-desc">Glycémie capillaire (dextro) 1 à 4 fois par jour. Interprétation des résultats, détection des hypoglycémies et hyperglycémies, transmission au médecin traitant.</div>
+      </div>
+      <div class="soin-card">
+        <span class="soin-icon">🦶</span>
+        <div class="soin-title">Soins du pied diabétique</div>
+        <div class="soin-desc">Pansements des plaies chroniques, ulcères, détersion. Surveillance de la cicatrisation. Prévention des complications (mal perforant plantaire, amputation).</div>
+      </div>
+      <div class="soin-card">
+        <span class="soin-icon">📊</span>
+        <div class="soin-title">Éducation thérapeutique</div>
+        <div class="soin-desc">Apprentissage de l'auto-injection, de l'auto-surveillance glycémique, des règles alimentaires et des signes d'alarme à surveiller.</div>
+      </div>
+      <div class="soin-card">
+        <span class="soin-icon">🔬</span>
+        <div class="soin-title">Prises de sang</div>
+        <div class="soin-desc">Prélèvements veineux pour le contrôle de l'hémoglobine glyquée (HbA1c), bilan rénal, bilan lipidique — transmis au laboratoire partenaire.</div>
+      </div>
+      <div class="soin-card">
+        <span class="soin-icon">📋</span>
+        <div class="soin-title">Surveillance clinique</div>
+        <div class="soin-desc">Pour les patients de plus de 75 ans insulinotraités : séance hebdomadaire de surveillance, prévention et éducation alimentaire. Bilan cardio annuel.</div>
+      </div>
+    </div>
+
+    <h2>Les types d'insuline et leur action</h2>
+    <p>Il existe plusieurs types d'insuline, chacun avec une durée et un pic d'action différents. L'infirmière adapte les horaires d'injection en fonction du type prescrit et de la glycémie du patient.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Type d'insuline</th><th>Début d'action</th><th>Pic</th><th>Durée</th><th>Exemples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="badge">Ultra-rapide</span></td><td>10–15 min</td><td>1–2h</td><td>3–5h</td><td>Humalog, NovoRapid, Apidra</td></tr>
+          <tr><td><span class="badge">Rapide</span></td><td>30 min</td><td>2–3h</td><td>6–8h</td><td>Actrapid, Umuline Rapide</td></tr>
+          <tr><td><span class="badge">Intermédiaire</span></td><td>1–2h</td><td>4–8h</td><td>12–18h</td><td>Insulatard, Umuline NPH</td></tr>
+          <tr><td><span class="badge">Lente</span></td><td>1–2h</td><td>Plat</td><td>20–24h</td><td>Lantus, Levemir, Toujeo</td></tr>
+          <tr><td><span class="badge">Ultra-lente</span></td><td>6h</td><td>Plat</td><td>42h</td><td>Tresiba</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Le pied diabétique : une vigilance quotidienne</h2>
+    <p>Le diabète altère la circulation sanguine et la sensibilité nerveuse des pieds. Entre 12 % et 25 % des patients diabétiques présenteront une plaie au pied au cours de leur vie, et la maladie rend la cicatrisation particulièrement difficile.</p>
+    <p>L'infirmière libérale réalise les pansements, surveille l'évolution des plaies (parfois grâce à des photos datées pour comparer), adapte les dispositifs médicaux de pansements selon la prescription, et alerte le médecin traitant dès que la situation se dégrade.</p>
+
+    <div class="alerte">
+      <div class="alerte-titre">Signes d'alarme à surveiller</div>
+      <ul>
+        <li>Rougeur, chaleur ou gonflement autour d'une plaie</li>
+        <li>Odeur inhabituelle ou écoulement purulent</li>
+        <li>Plaie qui ne cicatrise pas après 2 semaines</li>
+        <li>Zona, mycose entre les orteils</li>
+        <li>Perte de sensibilité ou fourmillements dans les pieds</li>
+        <li>Glycémie anormalement élevée ou basse sans raison apparente</li>
+      </ul>
+    </div>
+
+    <h2>L'éducation thérapeutique — le cœur du suivi</h2>
+    <p>L'éducation des patients représente une partie importante du rôle propre infirmier — c'est même le maître mot dans une maladie chronique telle que le diabète.</p>
+    <p>L'infirmière libérale accompagne le patient pour :</p>
+    <h3>Maîtriser son traitement</h3>
+    <p>Apprendre à s'injecter soi-même l'insuline, comprendre quand et comment adapter la dose, connaître les sites d'injection et les faire tourner correctement pour éviter les lipodystrophies.</p>
+    <h3>Surveiller sa glycémie</h3>
+    <p>Utiliser correctement un lecteur de glycémie ou un capteur en continu (Freestyle Libre, Dexcom), interpréter les résultats, savoir quand appeler le médecin.</p>
+    <h3>Adopter les bons réflexes alimentaires</h3>
+    <p>Comprendre l'impact des glucides sur la glycémie, adapter les repas aux injections, éviter les hypoglycémies après l'effort.</p>
+    <h3>Prévenir les complications</h3>
+    <p>Inspecter ses pieds chaque jour, porter des chaussures adaptées, ne jamais marcher pieds nus, consulter un podologue régulièrement.</p>
+
+    <h2>Remboursement et prise en charge</h2>
+    <p>Les soins prodigués par une infirmière à domicile en lien avec une pathologie diabétique sont pris en charge à 100 % par l'Assurance Maladie au titre de l'ALD.</p>
+    <p>Le diabète de type 1 et le diabète de type 2 sous insuline figurent dans la liste des 30 affections longue durée (ALD 30) permettant une prise en charge totale — sans reste à charge pour le patient, sous réserve d'une ordonnance médicale en cours de validité.</p>
+
+    <div class="note">
+      Je pratique le <em>tiers payant intégral</em> — vous n'avancez pas les frais. Pour les patients en ALD diabète, aucun reste à charge ne vous sera demandé pour les soins infirmiers liés à votre pathologie.
+    </div>
+
+    <div class="cta-bloc">
+      <p>Vous êtes diabétique et avez besoin d'un suivi infirmier à domicile ?</p>
+      <a href="rdv.html" class="cta-btn">Prendre rendez-vous →</a>
+    </div>
+
+    <div class="retour">
+      <a href="index.html#blog">← Retour au blog</a>
+      <p class="source">Sources : <a href="https://www.ameli.fr" target="_blank" rel="noopener">Ameli.fr</a>, HAS, Albus IDEL, La Ruche des IDEL, Infirmiers.com, Medicalib — tarifs NGAP en vigueur 2024–2025.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Mélissa Graton — Infirmière libérale &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:var(--or);text-decoration:none">Mentions légales</a></p>
+  </footer>
+
+</body>
+</html>

@@ -57,6 +57,7 @@
   <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://api.emailjs.com" />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <!-- Google Analytics -->
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-Y72Y08VNLK"></script>
   <script>
@@ -746,12 +747,24 @@
         <a href="rdv.html" class="contact-rdv-btn">Prendre rendez-vous en ligne</a>
         <p class="urgence-note">Urgence médicale : composez le 15 (SAMU)</p>
       </div>
+
+      <!-- FORMULAIRE DE CONTACT -->
       <div>
-        <p style="font-family:var(--serif); font-size:1.05rem; line-height:1.9; opacity:0.7;">
-          N'hésitez pas à appeler directement.<br><br>
-          Les demandes en ligne sont traitées sous 24h (jours ouvrés).<br><br>
-          <span id="contactAdresseFooter" style="font-size:0.8rem; opacity:0.5; font-family:var(--sans); letter-spacing:0.06em;">Cabinet : 12 place de l'Église, 44120 Haute-Goulaine</span>
-        </p>
+        <p style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Une question ?</p>
+
+        <div id="contactFormSuccess" style="display:none;background:rgba(196,168,130,0.15);border:1px solid var(--accent);padding:1rem 1.2rem;margin-bottom:1rem;">
+          <p style="font-family:var(--serif);font-size:0.95rem;color:#fff;">✓ Message envoyé — je vous réponds dans les 24h.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:0.8rem;" id="contactForm">
+          <input type="text" id="cf-nom" placeholder="Votre nom" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-family:var(--sans);font-size:0.85rem;padding:0.8rem 1rem;outline:none;width:100%;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+          <input type="tel" id="cf-tel" placeholder="Votre téléphone" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-family:var(--sans);font-size:0.85rem;padding:0.8rem 1rem;outline:none;width:100%;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
+          <textarea id="cf-message" placeholder="Votre message ou question..." rows="3" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-family:var(--sans);font-size:0.85rem;padding:0.8rem 1rem;outline:none;width:100%;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+          <div id="cf-error" style="display:none;font-family:var(--sans);font-size:0.75rem;color:#e57373;">Merci de renseigner votre nom et votre message.</div>
+          <button onclick="sendContactForm()" type="button" style="background:var(--accent);color:var(--black);border:none;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.9rem 2rem;cursor:pointer;align-self:flex-start;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Envoyer →</button>
+        </div>
+
+        <p style="font-family:var(--sans);font-size:0.7rem;opacity:0.3;margin-top:1rem;letter-spacing:0.05em;" id="contactAdresseFooter">Cabinet : 12 place de l'Église, 44120 Haute-Goulaine</p>
       </div>
     </div>
   </section>
@@ -1229,7 +1242,42 @@
 
   <!-- MODE SOMBRE -->
   <script>
-  function toggleDark() {
+  function sendContactForm() {
+    var nom     = document.getElementById('cf-nom').value.trim();
+    var tel     = document.getElementById('cf-tel').value.trim() || '—';
+    var message = document.getElementById('cf-message').value.trim();
+    var err     = document.getElementById('cf-error');
+
+    if (!nom || !message) {
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: 'RbxwnaUkV8uP7M3-z' });
+      emailjs.send('service_uvlzhn4', 'template_aitdh27', {
+        to_email:     'gratonmelissa.cabinethg@gmail.com',
+        prenom:       nom,
+        nom:          '',
+        tel:          tel,
+        ddn:          '—',
+        adresse:      '—',
+        notes:        message,
+        ordonnance:   '—',
+        carte_vitale: '—',
+        mutuelle:     '—',
+        reply_to:     'gratonmelissa.cabinethg@gmail.com'
+      }).then(function() {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('contactFormSuccess').style.display = 'block';
+      }).catch(function(e) {
+        console.warn('Erreur contact:', e);
+      });
+    }
+  }
+
+    function toggleDark() {
     var body = document.body;
     var btn = document.getElementById('darkToggle');
     if (body.classList.contains('dark-mode')) {

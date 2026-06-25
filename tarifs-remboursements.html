@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarifs & remboursements — Blog infirmier | Mélissa Graton</title>
+  <meta name="description" content="Comprendre les tarifs conventionnels des soins infirmiers à domicile : actes AMI, majorations, forfaits BSI et remboursements Assurance Maladie." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --creme: #F2EDE4;
+      --bordeaux: #5C2D3B;
+      --or: #C4A882;
+      --texte: #3a2a2a;
+      --texte-doux: #7a6060;
+      --blanc: #ffffff;
+      --bordure: rgba(92,45,59,0.15);
+    }
+
+    body {
+      background: var(--creme);
+      color: var(--texte);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--bordeaux);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--creme);
+      text-decoration: none;
+    }
+    nav a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--or);
+      text-decoration: none;
+      margin-left: 1.75rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--creme); }
+
+    /* ── HERO ARTICLE ── */
+    .hero-article {
+      background: var(--bordeaux);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-article .categorie {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 1rem;
+    }
+    .hero-article h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 500;
+      color: var(--creme);
+      line-height: 1.25;
+      max-width: 700px;
+      margin: 0 auto 1rem;
+    }
+    .hero-article .chapeau {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(242,237,228,0.8);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .hero-article .meta {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: rgba(242,237,228,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CONTENU ── */
+    .contenu {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .intro-encart {
+      border-left: 3px solid var(--or);
+      padding: 1rem 1.25rem;
+      background: rgba(196,168,130,0.1);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem;
+      color: var(--texte-doux);
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--bordeaux);
+      margin: 2.5rem 0 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    h3 {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin: 1.75rem 0 0.75rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--texte-doux);
+      margin-bottom: 1rem;
+    }
+
+    /* ── GRILLE LETTRES-CLÉS ── */
+    .lettres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 1rem 0 2rem;
+    }
+    .lettre-card {
+      background: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+    .lettre-badge {
+      display: inline-block;
+      background: var(--bordeaux);
+      color: var(--creme);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+    }
+    .lettre-card p {
+      font-size: 0.8rem;
+      color: var(--texte-doux);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .lettre-card .tarif {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--bordeaux);
+      margin: 0;
+    }
+
+    /* ── TABLEAUX ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 0.5rem 0 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--bordure);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      background: var(--blanc);
+    }
+    thead tr {
+      background: var(--bordeaux);
+    }
+    thead th {
+      text-align: left;
+      padding: 10px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      color: var(--creme);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--bordure);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(242,237,228,0.5); }
+    td {
+      padding: 10px 14px;
+      color: var(--texte);
+      vertical-align: top;
+    }
+    td:last-child {
+      font-weight: 500;
+      color: var(--bordeaux);
+      white-space: nowrap;
+    }
+    .code {
+      font-family: monospace;
+      font-size: 0.75rem;
+      background: var(--creme);
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    /* ── NOTE / ENCART ── */
+    .note {
+      font-size: 0.82rem;
+      color: var(--texte-doux);
+      padding: 0.875rem 1rem;
+      background: rgba(196,168,130,0.1);
+      border-left: 3px solid var(--or);
+      border-radius: 0 6px 6px 0;
+      margin: 0.75rem 0 1.5rem;
+      line-height: 1.6;
+    }
+    .note em { font-style: italic; color: var(--bordeaux); }
+
+    /* ── EXEMPLE ── */
+    .exemple {
+      background: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .exemple strong {
+      font-weight: 500;
+      color: var(--bordeaux);
+    }
+    .exemple .total {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--bordeaux);
+    }
+
+    /* ── BSI ── */
+    .bsi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .bsi-card {
+      background: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      text-align: center;
+    }
+    .bsi-card .niveau {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--or);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .bsi-card .prix {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--bordeaux);
+      margin-bottom: 0.25rem;
+    }
+    .bsi-card .desc {
+      font-size: 0.78rem;
+      color: var(--texte-doux);
+      line-height: 1.4;
+    }
+
+    /* ── REMBOURSEMENTS ── */
+    .remb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .remb-card {
+      background: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: 8px;
+      padding: 1.1rem;
+      text-align: center;
+    }
+    .remb-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .pct-vert { color: #3B6D11; }
+    .pct-bordeaux { color: var(--bordeaux); }
+    .remb-card .label {
+      font-size: 0.78rem;
+      color: var(--texte-doux);
+      line-height: 1.4;
+    }
+
+    /* ── RETOUR BLOG ── */
+    .retour {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--bordure);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .retour a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .retour a:hover { color: var(--or); }
+    .source {
+      font-size: 0.75rem;
+      color: var(--texte-doux);
+    }
+    .source a { color: var(--bordeaux); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bordeaux);
+      color: rgba(242,237,228,0.6);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      nav a { margin-left: 1rem; font-size: 0.7rem; }
+      .bsi-grid { grid-template-columns: 1fr; }
+      .hero-article { padding: 2.5rem 1.25rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Mélissa Graton</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="index.html#services">Soins</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="rdv.html">Rendez-vous</a>
+    </nav>
+  </header>
+
+  <div class="hero-article">
+    <p class="categorie">Conseils & informations</p>
+    <h1>Tarifs & remboursements des soins infirmiers</h1>
+    <p class="chapeau">Comprendre la nomenclature, les actes conventionnés et comment l'Assurance Maladie prend en charge vos soins à domicile.</p>
+    <p class="meta">Publié le 1er août 2025 &nbsp;·&nbsp; Mise à jour 2025</p>
+  </div>
+
+  <div class="contenu">
+
+    <div class="intro-encart">
+      Tous les soins infirmiers réalisés sur prescription médicale sont remboursés par l'Assurance Maladie. Les tarifs sont fixés par convention nationale (NGAP — Nomenclature Générale des Actes Professionnels) et s'appliquent de façon identique chez tous les infirmiers conventionnés, en métropole.
+    </div>
+
+    <!-- LETTRES-CLÉS -->
+    <h2>Les lettres-clés de la nomenclature</h2>
+    <p>Chaque acte infirmier est codé par une <strong>lettre-clé</strong> (catégorie de l'acte) et un <strong>coefficient</strong> (niveau de complexité). Le tarif final se calcule ainsi : valeur de la lettre × coefficient. Par exemple, AMI 2 = 3,15 € × 2 = <strong>6,30 €</strong>.</p>
+
+    <div class="lettres-grid">
+      <div class="lettre-card">
+        <span class="lettre-badge">AMI</span>
+        <p>Acte Médico-Infirmier — soins techniques prescrits par un médecin : injections, pansements, prélèvements sanguins, perfusions.</p>
+        <p class="tarif">1 AMI = 3,15 €</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">AMX</span>
+        <p>Acte technique réalisé en complément du forfait BSI pour un patient dépendant. Même valeur que l'AMI.</p>
+        <p class="tarif">1 AMX = 3,15 €</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">BSI</span>
+        <p>Bilan de Soins Infirmiers — forfait journalier pour les patients dépendants. Remplace les anciennes cotations AIS depuis 2023.</p>
+        <p class="tarif">3 niveaux : 13 € / 20 € / 28,70 €</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">IFD</span>
+        <p>Indemnité Forfaitaire de Déplacement — versée automatiquement à chaque visite à domicile, quelle que soit la distance.</p>
+        <p class="tarif">2,75 € / déplacement</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">IK</span>
+        <p>Indemnité Kilométrique — s'ajoute à l'IFD pour compenser les déplacements longue distance.</p>
+        <p class="tarif">0,35 €/km (plaine)</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">MAU</span>
+        <p>Majoration d'Acte Unique — applicable quand un seul acte d'un coefficient ≤ 1,5 est réalisé lors d'une séance.</p>
+        <p class="tarif">+ 1,35 €</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">MCI</span>
+        <p>Majoration de Coordination Infirmière — pour les soins palliatifs et les pansements lourds et complexes (ex : patient diabétique).</p>
+        <p class="tarif">+ 5,00 €</p>
+      </div>
+      <div class="lettre-card">
+        <span class="lettre-badge">MIE</span>
+        <p>Majoration Infirmier Enfant — applicable pour tous les patients de moins de 7 ans, jusqu'à la veille de leur anniversaire.</p>
+        <p class="tarif">+ 3,15 €</p>
+      </div>
+    </div>
+
+    <!-- ACTES COURANTS -->
+    <h2>Actes courants et tarifs</h2>
+
+    <h3>Soins techniques (AMI)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Acte</th><th>Cotation</th><th>Tarif</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Injection sous-cutanée ou intramusculaire</td><td><span class="code">AMI 1</span></td><td>3,15 €</td></tr>
+          <tr><td>Prélèvement sanguin veineux</td><td><span class="code">AMI 1,5</span></td><td>4,73 €</td></tr>
+          <tr><td>Injection intraveineuse directe isolée</td><td><span class="code">AMI 2</span></td><td>6,30 €</td></tr>
+          <tr><td>Pansement simple</td><td><span class="code">AMI 2</span></td><td>6,30 €</td></tr>
+          <tr><td>Surveillance clinique patient diabétique</td><td><span class="code">AMI 1</span></td><td>3,15 €</td></tr>
+          <tr><td>Pansement lourd et complexe</td><td><span class="code">AMI 4</span></td><td>12,60 €</td></tr>
+          <tr><td>Pansement lourd avec détersion — patient diabétique</td><td><span class="code">AMI 4 + MCI</span></td><td>17,60 €</td></tr>
+          <tr><td>Pose de perfusion intraveineuse</td><td><span class="code">AMI 4</span></td><td>12,60 €</td></tr>
+          <tr><td>Soins palliatifs à domicile (par passage)</td><td><span class="code">AMI + MCI</span></td><td>acte + 5,00 €</td></tr>
+          <tr><td>Acte unique ≤ AMI 1,5 avec majoration MAU</td><td><span class="code">AMI 1 + MAU</span></td><td>4,50 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAJORATIONS HORAIRES -->
+    <h3>Majorations selon l'horaire et le jour</h3>
+    <p>En dehors des horaires habituels (8h–20h), des majorations s'ajoutent au tarif de l'acte, sous réserve que la prescription médicale en précise la nécessité.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Situation</th><th>Horaire</th><th>Majoration</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nuit — soirée et petit matin</td><td>20h–23h et 5h–8h</td><td>+ 9,15 €</td></tr>
+          <tr><td>Nuit — milieu de nuit</td><td>23h–5h</td><td>+ 18,30 €</td></tr>
+          <tr><td>Dimanche et jours fériés</td><td>Toute la journée</td><td>+ 8,50 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      Les majorations de nuit et de dimanche/jours fériés nécessitent que la prescription médicale précise expressément la nécessité d'intervenir à ces horaires — <em>soins quotidiens 7j/7</em> ou <em>nécessité impérieuse d'intervenir la nuit</em>.
+    </div>
+
+    <div class="exemple">
+      <strong>Exemple concret — dimanche matin :</strong><br>
+      Pansement lourd à domicile un dimanche :<br>
+      AMI 4 (12,60 €) + MCI (5,00 €) + IFD (2,75 €) + majoration dimanche (8,50 €) = <span class="total">28,85 €</span>
+    </div>
+
+    <!-- BSI -->
+    <h2>Patients dépendants — forfaits BSI</h2>
+    <p>Depuis octobre 2023, les soins de nursing et d'hygiène pour <strong>tous les patients dépendants</strong> sont facturés via un forfait journalier BSI (Bilan de Soins Infirmiers), selon la charge en soins évaluée. Ce forfait remplace les anciennes cotations AIS.</p>
+
+    <div class="bsi-grid">
+      <div class="bsi-card">
+        <div class="niveau">BSA — charge légère</div>
+        <div class="prix">13 €</div>
+        <div class="desc">Soins de base, patient avec dépendance modérée</div>
+      </div>
+      <div class="bsi-card">
+        <div class="niveau">BSB — charge moyenne</div>
+        <div class="prix">20 €</div>
+        <div class="desc">Dépendance marquée, soins quotidiens renforcés</div>
+      </div>
+      <div class="bsi-card">
+        <div class="niveau">BSC — charge lourde</div>
+        <div class="prix">28,70 €</div>
+        <div class="desc">Dépendance sévère, soins palliatifs ou complexes</div>
+      </div>
+    </div>
+    <div class="note">
+      Un seul forfait BSI est facturable par patient et par jour. Les actes techniques supplémentaires (injections, pansements) restent facturables en <em>AMX</em> en complément du forfait.
+    </div>
+
+    <!-- REMBOURSEMENTS -->
+    <h2>Remboursement par l'Assurance Maladie</h2>
+    <p>Les soins infirmiers sur prescription sont remboursés selon les règles suivantes :</p>
+
+    <div class="remb-grid">
+      <div class="remb-card">
+        <div class="remb-pct pct-vert">60 %</div>
+        <div class="label">Pris en charge par la Sécurité Sociale — régime général</div>
+      </div>
+      <div class="remb-card">
+        <div class="remb-pct pct-bordeaux">40 %</div>
+        <div class="label">Couvert par votre mutuelle complémentaire si vous en avez une</div>
+      </div>
+      <div class="remb-card">
+        <div class="remb-pct pct-vert">100 %</div>
+        <div class="label">Prise en charge totale pour les patients en ALD, CMU-C ou AME</div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      Une ordonnance médicale mentionnant <em>« soins à réaliser à domicile par IDE »</em> est <strong>obligatoire</strong> pour ouvrir le droit au remboursement de vos soins infirmiers.
+    </div>
+
+    <!-- RETOUR -->
+    <div class="retour">
+      <a href="index.html#blog">← Retour au blog</a>
+      <p class="source">
+        Source : <a href="https://www.ameli.fr/infirmier/exercice-liberal/facturation-remuneration/tarifs-conventionnels/tarifs" target="_blank" rel="noopener">Ameli.fr</a> — NGAP, tarifs en vigueur au 28/01/2024 (avenant 10).
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Mélissa Graton — Infirmière libérale &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:var(--or);text-decoration:none">Mentions légales</a></p>
+  </footer>
+
+</body>
+</html>

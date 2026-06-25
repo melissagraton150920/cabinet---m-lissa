@@ -435,6 +435,50 @@
       .float-call { display: flex; }
       .float-call-label { display: block; }
     }
+
+    /* ── MODE SOMBRE ── */
+    body.dark-mode {
+      --cream: #1a1218;
+      --cream-dark: #231820;
+      --black: #5C2D3B;
+      --black-soft: #4a2230;
+      --accent: #C4A882;
+      color: #e8ddd5;
+    }
+    body.dark-mode .soin-card { background: #231820; color: #e8ddd5; }
+    body.dark-mode .soin-name { color: #e8ddd5; }
+    body.dark-mode .soin-desc { color: rgba(232,221,213,0.6); }
+    body.dark-mode .faq-item { background: #231820; }
+    body.dark-mode .faq-question { color: #e8ddd5; }
+    body.dark-mode .faq-answer p { color: rgba(232,221,213,0.7); }
+    body.dark-mode .presentation-text p { color: rgba(232,221,213,0.8); }
+    body.dark-mode .stat-val { color: #e8ddd5; }
+    body.dark-mode .stat-label { color: rgba(232,221,213,0.5); }
+    body.dark-mode .section-title { color: #e8ddd5; }
+    body.dark-mode .admin-overlay { background: rgba(10,5,8,0.85); }
+    body.dark-mode #cookieBanner { background: #2d1a24; }
+
+    /* BOUTON MODE SOMBRE */
+    #darkToggle {
+      position: fixed;
+      top: 1.2rem;
+      right: 5rem;
+      z-index: 9000;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    #darkToggle:hover { border-color: var(--accent); color: var(--accent); }
     /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
@@ -1173,12 +1217,40 @@
   </script>
 
   <!-- BOUTON FLOTTANT APPEL MOBILE -->
+  <!-- BOUTON MODE SOMBRE -->
+  <button id="darkToggle" onclick="toggleDark()" title="Mode sombre / clair" aria-label="Basculer le mode sombre">🌙</button>
+
   <div class="float-call-label">Appeler le cabinet</div>
   <a href="tel:0672311279" class="float-call" aria-label="Appeler Mélissa Graton">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
     </svg>
   </a>
+
+  <!-- MODE SOMBRE -->
+  <script>
+  function toggleDark() {
+    var body = document.body;
+    var btn = document.getElementById('darkToggle');
+    if (body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      btn.textContent = '🌙';
+      localStorage.setItem('darkMode', '0');
+    } else {
+      body.classList.add('dark-mode');
+      btn.textContent = '☀️';
+      localStorage.setItem('darkMode', '1');
+    }
+  }
+  // Restaurer le mode au chargement
+  if (localStorage.getItem('darkMode') === '1') {
+    document.body.classList.add('dark-mode');
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('darkToggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+  </script>
 
   <!-- SCROLL REVEAL -->
   <script>

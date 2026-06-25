@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://project-gyp0g.vercel.app/sitemap.xml

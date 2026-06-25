@@ -19,7 +19,7 @@
       --serif: 'Cormorant Garamond', serif; --script: 'Dancing Script', cursive;
       --sans: 'Jost', sans-serif; --accent: #C4A882;
     }
-    body { background: var(--cream); color: var(--black); font-family: var(--sans); font-weight: 300; }
+    body { background: var(--cream); font-size: 16px; color: var(--black); font-family: var(--sans); font-weight: 300; }
 
     nav { background: var(--black); padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
     .nav-logo { font-family: var(--script); font-size: 1.5rem; color: #fff; text-decoration: none; }
@@ -55,11 +55,15 @@
       .page-hero { padding: 2rem 1.5rem 3rem; }
       .content { padding: 3rem 1.2rem 4rem; }
     }
+  
+    :focus-visible { outline: 2px solid #C4A882; outline-offset: 3px; }
+    button, a { min-height: 44px; }
   </style>
 </head>
 <body>
 
-  <nav>
+  <a href="#main-content" style="position:absolute;top:-40px;left:0;background:#C4A882;color:#5C2D3B;padding:8px 16px;font-family:sans-serif;font-size:0.8rem;text-decoration:none;z-index:99999;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Aller au contenu principal</a>
+  <nav role="navigation" aria-label="Navigation principale">
     <a href="index.html" class="nav-logo">Mélissa Graton</a>
     <a href="index.html" class="nav-back">← Retour au site</a>
   </nav>

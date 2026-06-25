@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soins palliatifs à domicile : le rôle de l'infirmière | Mélissa Graton</title>
+  <meta name="description" content="Comprendre les soins palliatifs à domicile : rôle de l'infirmière libérale, soins réalisés, acteurs impliqués et accompagnement de fin de vie." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --creme: #F2EDE4;
+      --bordeaux: #5C2D3B;
+      --or: #C4A882;
+      --texte: #3a2a2a;
+      --texte-doux: #7a6060;
+      --blanc: #ffffff;
+      --bordure: rgba(92,45,59,0.15);
+    }
+    body { background: var(--creme); color: var(--texte); font-family: 'Jost', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    header { background: var(--bordeaux); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--creme); text-decoration: none; }
+    nav a { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--or); text-decoration: none; margin-left: 1.75rem; transition: color 0.2s; }
+    nav a:hover { color: var(--creme); }
+
+    .hero-article { background: var(--bordeaux); padding: 3.5rem 2rem 3rem; text-align: center; }
+    .hero-article .categorie { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--or); margin-bottom: 1rem; }
+    .hero-article h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; color: var(--creme); line-height: 1.25; max-width: 700px; margin: 0 auto 1rem; }
+    .hero-article .chapeau { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(242,237,228,0.8); max-width: 580px; margin: 0 auto; }
+    .hero-article .meta { margin-top: 1.5rem; font-size: 0.75rem; color: rgba(242,237,228,0.5); letter-spacing: 0.06em; }
+
+    .contenu { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+    .intro-encart { border-left: 3px solid var(--or); padding: 1rem 1.25rem; background: rgba(196,168,130,0.1); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--texte-doux); margin-bottom: 3rem; line-height: 1.7; }
+
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--bordeaux); margin: 2.5rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--bordure); }
+    h3 { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--or); margin: 1.75rem 0 0.75rem; }
+    p { font-size: 0.9rem; color: var(--texte-doux); margin-bottom: 1rem; line-height: 1.7; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 1.5rem 0; }
+    .stat-card { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 8px; padding: 1.25rem; text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 600; color: var(--bordeaux); margin-bottom: 0.4rem; line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--texte-doux); line-height: 1.5; }
+
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 1rem 0 2rem; }
+    .role-card { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 8px; padding: 1.1rem; }
+    .role-icon { font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+    .role-title { font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--bordeaux); margin-bottom: 0.4rem; }
+    .role-desc { font-size: 0.8rem; color: var(--texte-doux); line-height: 1.5; }
+
+    .acteurs-list { display: flex; flex-direction: column; gap: 8px; margin: 1rem 0 1.5rem; }
+    .acteur { display: flex; align-items: flex-start; gap: 12px; background: rgba(242,237,228,0.6); border-radius: 6px; padding: 0.875rem 1rem; }
+    .acteur-badge { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; background: var(--bordeaux); color: var(--creme); padding: 3px 10px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; letter-spacing: 0.04em; }
+    .acteur-desc { font-size: 0.82rem; color: var(--texte-doux); line-height: 1.5; }
+
+    .note { font-size: 0.82rem; color: var(--texte-doux); padding: 0.875rem 1rem; background: rgba(196,168,130,0.1); border-left: 3px solid var(--or); border-radius: 0 6px 6px 0; margin: 1rem 0 1.5rem; line-height: 1.6; }
+    .note em { font-style: italic; color: var(--bordeaux); }
+
+    .cta-bloc { background: var(--bordeaux); border-radius: 8px; padding: 2rem 2rem; margin-top: 2.5rem; text-align: center; }
+    .cta-bloc p { color: rgba(242,237,228,0.8); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 1.25rem; line-height: 1.6; }
+    .cta-btn { display: inline-block; border: 1px solid var(--or); color: var(--or); font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2.2rem; text-decoration: none; transition: background 0.25s, color 0.25s; }
+    .cta-btn:hover { background: var(--or); color: var(--bordeaux); }
+
+    .retour { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--bordure); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .retour a { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bordeaux); text-decoration: none; }
+    .retour a:hover { color: var(--or); }
+    .source { font-size: 0.75rem; color: var(--texte-doux); }
+    .source a { color: var(--bordeaux); }
+
+    footer { background: var(--bordeaux); color: rgba(242,237,228,0.6); text-align: center; padding: 1.5rem; font-size: 0.75rem; letter-spacing: 0.04em; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      nav a { margin-left: 1rem; font-size: 0.7rem; }
+      .hero-article { padding: 2.5rem 1.25rem 2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Mélissa Graton</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="index.html#soins">Soins</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="rdv.html">Rendez-vous</a>
+    </nav>
+  </header>
+
+  <div class="hero-article">
+    <p class="categorie">Conseils & informations</p>
+    <h1>Soins palliatifs à domicile : le rôle de l'infirmière</h1>
+    <p class="chapeau">Accompagner dignement jusqu'au bout, chez soi, entouré de ses proches.</p>
+    <p class="meta">Publié le 1er août 2025 &nbsp;·&nbsp; Mise à jour 2025</p>
+  </div>
+
+  <div class="contenu">
+
+    <div class="intro-encart">
+      Un nombre croissant de patients exprime le souhait de terminer leur vie à domicile, entourés de leurs proches. L'infirmière libérale est souvent le professionnel de santé le plus présent à leurs côtés — matin et soir — pour les soins techniques comme pour le soutien humain.
+    </div>
+
+    <h2>Qu'est-ce que les soins palliatifs ?</h2>
+    <p>Les soins palliatifs s'adressent aux patients atteints d'une maladie grave, évolutive ou en phase terminale, dont le pronostic vital est engagé. Leur objectif n'est pas de guérir, mais de <em>soulager</em> — physiquement, psychologiquement et humainement — pour préserver la qualité de vie jusqu'au bout.</p>
+    <p>Selon la Haute Autorité de Santé (HAS), il s'agit de « soins actifs continus, coordonnés et pratiqués par une équipe pluriprofessionnelle, dans une approche globale et individualisée ». Ils visent à prévenir ou soulager les symptômes, anticiper les complications, et prendre en compte les besoins psychologiques, sociaux et spirituels dans le respect de la dignité de la personne.</p>
+    <p>Ils peuvent être organisés à domicile dans le cadre d'une Hospitalisation À Domicile (HAD), toujours prescrite par le médecin traitant en accord avec le patient et sa famille.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">64 %</div>
+        <div class="stat-label">des prises en charge palliatives à domicile assurées seules par les infirmières libérales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">56 %</div>
+        <div class="stat-label">des accompagnements le mois précédant le décès réalisés par les IDEL</div>
+      </div>
+    </div>
+
+    <h2>Le rôle de l'infirmière libérale</h2>
+    <p>En soins palliatifs à domicile, l'infirmière libérale occupe une place centrale. Elle est à la fois soignante, accompagnante et coordinatrice.</p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="role-icon">🩺</span>
+        <div class="role-title">Soignante</div>
+        <div class="role-desc">Perfusions, injections, pansements complexes, soins d'hygiène et de confort, prévention des escarres, gestion de la douleur.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🤝</span>
+        <div class="role-title">Accompagnante</div>
+        <div class="role-desc">Soutien psychologique, écoute active, présence régulière — repère stable pour le patient et sa famille dans ce moment vulnérable.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🔗</span>
+        <div class="role-title">Coordinatrice</div>
+        <div class="role-desc">Lien quotidien avec le médecin traitant, les équipes mobiles de soins palliatifs, les pharmaciens et les aides à domicile.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">👨‍👩‍👧</span>
+        <div class="role-title">Soutien aux proches</div>
+        <div class="role-desc">Formation des aidants à certains gestes, orientation vers les aides disponibles, accompagnement de l'entourage dans le deuil.</div>
+      </div>
+    </div>
+
+    <h2>Les soins réalisés au quotidien</h2>
+
+    <h3>Gestion de la douleur</h3>
+    <p>L'évaluation et la gestion de la douleur sont au cœur de la prise en charge palliative. L'infirmière administre les antalgiques prescrits — y compris les morphiniques — surveille les échelles de douleur (EVA, Doloplus pour les patients non communicants), observe les effets secondaires et adapte les protocoles selon les prescriptions médicales.</p>
+
+    <h3>Soins de confort et d'hygiène</h3>
+    <p>Soins de bouche, hygiène corporelle, hydratation cutanée, prévention des escarres, positionnement et mobilisation. Gestion des symptômes inconfortables : dyspnée, nausées, agitation, rétention urinaire.</p>
+
+    <h3>Soins techniques</h3>
+    <p>Perfusions de morphine ou de midazolam, nutrition entérale par sonde, pansements complexes (plaies tumorales, escarres), surveillance des voies veineuses périphériques, soins de trachéotomie.</p>
+
+    <h3>Sédation profonde et continue</h3>
+    <p>Dans les cas prévus par la loi Claeys-Leonetti du 2 février 2016, l'infirmière libérale participe à la mise en place et à la surveillance d'une sédation profonde et continue maintenue jusqu'au décès (SPCMJD), aux côtés du médecin. Elle assure le suivi 24h sur 24, surveille la profondeur de la sédation et prodigue les soins de confort.</p>
+
+    <div class="note">
+      Pour facturer la <em>majoration de coordination infirmière (MCI)</em> en soins palliatifs, il est conseillé de demander au médecin traitant une attestation de soins palliatifs, ou d'utiliser l'outil Pallia 10 pour formaliser la situation. Cela couvre l'infirmière en cas de contrôle de l'Assurance Maladie.
+    </div>
+
+    <h2>Les acteurs qui interviennent ensemble</h2>
+    <p>Les soins palliatifs à domicile reposent sur une équipe pluridisciplinaire coordonnée autour du patient.</p>
+
+    <div class="acteurs-list">
+      <div class="acteur">
+        <span class="acteur-badge">Médecin traitant</span>
+        <span class="acteur-desc">Prescrit les soins palliatifs à domicile, adapte les traitements antalgiques, coordonne le parcours de soins et rédige les directives anticipées avec le patient.</span>
+      </div>
+      <div class="acteur">
+        <span class="acteur-badge">EMSP</span>
+        <span class="acteur-desc">Équipe Mobile de Soins Palliatifs — experts disponibles sur sollicitation pour les situations complexes, les décisions éthiques difficiles ou les soins spécialisés.</span>
+      </div>
+      <div class="acteur">
+        <span class="acteur-badge">HAD</span>
+        <span class="acteur-desc">Hospitalisation À Domicile — structure qui organise, finance et coordonne la prise en charge à domicile en lien avec l'infirmière libérale.</span>
+      </div>
+      <div class="acteur">
+        <span class="acteur-badge">Pharmacien</span>
+        <span class="acteur-desc">Prépare les traitements (dont les poches de morphine), assure la disponibilité des médicaments 24h/24 et conseille sur les interactions médicamenteuses.</span>
+      </div>
+      <div class="acteur">
+        <span class="acteur-badge">Aides à domicile</span>
+        <span class="acteur-desc">Interviennent pour les actes de la vie quotidienne (repas, habillage, déplacements) en complément des soins infirmiers.</span>
+      </div>
+      <div class="acteur">
+        <span class="acteur-badge">Assistante sociale</span>
+        <span class="acteur-desc">Oriente vers les aides financières et humaines disponibles (APA, PCH, portage de repas, bénévoles d'accompagnement).</span>
+      </div>
+    </div>
+
+    <h2>Les droits du patient en fin de vie</h2>
+    <p>La loi Claeys-Leonetti du 2 février 2016 garantit plusieurs droits fondamentaux aux patients en fin de vie :</p>
+    <p>Le droit à ne pas souffrir — l'équipe soignante a l'obligation de tout mettre en œuvre pour soulager la douleur. Le droit de rédiger des <em>directives anticipées</em> pour exprimer ses volontés sur la fin de vie — elles s'imposent aux médecins. Le droit de désigner une <em>personne de confiance</em> qui sera consultée si le patient ne peut plus exprimer ses choix. Et enfin, pour les patients dont la souffrance est réfractaire, le droit à une <em>sédation profonde et continue</em> maintenue jusqu'au décès.</p>
+
+    <div class="note">
+      Toute personne dont l'état le requiert a le droit d'accéder à des soins palliatifs et à un accompagnement, quel que soit son lieu de vie — <em>loi du 9 juin 1999</em>. L'infirmière libérale a l'obligation légale d'assurer au patient « une vie digne jusqu'à la mort ».
+    </div>
+
+    <div class="cta-bloc">
+      <p>Vous ou un proche avez besoin d'un accompagnement infirmier à domicile, y compris en soins palliatifs ?</p>
+      <a href="rdv.html" class="cta-btn">Prendre rendez-vous →</a>
+    </div>
+
+    <div class="retour">
+      <a href="index.html#blog">← Retour au blog</a>
+      <p class="source">Sources : Ameli.fr, HAS, Albus IDEL, La Ruche des IDEL, ScienceDirect (étude Gironde 2020). Loi Claeys-Leonetti du 2 février 2016.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Mélissa Graton — Infirmière libérale &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:var(--or);text-decoration:none">Mentions légales</a></p>
+  </footer>
+
+</body>
+</html>

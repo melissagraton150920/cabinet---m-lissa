@@ -81,7 +81,7 @@
       --sans: 'Jost', sans-serif; --accent: #C4A882;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--cream); color: var(--black); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+    body { background: var(--cream); color: var(--black); font-size: 16px; font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 4rem; background: var(--cream); border-bottom: 1px solid rgba(0,0,0,0.08); }
@@ -529,6 +529,21 @@
       backdrop-filter: blur(4px);
     }
     #darkToggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ACCESSIBILITÉ — Focus visible */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .nav-links a:focus-visible,
+    .hero-cta:focus-visible,
+    .contact-rdv-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    /* Taille minimale zones cliquables */
+    button, a { min-height: 44px; }
+    .faq-question { min-height: 52px; }
     /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
@@ -551,7 +566,10 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <!-- SKIP LINK accessibilité -->
+  <a href="#presentation" style="position:absolute;top:-40px;left:0;background:var(--accent);color:var(--black);padding:8px 16px;font-family:var(--sans);font-size:0.8rem;text-decoration:none;z-index:99999;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Aller au contenu principal</a>
+
+  <nav role="navigation" aria-label="Navigation principale">
     <a href="#" class="nav-logo" id="navLogo">Mélissa Graton</a>
     <ul class="nav-links">
       <li><a href="#presentation">Le cabinet</a></li>
@@ -857,11 +875,13 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <span class="footer-logo" id="footerLogo">Mélissa Graton</span>
     <span id="footerMiddle">Infirmière Libérale Diplômée d'État &nbsp;·&nbsp; 44120 Haute-Goulaine</span>
-    <span>© 2026 &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:rgba(255,255,255,0.35);text-decoration:none;" onmouseover="this.style.color='#C4A882'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Mentions légales</a></span>
+    <span>© 2026 &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#C4A882'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Mentions légales</a></span>
   </footer>
 
   <!-- ═══════ OVERLAY LOGIN ═══════ -->
@@ -1008,7 +1028,7 @@
           <div class="admin-card">
             <div class="admin-field"><label>Nouveau mot de passe</label><input id="a-newpwd" type="password" placeholder="••••••••" /></div>
             <div class="admin-field"><label>Confirmer</label><input id="a-newpwd2" type="password" placeholder="••••••••" /></div>
-            <button class="admin-save-btn" style="margin-top:1rem" onclick="changePwd()">Changer le mot de passe</button>
+            <button class="admin-save-btn" style="margin-top:1rem" onclick="changePwd()" aria-label="Changer le mot de passe">Changer le mot de passe</button>
           </div>
         </div>
 
@@ -1327,7 +1347,7 @@
   </a>
 
   <!-- BOUTON MODE SOMBRE -->
-  <button id="darkToggle" onclick="toggleDark()" title="Mode sombre / clair" aria-label="Basculer le mode sombre">🌙</button>
+  <button id="darkToggle" onclick="toggleDark()" title="Mode sombre / clair" aria-label="Basculer entre mode sombre et mode clair">🌙</button>
 
   <div class="float-call-label">Appeler le cabinet</div>
   <a href="tel:0672311279" class="float-call" aria-label="Appeler Mélissa Graton">

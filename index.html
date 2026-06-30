@@ -198,7 +198,7 @@
     .mobile-bottom-call svg { width: 20px; height: 20px; fill: none; stroke: var(--black); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Sections mobiles — masquées par défaut sur mobile */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       nav { display: none !important; }
       .mobile-nav-top { display: flex; }
       .mobile-nav-bottom { display: block; }
@@ -367,12 +367,12 @@
     .float-whatsapp:hover { transform: scale(1.08); }
     .float-whatsapp svg { width: 26px; height: 26px; fill: #fff; }
     .float-whatsapp-label { display: none; position: fixed; bottom: 9rem; right: 1.5rem; z-index: 8000; background: #25D366; color: #fff; font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.4rem 0.8rem; white-space: nowrap; pointer-events: none; border-radius: 2px; }
-    @media (max-width: 768px) { .float-whatsapp { display: flex; } .float-whatsapp-label { display: block; } }
+    @media (max-width: 1024px) { .float-whatsapp { display: flex; } .float-whatsapp-label { display: block; } }
     .float-call { display: none; position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 8000; background: #5C2D3B; color: #fff; text-decoration: none; width: 58px; height: 58px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(92,45,59,0.35); transition: transform 0.2s; }
     .float-call:hover { transform: scale(1.08); }
     .float-call svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .float-call-label { display: none; position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 8000; background: #5C2D3B; color: rgba(255,255,255,0.85); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.5rem 0.9rem; white-space: nowrap; pointer-events: none; }
-    @media (max-width: 768px) { .float-call { display: flex; } .float-call-label { display: block; } }
+    @media (max-width: 1024px) { .float-call { display: flex; } .float-call-label { display: block; } }
 
     /* MODE SOMBRE */
     body.dark-mode { --cream: #1a1218; --cream-dark: #231820; --black: #5C2D3B; --black-soft: #4a2230; --accent: #C4A882; color: #e8ddd5; }
@@ -437,7 +437,7 @@
       .admin-nav-item.active { border-bottom-color: var(--accent); border-left-color: transparent; }
       .admin-row, .admin-row3 { grid-template-columns: 1fr; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .rdv-cta-section { padding: 3rem 1.5rem !important; }
       .rdv-cta-grid { grid-template-columns: 1fr; }
       .rdv-cta-col { padding: 2rem 1.5rem; }
@@ -881,7 +881,7 @@
   // NAVIGATION MOBILE
   // ═══════════════════════════════════════
   function showMobileSection(sectionId, clickedBtn, fromBottom) {
-    var isMobile = window.innerWidth <= 768;
+    var isMobile = window.innerWidth <= 1024;
     if (!isMobile) return;
 
     // Masquer toutes les sections mobiles
@@ -925,7 +925,7 @@
 
   // Initialisation mobile : afficher accueil par défaut
   document.addEventListener('DOMContentLoaded', function() {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       document.querySelectorAll('.mobile-section').forEach(function(s) {
         s.classList.remove('mobile-active');
       });

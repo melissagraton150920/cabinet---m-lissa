@@ -450,34 +450,47 @@
     @media (max-width: 600px) { .nav-links { display: none; } }
 
     /* ═══════════════════════════════════════════
-       LISIBILITÉ RENFORCÉE MOBILE
+       LISIBILITÉ RENFORCÉE — DESKTOP + MOBILE
     ═══════════════════════════════════════════ */
+    body { font-weight: 400; }
+    .hero-eyebrow, .section-label, .hero-zones,
+    .stat-label, .info-block h3, .rpps-line,
+    .mobile-tab-btn, .btn-label, .urgence-note { font-weight: 500 !important; }
+
+    .hero-title { font-weight: 500 !important; }
+    .hero-quote { font-weight: 500 !important; }
+    .section-title { font-weight: 500 !important; }
+
+    .presentation-text p { font-weight: 500 !important; color: var(--black) !important; }
+    .soin-name { font-weight: 500 !important; }
+    .soin-desc { font-weight: 500 !important; opacity: 0.85 !important; }
+
+    .info-block p { font-weight: 500 !important; color: rgba(255,255,255,0.92) !important; }
+    .horaires-table td { font-weight: 500 !important; color: rgba(255,255,255,0.92) !important; }
+    .horaires-note { font-weight: 500 !important; }
+
+    .contact-box p { font-weight: 500 !important; }
+    .faq-question span:first-child { font-weight: 500 !important; }
+    .faq-answer p { font-weight: 500 !important; color: var(--black) !important; opacity: 1 !important; }
+
+    .mobile-rdv-btn { font-weight: 600 !important; }
+    .hero-cta, .contact-rdv-btn { font-weight: 500 !important; }
+
+    input, textarea, button { font-weight: 500 !important; }
+
+    /* Tailles agrandies uniquement sur mobile (le desktop garde sa mise en page) */
     @media (max-width: 1024px) {
-      body { font-weight: 400; }
-      .hero-eyebrow, .section-label, .hero-zones,
-      .stat-label, .info-block h3, .rpps-line,
-      .mobile-tab-btn, .btn-label, .urgence-note { font-weight: 500 !important; }
-
-      .hero-title { font-weight: 500 !important; font-size: 1.15rem !important; }
-      .hero-quote { font-weight: 500 !important; font-size: 1.5rem !important; line-height: 1.6 !important; }
-      .section-title { font-weight: 500 !important; }
-
-      .presentation-text p { font-weight: 500 !important; font-size: 1.2rem !important; line-height: 1.75 !important; color: var(--black) !important; }
-      .soin-name { font-weight: 500 !important; font-size: 1.3rem !important; }
-      .soin-desc { font-weight: 500 !important; font-size: 1rem !important; opacity: 0.85 !important; line-height: 1.65 !important; }
-
-      .info-block p { font-weight: 500 !important; font-size: 1.15rem !important; color: rgba(255,255,255,0.92) !important; }
-      .horaires-table td { font-weight: 500 !important; font-size: 1.1rem !important; color: rgba(255,255,255,0.92) !important; }
-      .horaires-note { font-weight: 500 !important; font-size: 0.85rem !important; }
-
-      .contact-box p { font-weight: 500 !important; font-size: 1.15rem !important; }
-      .faq-question span:first-child { font-weight: 500 !important; font-size: 1.15rem !important; }
-      .faq-answer p { font-weight: 500 !important; font-size: 1.05rem !important; color: var(--black) !important; opacity: 1 !important; }
-
-      .mobile-rdv-btn { font-weight: 600 !important; }
-      .hero-cta, .contact-rdv-btn { font-weight: 500 !important; }
-
-      input, textarea, button { font-weight: 500 !important; }
+      .hero-title { font-size: 1.15rem !important; }
+      .hero-quote { font-size: 1.5rem !important; line-height: 1.6 !important; }
+      .presentation-text p { font-size: 1.2rem !important; line-height: 1.75 !important; }
+      .soin-name { font-size: 1.3rem !important; }
+      .soin-desc { font-size: 1rem !important; line-height: 1.65 !important; }
+      .info-block p { font-size: 1.15rem !important; }
+      .horaires-table td { font-size: 1.1rem !important; }
+      .horaires-note { font-size: 0.85rem !important; }
+      .contact-box p { font-size: 1.15rem !important; }
+      .faq-question span:first-child { font-size: 1.15rem !important; }
+      .faq-answer p { font-size: 1.05rem !important; }
     }
   </style>
 </head>

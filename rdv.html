@@ -4,37 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prise de rendez-vous – Mélissa Graton, Infirmière Libérale</title>
-  <meta name="description" content="Prenez rendez-vous en ligne avec Mélissa Graton, infirmière libérale à Haute-Goulaine. Soins à domicile 7j/7." />
-  <meta name="theme-color" content="#5C2D3B" />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="canonical" href="https://project-gyp0g.vercel.app/rdv.html" />
-  <meta property="og:title" content="Prise de rendez-vous – Mélissa Graton, Infirmière Libérale" />
-  <meta property="og:description" content="Prenez rendez-vous en ligne avec Mélissa Graton, infirmière libérale à Haute-Goulaine. Soins à domicile 7j/7." />
-  <meta property="og:url" content="https://project-gyp0g.vercel.app/rdv.html" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231A1A1A'/><text y='.9em' font-size='80' x='50%' text-anchor='middle' dominant-baseline='hanging'>🏥</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" /></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cream: #F2EDE4; --cream-dark: #E8E0D3; --black: #5C2D3B; --black-soft: #4a2230;
+      --cream: #F2EDE4; --cream-dark: #E8E0D3; --black: #1A1A1A; --black-soft: #2C2C2C;
       --script: 'Dancing Script', cursive; --serif: 'Cormorant Garamond', serif;
       --sans: 'Jost', sans-serif; --accent: #C4A882;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--cream); font-size: 16px; color: var(--black); font-family: var(--sans); font-weight: 300; min-height: 100vh; }
+    body { background: var(--cream); color: var(--black); font-family: var(--sans); font-weight: 300; min-height: 100vh; }
 
     /* NAV */
-    nav { background: #5C2D3B; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    nav { background: var(--black); padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
     .nav-logo { font-family: var(--script); font-size: 1.5rem; color: #fff; text-decoration: none; }
     .nav-back { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
 
     /* HERO */
-    .page-hero { background: #5C2D3B; padding: 3rem 3rem 4rem; text-align: center; }
+    .page-hero { background: var(--black); padding: 3rem 3rem 4rem; text-align: center; }
     .page-hero-label { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
     .page-hero-title { font-family: var(--script); font-size: clamp(2.2rem, 4vw, 3.5rem); color: #fff; margin-bottom: 0.6rem; }
     .page-hero-sub { font-family: var(--serif); font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
@@ -52,15 +41,41 @@
 
     /* CHOIX MODE */
     .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); margin-bottom: 2.5rem; }
-    .mode-card { background: var(--cream); padding: 2.5rem 2rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; text-align: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; width: 100%; font-family: inherit; }
+    .mode-card { background: var(--cream); padding: 2.5rem 2rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; text-align: center; }
     .mode-card:hover { background: var(--cream-dark); }
     .mode-card.selected { border-color: var(--accent); background: #fff; }
     .mode-icon { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
     .mode-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
     .mode-desc { font-size: 0.8rem; opacity: 0.55; line-height: 1.6; }
 
+    /* PIÈCES JOINTES */
+    .pj-section { margin-bottom: 2.5rem; }
+    .pj-intro { font-family: var(--serif); font-size: 1rem; color: var(--black-soft); line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.75; }
+    .pj-title { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .pj-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+    .pj-item { background: #fff; border: 1px solid rgba(0,0,0,0.08); }
+    .pj-item-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; }
+    .pj-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .pj-info { flex: 1; }
+    .pj-name { font-family: var(--sans); font-size: 0.88rem; font-weight: 400; }
+    .pj-hint { font-size: 0.72rem; opacity: 0.45; margin-top: 0.15rem; }
+    .pj-badge { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; }
+    .pj-badge.optional { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.4); border: 1px solid rgba(0,0,0,0.1); }
+    .pj-upload-zone { border-top: 1px dashed rgba(0,0,0,0.12); padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.8rem; cursor: pointer; position: relative; transition: background 0.15s; }
+    .pj-upload-zone:hover { background: var(--cream); }
+    .pj-upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .pj-upload-label { font-size: 0.78rem; color: rgba(0,0,0,0.45); flex: 1; }
+    .pj-upload-btn { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); background: none; padding: 0.35rem 0.9rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .pj-upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .pj-preview { display: none; border-top: 1px solid rgba(0,0,0,0.06); padding: 0.6rem 1.2rem; align-items: center; gap: 0.8rem; background: #f9f7f3; }
+    .pj-preview.visible { display: flex; }
+    .pj-preview-name { font-size: 0.8rem; flex: 1; color: var(--black-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pj-preview-size { font-size: 0.7rem; opacity: 0.4; white-space: nowrap; }
+    .pj-remove { background: none; border: none; cursor: pointer; opacity: 0.4; font-size: 1rem; transition: opacity 0.15s; flex-shrink: 0; }
+    .pj-remove:hover { opacity: 1; }
+
     /* BOUTON CONTINUER */
-    .btn-primary { background: #5C2D3B; color: #fff; border: none; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.8rem; cursor: pointer; transition: background 0.2s; display: inline-block; }
+    .btn-primary { background: var(--black); color: #fff; border: none; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.8rem; cursor: pointer; transition: background 0.2s; display: inline-block; }
     .btn-primary:hover { background: var(--accent); color: var(--black); }
     .btn-secondary { background: none; border: 1px solid rgba(0,0,0,0.2); color: var(--black); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2rem; cursor: pointer; transition: all 0.2s; }
     .btn-secondary:hover { border-color: var(--black); }
@@ -70,7 +85,7 @@
     .calendly-inline-widget { min-width: 320px; height: 700px; }
 
     /* FOOTER */
-    footer { background: #5C2D3B; color: rgba(255,255,255,0.3); padding: 2rem 3rem; text-align: center; font-size: 0.72rem; letter-spacing: 0.1em; margin-top: 4rem; }
+    footer { background: var(--black); color: rgba(255,255,255,0.3); padding: 2rem 3rem; text-align: center; font-size: 0.72rem; letter-spacing: 0.1em; margin-top: 4rem; }
 
     @media (max-width: 600px) {
       nav { padding: 1rem 1.5rem; }
@@ -78,17 +93,18 @@
       .rdv-main { padding: 2rem 1rem 4rem; }
       .mode-grid { grid-template-columns: 1fr; }
       .calendly-inline-widget { height: 600px; }
-      .mode-card { padding: 1.8rem 1.5rem; }
     }
-  
-    :focus-visible { outline: 2px solid #C4A882; outline-offset: 3px; }
-    button, a { min-height: 44px; }
   </style>
+<style id="lisibilite-renforcee">
+/* Lisibilite renforcee - ajoute le 2026-07-15 (texte plus grand, plus fonce, plus lisible) */
+html { font-size: 17.5px; }
+:root { --black: #3A1E27; --black-soft: #2e1720; }
+body { font-size: 1rem; font-weight: 400; }
+</style>
 </head>
 <body>
 
-  <a href="#main-content" style="position:absolute;top:-40px;left:0;background:#C4A882;color:#5C2D3B;padding:8px 16px;font-family:sans-serif;font-size:0.8rem;text-decoration:none;z-index:99999;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Aller au contenu principal</a>
-  <nav role="navigation" aria-label="Navigation principale">
+  <nav>
     <a href="index.html" class="nav-logo">Mélissa Graton</a>
     <a href="index.html" class="nav-back">← Retour au site</a>
   </nav>
@@ -113,21 +129,21 @@
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Choisissez votre mode de contact.</p>
 
       <div class="mode-grid">
-        <button class="mode-card" id="modePhone" type="button">
+        <div class="mode-card" id="modePhone" onclick="selectMode('phone')">
           <span class="mode-icon">📞</span>
           <div class="mode-title">Par téléphone</div>
           <div class="mode-desc">Appelez directement le cabinet pour prendre rendez-vous ou pour tout renseignement.</div>
-        </button>
-        <button class="mode-card" id="modeOnline" type="button">
+        </div>
+        <div class="mode-card" id="modeOnline" onclick="selectMode('online')">
           <span class="mode-icon">📅</span>
           <div class="mode-title">En ligne</div>
-          <div class="mode-desc">Choisissez votre créneau et recevez une confirmation sous 24h.</div>
-        </button>
+          <div class="mode-desc">Choisissez votre créneau, joignez vos documents et recevez une confirmation sous 24h.</div>
+        </div>
       </div>
 
       <!-- TÉLÉPHONE -->
       <div id="phoneBlock" style="display:none">
-        <div style="background:#5C2D3B;padding:2.5rem 2rem;text-align:center;">
+        <div style="background:var(--black);padding:2.5rem 2rem;text-align:center;">
           <p style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">Numéro du cabinet</p>
           <a href="tel:0672311279" style="font-family:var(--script);font-size:3.5rem;color:#fff;text-decoration:none;display:block;margin-bottom:0.8rem;">06 72 31 12 79</a>
           <p style="font-family:var(--serif);font-size:0.95rem;color:rgba(255,255,255,0.5);">7j/7 &nbsp;·&nbsp; 6h – 12h30 &nbsp;/&nbsp; 14h – 20h</p>
@@ -139,7 +155,7 @@
     <!-- ÉTAPE 2 : FORMULAIRE + PIÈCES JOINTES -->
     <div id="step2" style="display:none">
       <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:0.4rem;">Vos informations</h2>
-      <p class="pj-intro">Renseignez vos coordonnées. Pensez à avoir votre ordonnance, carte Vitale et attestation mutuelle lors du premier passage.</p>
+      <p class="pj-intro">Renseignez vos coordonnées et joignez vos documents si vous les avez à portée. Vous pouvez aussi apporter les documents lors du premier passage.</p>
 
       <!-- FORMULAIRE PATIENT -->
       <div class="pj-section">
@@ -174,11 +190,81 @@
 
         <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem;">
           <label style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,0,0,0.45);">Informations complémentaires</label>
-          <textarea id="f-notes" placeholder="Précisez le type de soin souhaité, le nom de votre médecin prescripteur, toute allergie connue, les modalités d'accès à votre domicile (code, étage, digicode)…" rows="4" style="background:#fff;border:1px solid rgba(0,0,0,0.15);color:var(--black);font-family:var(--sans);font-size:0.9rem;padding:0.85rem 1rem;outline:none;width:100%;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0,0,0,0.15)'"></textarea>
+          <textarea id="f-notes" placeholder="Type de soin, allergie, accès au domicile, code, étage, médecin prescripteur…" rows="3" style="background:#fff;border:1px solid rgba(0,0,0,0.15);color:var(--black);font-family:var(--sans);font-size:0.9rem;padding:0.85rem 1rem;outline:none;width:100%;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0,0,0,0.15)'"></textarea>
         </div>
       </div>
 
-      <div id="formError" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.82rem;padding:0.9rem 1.2rem;margin-bottom:1rem;">
+      <!-- PIÈCES JOINTES -->
+      <div class="pj-section">
+        <div class="pj-title">Documents à joindre (facultatifs)</div>
+        <div class="pj-list">
+
+          <div class="pj-item">
+            <div class="pj-item-header">
+              <span class="pj-icon">📋</span>
+              <div class="pj-info">
+                <div class="pj-name">Ordonnance médicale</div>
+                <div class="pj-hint">Prescription de votre médecin traitant ou spécialiste</div>
+              </div>
+              <span class="pj-badge optional">Facultatif</span>
+            </div>
+            <div class="pj-upload-zone">
+              <input type="file" accept="image/*,.pdf" onchange="handlePJ(0,this)" />
+              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
+              <button class="pj-upload-btn" type="button">Joindre</button>
+            </div>
+            <div class="pj-preview" id="pjPreview0">
+              <span class="pj-preview-name" id="pjName0"></span>
+              <span class="pj-preview-size" id="pjSize0"></span>
+              <button class="pj-remove" onclick="removePJ(0)" type="button">✕</button>
+            </div>
+          </div>
+
+          <div class="pj-item">
+            <div class="pj-item-header">
+              <span class="pj-icon">💳</span>
+              <div class="pj-info">
+                <div class="pj-name">Carte Vitale</div>
+                <div class="pj-hint">Recto de votre carte d'assuré social</div>
+              </div>
+              <span class="pj-badge optional">Facultatif</span>
+            </div>
+            <div class="pj-upload-zone">
+              <input type="file" accept="image/*,.pdf" onchange="handlePJ(1,this)" />
+              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
+              <button class="pj-upload-btn" type="button">Joindre</button>
+            </div>
+            <div class="pj-preview" id="pjPreview1">
+              <span class="pj-preview-name" id="pjName1"></span>
+              <span class="pj-preview-size" id="pjSize1"></span>
+              <button class="pj-remove" onclick="removePJ(1)" type="button">✕</button>
+            </div>
+          </div>
+
+          <div class="pj-item">
+            <div class="pj-item-header">
+              <span class="pj-icon">🛡️</span>
+              <div class="pj-info">
+                <div class="pj-name">Complémentaire santé / Mutuelle</div>
+                <div class="pj-hint">Attestation ou carte de votre mutuelle</div>
+              </div>
+              <span class="pj-badge optional">Facultatif</span>
+            </div>
+            <div class="pj-upload-zone">
+              <input type="file" accept="image/*,.pdf" onchange="handlePJ(2,this)" />
+              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
+              <button class="pj-upload-btn" type="button">Joindre</button>
+            </div>
+            <div class="pj-preview" id="pjPreview2">
+              <span class="pj-preview-name" id="pjName2"></span>
+              <span class="pj-preview-size" id="pjSize2"></span>
+              <button class="pj-remove" onclick="removePJ(2)" type="button">✕</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="formError" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.82rem;padding:0.9rem 1.2rem;margin-bottom:1rem;">
           Merci de renseigner votre prénom, nom, téléphone et adresse.
         </div>
 
@@ -194,9 +280,15 @@
       <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:0.4rem;">Choisissez votre créneau</h2>
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Sélectionnez une date et un horaire disponible. Mélissa Graton vous confirmera le rendez-vous.</p>
 
+      <!-- Note pièces jointes si uploadées -->
+      <div id="pjRecap" style="display:none;background:var(--cream-dark);border:1px solid rgba(0,0,0,0.08);padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--black-soft);line-height:1.7;">
+        📎 <span id="pjRecapText"></span><br>
+        <span style="opacity:0.5;font-size:0.75rem;">Ces documents seront transmis avec votre demande de rendez-vous.</span>
+      </div>
+
       <div class="calendly-wrap">
         <div class="calendly-inline-widget"
-          data-url="https://calendly.com/melissagraton8/30min?hide_gdpr_banner=1&background_color=F2EDE4&text_color=5C2D3B&primary_color=5C2D3B&locale=fr"
+          data-url="https://calendly.com/melissagraton8/30min?hide_gdpr_banner=1&background_color=F2EDE4&text_color=1A1A1A&primary_color=C4A882&locale=fr"
           style="min-width:320px;height:700px;">
         </div>
       </div>
@@ -213,27 +305,13 @@
   </footer>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
   var EJS_PUBLIC_KEY  = 'RbxwnaUkV8uP7M3-z';
   var EJS_SERVICE_ID  = 'service_uvlzhn4';
-  var EJS_TEMPLATE_ID = 'template_aitdh27';
-  var DEST_EMAIL      = 'gratonmelissa.cabinethg@gmail.com';
-
-
-  // Init EmailJS après chargement
-  window.addEventListener('load', function() {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: EJS_PUBLIC_KEY });
-    }
-  });
-
-  // ── INIT BOUTONS ──
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('modePhone').addEventListener('click', function() { selectMode('phone'); });
-    document.getElementById('modeOnline').addEventListener('click', function() { selectMode('online'); });
-  });
+  var EJS_TEMPLATE_ID = 'q5901bu';
+  var DEST_EMAIL      = 'melissagraton8@gmail.com';
+  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
 
   // ── MODE ──
   function selectMode(mode) {
@@ -278,14 +356,33 @@
     var err     = document.getElementById('formError');
 
     if (!prenom || !nom || !tel || !adresse) {
-      err.textContent = 'Merci de renseigner votre prénom, nom, téléphone et adresse.';
       err.style.display = 'block';
       err.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
     err.style.display = 'none';
 
-    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+    // Récap pièces jointes + infos patient
+    var docs = [];
+    ['Ordonnance','Carte Vitale','Mutuelle'].forEach(function(n, i){
+      if (pjFiles[i]) docs.push(n);
+    });
+
+    var recapLines = [];
+    recapLines.push('👤 ' + prenom + ' ' + nom + ' · 📞 ' + tel);
+    recapLines.push('📍 ' + adresse);
+    if (document.getElementById('f-notes').value.trim()) {
+      recapLines.push('💬 ' + document.getElementById('f-notes').value.trim());
+    }
+    if (docs.length > 0) {
+      recapLines.push('📎 ' + docs.join(', ') + ' joint(s)');
+    }
+
+    document.getElementById('pjRecapText').innerHTML = recapLines.join('<br>');
+    document.getElementById('pjRecap').style.display = 'block';
+
+    // Envoi email EmailJS
+    var params = {
       to_email:     DEST_EMAIL,
       prenom:       prenom,
       nom:          nom,
@@ -293,15 +390,46 @@
       ddn:          ddn,
       adresse:      adresse,
       notes:        notes,
-      ordonnance:   'À apporter lors du premier passage',
-      carte_vitale: 'À apporter lors du premier passage',
-      mutuelle:     'À apporter lors du premier passage',
+      ordonnance:   pjFiles[0] ? '✓ Jointe (' + pjNames[0] + ')' : 'Non fournie',
+      carte_vitale: pjFiles[1] ? '✓ Jointe (' + pjNames[1] + ')' : 'Non fournie',
+      mutuelle:     pjFiles[2] ? '✓ Jointe (' + pjNames[2] + ')' : 'Non fournie',
       reply_to:     DEST_EMAIL
-    })
-    .then(function() { console.log('Email envoyé'); })
-    .catch(function(e) { console.warn('Erreur:', e); });
+    };
+
+    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params)
+      .then(function() {
+        console.log('Email envoyé avec succès');
+      })
+      .catch(function(e) {
+        console.warn('Erreur envoi email:', e);
+      });
 
     setStep(3);
+  }
+
+  // ── PIÈCES JOINTES ──
+  function handlePJ(idx, input) {
+    if (!input.files || !input.files[0]) return;
+    var f = input.files[0];
+    if (f.size > 5 * 1024 * 1024) {
+      alert('Fichier trop volumineux (max 5 Mo).');
+      input.value = ''; return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      pjFiles[idx] = e.target.result;
+      pjNames[idx] = f.name;
+      document.getElementById('pjName'+idx).textContent = f.name;
+      document.getElementById('pjSize'+idx).textContent = (f.size/1024).toFixed(0)+' Ko';
+      document.getElementById('pjPreview'+idx).classList.add('visible');
+    };
+    reader.readAsDataURL(f);
+  }
+
+  function removePJ(idx) {
+    pjFiles[idx] = null; pjNames[idx] = '';
+    document.querySelectorAll('.pj-upload-zone')[idx].querySelector('input').value = '';
+    document.getElementById('pjPreview'+idx).classList.remove('visible');
   }
   </script>
 </body>

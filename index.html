@@ -76,8 +76,6 @@
     .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--sans); font-weight: 400; font-size: 0.74rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: opacity 0.2s; }
     .nav-links a:hover { opacity: 0.45; }
-    .nav-admin-btn { background: none; border: 1px solid rgba(0,0,0,0.2); color: var(--black); font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.45rem 1rem; cursor: pointer; transition: all 0.2s; opacity: 0.4; }
-    .nav-admin-btn:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
 
     /* ═══════════════════════════════════════════
        NAVIGATION MOBILE
@@ -290,57 +288,6 @@
     footer { background: #5C2D3B; color: rgba(255,255,255,0.3); padding: 3rem 6rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.1em; }
     .footer-logo { font-family: var(--script); font-size: 1.4rem; color: rgba(255,255,255,0.6); }
 
-    /* ADMIN */
-    #adminOverlay { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
-    #adminOverlay.open { display: flex; }
-    .login-box { background: var(--cream); padding: 3rem 3.5rem; width: 380px; max-width: 95vw; display: flex; flex-direction: column; gap: 1.2rem; }
-    .login-box h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; }
-    .login-box p { font-size: 0.8rem; opacity: 0.5; }
-    .login-box input { width: 100%; background: var(--cream-dark); border: 1px solid rgba(0,0,0,0.15); padding: 0.85rem 1rem; font-family: var(--sans); font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
-    .login-box input:focus { border-color: var(--accent); }
-    .login-btn { background: var(--black); color: #fff; border: none; font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.95rem; cursor: pointer; transition: background 0.2s; }
-    .login-btn:hover { background: var(--accent); color: var(--black); }
-    .login-error { color: #c0392b; font-size: 0.78rem; display: none; }
-    .login-error.show { display: block; }
-    .login-cancel { background: none; border: none; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.4; cursor: pointer; padding: 0; transition: opacity 0.2s; }
-    .login-cancel:hover { opacity: 1; }
-    #adminPanel { display: none; position: fixed; inset: 0; z-index: 9000; background: #111; overflow-y: auto; }
-    #adminPanel.open { display: block; }
-    .admin-header { background: #1A1A1A; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.4rem 3rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
-    .admin-header-left { display: flex; align-items: center; gap: 1.5rem; }
-    .admin-logo { font-family: var(--script); font-size: 1.4rem; color: var(--accent); }
-    .admin-badge { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem 0.7rem; }
-    .admin-header-right { display: flex; gap: 1rem; }
-    .admin-save-btn { background: var(--accent); color: var(--black); border: none; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.7rem 1.8rem; cursor: pointer; transition: opacity 0.2s; font-weight: 500; }
-    .admin-save-btn:hover { opacity: 0.85; }
-    .admin-close-btn { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.7rem 1.5rem; cursor: pointer; transition: all 0.2s; }
-    .admin-close-btn:hover { border-color: #fff; color: #fff; }
-    .admin-body { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 65px); }
-    .admin-sidebar { background: #161616; border-right: 1px solid rgba(255,255,255,0.06); padding: 2rem 0; }
-    .admin-nav-item { display: block; width: 100%; background: none; border: none; text-align: left; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 0.9rem 1.8rem; cursor: pointer; transition: all 0.2s; border-left: 2px solid transparent; }
-    .admin-nav-item:hover { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.03); }
-    .admin-nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(196,168,130,0.06); }
-    .admin-content { padding: 3rem; }
-    .admin-section { display: none; }
-    .admin-section.active { display: block; }
-    .admin-section-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 0.5rem; }
-    .admin-section-sub { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-bottom: 2.5rem; letter-spacing: 0.06em; }
-    .admin-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.07); padding: 2rem; margin-bottom: 1.5rem; }
-    .admin-card-title { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
-    .admin-field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
-    .admin-field:last-child { margin-bottom: 0; }
-    .admin-field label { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-    .admin-field input, .admin-field textarea { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-family: var(--sans); font-size: 0.88rem; font-weight: 300; padding: 0.8rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
-    .admin-field input:focus, .admin-field textarea:focus { border-color: var(--accent); }
-    .admin-field textarea { resize: vertical; min-height: 80px; }
-    .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .admin-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
-    .acte-admin-block { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.07); padding: 1.8rem; margin-bottom: 1rem; }
-    .acte-admin-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
-    .acte-icon-input { font-size: 1.4rem; width: 3rem; text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem; color: #fff; outline: none; }
-    #adminToast { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: var(--black); font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; z-index: 99999; transform: translateY(100px); opacity: 0; transition: all 0.3s; pointer-events: none; }
-    #adminToast.show { transform: translateY(0); opacity: 1; }
-
     /* FAQ */
     .faq-item { background: var(--cream); }
     .faq-question { width: 100%; background: none; border: none; padding: 1.4rem 1.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--black); text-align: left; transition: background 0.2s; }
@@ -431,11 +378,6 @@
       section { padding: 5rem 2rem; }
       .infos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       footer { flex-direction: column; gap: 1rem; padding: 2.5rem 2rem; text-align: center; }
-      .admin-body { grid-template-columns: 1fr; }
-      .admin-sidebar { display: flex; flex-wrap: wrap; padding: 1rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-      .admin-nav-item { width: auto; border-left: none; border-bottom: 2px solid transparent; padding: 0.6rem 1rem; }
-      .admin-nav-item.active { border-bottom-color: var(--accent); border-left-color: transparent; }
-      .admin-row, .admin-row3 { grid-template-columns: 1fr; }
     }
     @media (max-width: 1024px) {
       .rdv-cta-section { padding: 3rem 1.5rem !important; }
@@ -450,10 +392,14 @@
     @media (max-width: 600px) { .nav-links { display: none; } }
   </style>
 <style id="lisibilite-renforcee">
-/* Lisibilite renforcee - ajoute le 2026-07-15 (texte plus grand, plus fonce, plus lisible) */
-html { font-size: 17.5px; }
-:root { --black: #3A1E27; --black-soft: #2e1720; }
-body { font-size: 1rem; font-weight: 400; }
+/* Lisibilite renforcee v2 - plus grand, plus fonce, sans transparence */
+html { font-size: 18px; }
+:root { --black: #351018; --black-soft: #351018; }
+body { font-size: 1rem; font-weight: 400; color: #351018; }
+p, li { color: #351018 !important; opacity: 1 !important; font-weight: 400 !important; }
+.presentation-text p, .soin-desc, .faq-answer p, .contact-box p, .infos-block p,
+.hero-sub, .section-intro { color: #351018 !important; opacity: 1 !important; font-weight: 400 !important; }
+.blog-grid p, .blog-grid h3 { color: #351018 !important; opacity: 1 !important; }
 </style>
 </head>
 <body>
@@ -469,7 +415,6 @@ body { font-size: 1rem; font-weight: 400; }
       <li><a href="rdv.html" style="color:var(--accent);border:1px solid var(--accent);padding:0.35rem 1rem;">Rendez-vous</a></li>
       <li><a href="#infos">Infos pratiques</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><button class="nav-admin-btn" onclick="openLogin()">⚙ Admin</button></li>
     </ul>
   </nav>
 
@@ -514,8 +459,8 @@ body { font-size: 1rem; font-weight: 400; }
       </div>
       <div class="presentation-stats">
         <div class="stat-item reveal reveal-delay-1"><span class="stat-val" id="stat1Val">2</span><span class="stat-label" id="stat1Lab">Communes couvertes</span></div>
-        <div class="stat-item reveal reveal-delay-2"><span class="stat-val" id="stat2Val">6h – 20h</span><span class="stat-label" id="stat2Lab">Horaires d'intervention</span></div>
-        <div class="stat-item reveal reveal-delay-3"><span class="stat-val" id="stat3Val">Conventionnée</span><span class="stat-label" id="stat3Lab">Assurance Maladie</span></div>
+        <div class="stat-item reveal reveal-delay-2"><span class="stat-val" id="stat2Val">7j/7</span><span class="stat-label" id="stat2Lab">Soins tous les jours</span></div>
+        <div class="stat-item reveal reveal-delay-3"><span class="stat-val" id="stat3Val">Secteur 1</span><span class="stat-label" id="stat3Lab">Conventionnée Assurance Maladie</span></div>
         <div class="stat-item reveal reveal-delay-4"><span class="stat-val" id="stat4Val">IDE</span><span class="stat-label" id="stat4Lab">Infirmière Diplômée d'État</span></div>
       </div>
     </div>
@@ -694,6 +639,12 @@ body { font-size: 1rem; font-weight: 400; }
           <input type="tel" id="cf-tel" placeholder="Votre téléphone" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-family:var(--sans);font-size:0.85rem;padding:0.8rem 1rem;outline:none;width:100%;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'" />
           <textarea id="cf-message" placeholder="Votre message ou question..." rows="3" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-family:var(--sans);font-size:0.85rem;padding:0.8rem 1rem;outline:none;width:100%;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
           <div id="cf-error" style="display:none;font-family:var(--sans);font-size:0.75rem;color:#e57373;">Merci de renseigner votre nom et votre message.</div>
+          <div id="cf-echec" style="display:none;font-family:var(--sans);font-size:0.8rem;line-height:1.7;color:#e57373;">
+            Votre message n'a pas pu être envoyé. Appelez Mélissa au
+            <a href="tel:0672311279" style="color:#e57373;font-weight:600;">06 72 31 12 79</a>
+            ou écrivez-lui
+            <a href="https://wa.me/33672311279" target="_blank" rel="noopener" style="color:#e57373;font-weight:600;">par WhatsApp</a>.
+          </div>
           <button onclick="sendContactForm()" type="button" style="background:var(--accent);color:var(--black);border:none;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.9rem 2rem;cursor:pointer;align-self:flex-start;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Envoyer →</button>
         </div>
         <p style="font-family:var(--sans);font-size:0.7rem;opacity:0.3;margin-top:1rem;letter-spacing:0.05em;" id="contactAdresseFooter">Cabinet : 12 place de l'Église, 44120 Haute-Goulaine</p>
@@ -739,135 +690,6 @@ body { font-size: 1rem; font-weight: 400; }
       </button>
     </div>
   </nav>
-
-  <!-- OVERLAY LOGIN -->
-  <div id="adminOverlay">
-    <div class="login-box">
-      <h2>Espace administration</h2>
-      <p>Accès réservé à Mélissa Graton</p>
-      <input type="password" id="adminPwd" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkLogin()" />
-      <span class="login-error" id="loginError">Mot de passe incorrect.</span>
-      <button class="login-btn" onclick="checkLogin()">Accéder</button>
-      <button class="login-cancel" onclick="closeLogin()">Annuler</button>
-    </div>
-  </div>
-
-  <!-- PANNEAU ADMIN -->
-  <div id="adminPanel">
-    <div class="admin-header">
-      <div class="admin-header-left">
-        <span class="admin-logo">Admin</span>
-        <span class="admin-badge">Mélissa Graton · Cabinet</span>
-      </div>
-      <div class="admin-header-right">
-        <button class="admin-save-btn" onclick="saveAll()">💾 Enregistrer</button>
-        <button class="admin-close-btn" onclick="closeAdmin()">✕ Fermer</button>
-      </div>
-    </div>
-    <div class="admin-body">
-      <div class="admin-sidebar">
-        <button class="admin-nav-item active" onclick="showTab('tabIdentite', this)">Identité</button>
-        <button class="admin-nav-item" onclick="showTab('tabPresentation', this)">Présentation</button>
-        <button class="admin-nav-item" onclick="showTab('tabHoraires', this)">Horaires</button>
-        <button class="admin-nav-item" onclick="showTab('tabActes', this)">Actes de soins</button>
-        <button class="admin-nav-item" onclick="showTab('tabContact', this)">Contact</button>
-        <button class="admin-nav-item" onclick="showTab('tabMdp', this)">Mot de passe</button>
-      </div>
-      <div class="admin-content">
-        <div class="admin-section active" id="tabIdentite">
-          <div class="admin-section-title">Identité</div>
-          <div class="admin-section-sub">Nom, titre, accroche et zones d'intervention.</div>
-          <div class="admin-card">
-            <div class="admin-card-title">Informations principales</div>
-            <div class="admin-row">
-              <div class="admin-field"><label>Prénom</label><input id="a-prenom" type="text" /></div>
-              <div class="admin-field"><label>Nom</label><input id="a-nom" type="text" /></div>
-            </div>
-            <div class="admin-field"><label>Titre professionnel</label><input id="a-titre" type="text" /></div>
-            <div class="admin-field"><label>Sous-titre hero</label><input id="a-eyebrow" type="text" /></div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Citation d'accueil</div>
-            <div class="admin-field"><textarea id="a-quote" rows="3"></textarea></div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Zones d'intervention</div>
-            <div class="admin-row">
-              <div class="admin-field"><label>Zone 1</label><input id="a-zone1" type="text" /></div>
-              <div class="admin-field"><label>Zone 2</label><input id="a-zone2" type="text" /></div>
-            </div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Chiffres clés</div>
-            <div class="admin-row"><div class="admin-field"><label>Valeur 1</label><input id="a-s1v" type="text" /></div><div class="admin-field"><label>Label 1</label><input id="a-s1l" type="text" /></div></div>
-            <div class="admin-row"><div class="admin-field"><label>Valeur 2</label><input id="a-s2v" type="text" /></div><div class="admin-field"><label>Label 2</label><input id="a-s2l" type="text" /></div></div>
-            <div class="admin-row"><div class="admin-field"><label>Valeur 3</label><input id="a-s3v" type="text" /></div><div class="admin-field"><label>Label 3</label><input id="a-s3l" type="text" /></div></div>
-            <div class="admin-row"><div class="admin-field"><label>Valeur 4</label><input id="a-s4v" type="text" /></div><div class="admin-field"><label>Label 4</label><input id="a-s4l" type="text" /></div></div>
-          </div>
-        </div>
-        <div class="admin-section" id="tabPresentation">
-          <div class="admin-section-title">Présentation</div>
-          <div class="admin-section-sub">Trois paragraphes affichés dans la section "Le cabinet".</div>
-          <div class="admin-card">
-            <div class="admin-field"><label>Paragraphe 1</label><textarea id="a-p1" rows="4"></textarea></div>
-            <div class="admin-field"><label>Paragraphe 2</label><textarea id="a-p2" rows="4"></textarea></div>
-            <div class="admin-field"><label>Paragraphe 3</label><textarea id="a-p3" rows="4"></textarea></div>
-          </div>
-        </div>
-        <div class="admin-section" id="tabHoraires">
-          <div class="admin-section-title">Horaires</div>
-          <div class="admin-section-sub">Horaires affichés dans "Infos pratiques".</div>
-          <div class="admin-card">
-            <div class="admin-card-title">Lun – Dim</div>
-            <div class="admin-row">
-              <div class="admin-field"><label>Matin</label><input id="a-horMatin" type="text" placeholder="6h – 12h30" /></div>
-              <div class="admin-field"><label>Après-midi</label><input id="a-horApm" type="text" placeholder="14h – 20h" /></div>
-            </div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Dimanche</div>
-            <div class="admin-field"><input id="a-horDim" type="text" placeholder="Sur prescription médicale" /></div>
-          </div>
-        </div>
-        <div class="admin-section" id="tabActes">
-          <div class="admin-section-title">Actes de soins</div>
-          <div class="admin-section-sub">18 actes affichés dans "Prestations".</div>
-          <div id="actesAdminList"></div>
-        </div>
-        <div class="admin-section" id="tabContact">
-          <div class="admin-section-title">Contact &amp; coordonnées</div>
-          <div class="admin-section-sub">Adresse, téléphone et numéros réglementaires.</div>
-          <div class="admin-card">
-            <div class="admin-card-title">Téléphone</div>
-            <div class="admin-field"><input id="a-tel" type="tel" /></div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Adresse du cabinet</div>
-            <div class="admin-field"><label>Ligne 1</label><input id="a-adr1" type="text" /></div>
-            <div class="admin-field"><label>Ligne 2</label><input id="a-adr2" type="text" /></div>
-          </div>
-          <div class="admin-card">
-            <div class="admin-card-title">Numéros réglementaires</div>
-            <div class="admin-row">
-              <div class="admin-field"><label>N° RPPS</label><input id="a-rpps" type="text" /></div>
-              <div class="admin-field"><label>N° ADELI</label><input id="a-adeli" type="text" /></div>
-            </div>
-          </div>
-        </div>
-        <div class="admin-section" id="tabMdp">
-          <div class="admin-section-title">Mot de passe</div>
-          <div class="admin-section-sub">Changer le mot de passe d'accès à ce panneau.</div>
-          <div class="admin-card">
-            <div class="admin-field"><label>Nouveau mot de passe</label><input id="a-newpwd" type="password" placeholder="••••••••" /></div>
-            <div class="admin-field"><label>Confirmer</label><input id="a-newpwd2" type="password" placeholder="••••••••" /></div>
-            <button class="admin-save-btn" style="margin-top:1rem" onclick="changePwd()">Changer le mot de passe</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="adminToast">✓ Modifications enregistrées</div>
 
   <!-- BOUTONS FLOTTANTS -->
   <div class="float-whatsapp-label">WhatsApp</div>
@@ -940,180 +762,6 @@ body { font-size: 1rem; font-weight: 400; }
     }
   });
 
-  // ═══════════════════════════════════════
-  // DONNÉES PAR DÉFAUT
-  // ═══════════════════════════════════════
-  var DEFAULTS = {
-    prenom: 'Mélissa', nom: 'Graton',
-    titre: "Infirmière Diplômée d'État",
-    eyebrow: 'Cabinet infirmier libéral',
-    quote: "Des soins à domicile, avec attention et discrétion, dans le confort de votre quotidien.",
-    zone1: 'Haute-Goulaine', zone2: 'Basse-Goulaine',
-    s1v: '2', s1l: 'Communes couvertes',
-    s2v: '7j/7', s2l: "Soins tous les jours",
-    s3v: 'Secteur 1', s3l: 'Conventionnée Assurance Maladie',
-    s4v: 'IDE', s4l: "Infirmière Diplômée d'État",
-    p1: "Diplômée de l'Institut de Formation en Soins Infirmiers de la Pitié-Salpêtrière à Paris en 2022, j'ai exercé pendant quatre ans au sein du service de pneumologie de cet hôpital universitaire de référence.",
-    p2: "C'est lors d'un remplacement d'avril à août dans un cabinet libéral que j'ai compris ce qui me manquait à l'hôpital : le temps. Le temps d'écouter, de rassurer, de vraiment connaître la personne en face de soi.",
-    p3: "Originaire de Saint-Jean-de-Monts en Vendée, j'ai trouvé en Loire-Atlantique un territoire qui me ressemble. Je me suis installée à Haute-Goulaine avec l'envie d'y construire quelque chose de durable.",
-    horMatin: '6h – 12h30', horApm: '14h – 20h', horDim: '',
-    tel: '06 72 31 12 79',
-    adr1: "12 place de l'Église", adr2: '44120 Haute-Goulaine',
-    rpps: '810108443895', adeli: '3300452990',
-    pwd: 'melissa2025',
-    actes: [
-      { icon: '🩹', name: 'Pansements & plaies', detail: 'Simple · lourd · complexe · chronique', desc: 'Pansements de tout type — simples, lourds et complexes (méchage, détersion, brûlure, cicatrisation dirigée). Plaies chroniques, post-opératoires, escarres, ulcères veineux ou artériels, cicatrisation.', cat: 'Plaies & Pansements' },
-      { icon: '✂️', name: 'Ablation fils & agrafes', detail: 'Soins post-opératoires', desc: 'Ablation de fils et agrafes chirurgicales après intervention, soins de cicatrice.', cat: 'Plaies & Pansements' },
-      { icon: '💉', name: 'Injections', detail: 'SC · IM · IV · FIV · vaccins', desc: "Injections sous-cutanées, intramusculaires, intraveineuses. Injections pour protocoles FIV. Vaccinations.", cat: 'Injections & Prélèvements' },
-      { icon: '🧪', name: 'Prélèvements sanguins', detail: 'Prise de sang à domicile', desc: 'Prélèvements veineux à domicile transmis au laboratoire partenaire. Bilan de soins infirmiers.', cat: 'Injections & Prélèvements' },
-      { icon: '🧫', name: 'Prélèvements urine & selles', detail: 'ECBU · coproculture', desc: "Recueil et acheminement d'échantillons urinaires (ECBU) et de selles (coproculture, parasitologie).", cat: 'Injections & Prélèvements' },
-      { icon: '🦠', name: 'Tests COVID & vaccins', detail: 'PCR · antigénique · vaccination', desc: 'Prélèvement naso-pharyngé pour test PCR, test antigénique COVID-19, vaccinations à domicile.', cat: 'Injections & Prélèvements' },
-      { icon: '🫧', name: 'Perfusion', detail: 'Pose · surveillance · voie veineuse', desc: 'Pose et surveillance de voie veineuse périphérique, perfusion de médicaments, sérums et solutés.', cat: 'Perfusions & Traitements' },
-      { icon: '⚗️', name: 'Chimiothérapie à domicile', detail: 'Surveillance · protocole oncologique', desc: "Administration et surveillance de chimiothérapies à domicile dans le cadre d'un protocole oncologique validé.", cat: 'Perfusions & Traitements' },
-      { icon: '💊', name: 'Gestion médicamenteuse', detail: 'Piluliers · surveillance · observance', desc: "Préparation de piluliers, délivrance et surveillance de la prise médicamenteuse, éducation à l'observance.", cat: 'Perfusions & Traitements' },
-      { icon: '🫁', name: 'Aérosol & aspiration', detail: 'Nébulisation · trachéotomie · cough assist', desc: "Aérosolthérapie (nébulisation). Aspiration endotrachéale. Cough assist (aide à la toux mécanique). Soins de trachéotomie.", cat: 'Soins Spécialisés' },
-      { icon: '🩺', name: 'Stomies digestives & urinaires', detail: 'Soins · éducation · suivi', desc: "Soins de stomie digestive (colostomie, iléostomie) et urinaire (urostomie). Éducation thérapeutique du patient et de l'entourage.", cat: 'Soins Spécialisés' },
-      { icon: '🔬', name: 'Sonde naso-gastrique', detail: 'Pose · surveillance · nutrition entérale', desc: "Pose et surveillance de sonde naso-gastrique. Nutrition entérale par pompe. Nutrition parentérale.", cat: 'Soins Spécialisés' },
-      { icon: '🚿', name: 'Lavement rectal & étui pénien', detail: "Soins d'hygiène spécialisés", desc: "Lavement rectal thérapeutique. Pose et surveillance d'étui pénien pour incontinence urinaire.", cat: 'Soins Spécialisés' },
-      { icon: '🩻', name: 'Compression veineuse', detail: 'Bas · K2 · Rosida · bandages', desc: "Pose de bas de contention. Pose de compression veineuse de type K2 ou Rosida. Bandages multi-couches.", cat: 'Soins Spécialisés' },
-      { icon: '⚙️', name: 'Pompes médicales', detail: 'Apomorphine · morphine · midazolam', desc: "Manipulation et surveillance de pompes type Apokinon (apomorphine). Pompes à morphine et midazolam (soins palliatifs).", cat: 'Pompes & Dispositifs' },
-      { icon: '📊', name: 'Éducation thérapeutique', detail: 'Diabète · stomies · FIV · auto-sondage', desc: "Éducation thérapeutique sur le diabète (insuline, glycémie, alimentation). Stomies en tout genre. Protocoles FIV. Apprentissage de l'auto-sondage.", cat: 'Éducation & Prévention' },
-      { icon: '🛁', name: 'Soins de nursing', detail: 'Toilette · hygiène · prévention escarres', desc: "Aide à la toilette, hygiène corporelle, soins de bouche, prévention des escarres. Soins de confort pour patients à mobilité réduite.", cat: 'Nursing & Fin de Vie' },
-      { icon: '🏠', name: 'Maintien à domicile – pathologies lourdes', detail: 'Alzheimer · Parkinson · SEP · SLA · autres', desc: "Prise en charge et suivi infirmier à domicile pour toutes pathologies lourdes et invalidantes.", cat: 'Nursing & Fin de Vie' },
-      { icon: '🕊️', name: 'Soins palliatifs & fin de vie', detail: 'Accompagnement · confort · coordination', desc: "Prise en charge globale des soins palliatifs et de fin de vie à domicile. Gestion de la douleur, soins de confort, soutien à l'entourage, coordination pluridisciplinaire.", cat: 'Nursing & Fin de Vie' }
-    ]
-  };
-
-  try {
-    var _v = JSON.parse(localStorage.getItem('mgData') || '{}')._v;
-    if (!_v || _v < 4) { localStorage.removeItem('mgData'); }
-  } catch(e) { localStorage.removeItem('mgData'); }
-
-  var DATA_VERSION = 4;
-  function getData() {
-    try {
-      var saved = JSON.parse(localStorage.getItem('mgData') || '{}');
-      var d = Object.assign({}, DEFAULTS, saved);
-      d.zone1 = DEFAULTS.zone1; d.zone2 = DEFAULTS.zone2;
-      d.s1v = DEFAULTS.s1v; d.s1l = DEFAULTS.s1l;
-      d.s3v = DEFAULTS.s3v; d.s3l = DEFAULTS.s3l;
-      if (!saved._v || saved._v < DATA_VERSION || !saved.actes || saved.actes.length < 18) {
-        d.actes = DEFAULTS.actes; d._v = DATA_VERSION;
-      }
-      return d;
-    } catch(e) { return Object.assign({}, DEFAULTS); }
-  }
-  function setData(d) { d._v = DATA_VERSION; localStorage.setItem('mgData', JSON.stringify(d)); }
-
-  function renderSite(d) {
-    document.getElementById('navLogo').textContent = d.prenom + ' ' + d.nom;
-    if (document.getElementById('mobileNavLogo')) document.getElementById('mobileNavLogo').textContent = d.prenom + ' ' + d.nom;
-    document.getElementById('heroEyebrow').textContent = d.eyebrow;
-    document.getElementById('heroName').innerHTML = d.prenom + '<br>' + d.nom;
-    document.getElementById('heroTitle').textContent = d.titre;
-    document.getElementById('heroQuote').textContent = d.quote;
-    document.getElementById('zone1').textContent = 'Haute-Goulaine';
-    document.getElementById('zone2').textContent = 'Basse-Goulaine';
-    document.getElementById('stat1Val').textContent = '2';
-    document.getElementById('stat1Lab').textContent = d.s1l;
-    document.getElementById('stat2Val').textContent = d.s2v;
-    document.getElementById('stat2Lab').textContent = d.s2l;
-    document.getElementById('stat3Val').textContent = d.s3v;
-    document.getElementById('stat3Lab').textContent = d.s3l;
-    document.getElementById('stat4Val').textContent = d.s4v;
-    document.getElementById('stat4Lab').textContent = d.s4l;
-    document.getElementById('horMatin').textContent = d.horMatin;
-    document.getElementById('horApm').textContent = d.horApm;
-    document.getElementById('infoAdresse').innerHTML = d.adr1 + '<br>' + d.adr2;
-    document.getElementById('infoZones').innerHTML = 'Haute-Goulaine<br>Basse-Goulaine<br>Limitrophe Vertou Sud Loire';
-    document.getElementById('infoRpps').textContent = d.rpps;
-    document.getElementById('infoAdeli').textContent = d.adeli;
-    document.getElementById('contactPhone').textContent = d.tel;
-    if (document.getElementById('ctaPhone')) document.getElementById('ctaPhone').textContent = d.tel;
-    document.getElementById('contactAdresseFooter').textContent = 'Cabinet : ' + d.adr1 + ', ' + d.adr2;
-    document.getElementById('footerLogo').textContent = d.prenom + ' ' + d.nom;
-    document.getElementById('footerMiddle').innerHTML = d.titre + ' &nbsp;·&nbsp; ' + d.adr2;
-    var sg = document.getElementById('soinsGrid');
-    if (sg && d.actes && d.actes.length > 0 && localStorage.getItem('mgData')) {
-      sg.innerHTML = '';
-      var lastCat = '';
-      d.actes.forEach(function(a, i) {
-        var num = (i+1 < 10 ? '0' : '') + (i+1);
-        var catHdr = '';
-        if (a.cat && a.cat !== lastCat) {
-          catHdr = '<div class="soin-cat-header" style="grid-column:1/-1;padding:2rem 2.5rem 0.5rem;background:var(--cream);font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border-top:'+(lastCat?'2px solid rgba(0,0,0,0.06)':'none')+'">'+a.cat+'</div>';
-          lastCat = a.cat;
-        }
-        sg.innerHTML += catHdr + '<div class="soin-card"><span class="soin-num">'+num+'</span><h3 class="soin-name">'+a.name+'</h3><p class="soin-desc">'+a.desc+'</p></div>';
-      });
-    }
-  }
-
-  function openLogin() { document.getElementById('adminOverlay').classList.add('open'); setTimeout(function(){ document.getElementById('adminPwd').focus(); }, 100); }
-  function closeLogin() { document.getElementById('adminOverlay').classList.remove('open'); document.getElementById('adminPwd').value = ''; document.getElementById('loginError').classList.remove('show'); }
-  function checkLogin() {
-    var d = getData();
-    var pwd = document.getElementById('adminPwd').value;
-    if (pwd === d.pwd) { closeLogin(); openAdmin(); }
-    else { document.getElementById('loginError').classList.add('show'); document.getElementById('adminPwd').value = ''; document.getElementById('adminPwd').focus(); }
-  }
-
-  function openAdmin() {
-    var d = getData();
-    ['prenom','nom','titre','eyebrow','quote','zone1','zone2','s1v','s1l','s2v','s2l','s3v','s3l','s4v','s4l','p1','p2','p3','horMatin','horApm','horDim','tel','adr1','adr2','rpps','adeli'].forEach(function(k) {
-      var el = document.getElementById('a-'+k);
-      if (el) el.value = d[k] || '';
-    });
-    var list = document.getElementById('actesAdminList');
-    list.innerHTML = '';
-    d.actes.forEach(function(a, i) {
-      var catHeader = (i===0||a.cat!==d.actes[i-1].cat) ? '<div style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);padding:1.5rem 0 0.8rem;border-top:'+(i>0?'1px solid rgba(255,255,255,0.06)':'none')+'">'+a.cat+'</div>' : '';
-      list.innerHTML += catHeader+'<div class="acte-admin-block"><div class="acte-admin-header"><input class="acte-icon-input" id="a-icon-'+i+'" type="text" value="'+a.icon+'" title="Emoji" /><div style="flex:1"><div class="admin-field" style="margin:0"><label>Nom de l\'acte</label><input id="a-aname-'+i+'" type="text" value="'+a.name.replace(/"/g,'&quot;')+'" /></div></div></div><div class="admin-field"><label>Sous-titre RDV</label><input id="a-adetail-'+i+'" type="text" value="'+a.detail.replace(/"/g,'&quot;')+'" /></div><div class="admin-field"><label>Description</label><textarea id="a-adesc-'+i+'" rows="2">'+a.desc+'</textarea></div></div>';
-    });
-    document.getElementById('adminPanel').classList.add('open');
-  }
-
-  function closeAdmin() { document.getElementById('adminPanel').classList.remove('open'); }
-
-  function showTab(id, btn) {
-    document.querySelectorAll('.admin-section').forEach(function(s){ s.classList.remove('active'); });
-    document.querySelectorAll('.admin-nav-item').forEach(function(b){ b.classList.remove('active'); });
-    document.getElementById(id).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  function saveAll() {
-    var d = getData();
-    ['prenom','nom','titre','eyebrow','quote','zone1','zone2','s1v','s1l','s2v','s2l','s3v','s3l','s4v','s4l','p1','p2','p3','horMatin','horApm','horDim','tel','adr1','adr2','rpps','adeli'].forEach(function(k) {
-      var el = document.getElementById('a-'+k);
-      if (el) d[k] = el.value;
-    });
-    for (var i = 0; i < 19; i++) {
-      if (document.getElementById('a-icon-'+i)) {
-        d.actes[i] = { icon: document.getElementById('a-icon-'+i).value, name: document.getElementById('a-aname-'+i).value, detail: document.getElementById('a-adetail-'+i).value, desc: document.getElementById('a-adesc-'+i).value };
-      }
-    }
-    setData(d); renderSite(d); showToast();
-  }
-
-  function changePwd() {
-    var p1 = document.getElementById('a-newpwd').value;
-    var p2 = document.getElementById('a-newpwd2').value;
-    if (!p1) { alert('Entrez un nouveau mot de passe.'); return; }
-    if (p1 !== p2) { alert('Les mots de passe ne correspondent pas.'); return; }
-    var d = getData(); d.pwd = p1; setData(d);
-    document.getElementById('a-newpwd').value = '';
-    document.getElementById('a-newpwd2').value = '';
-    showToast('✓ Mot de passe modifié');
-  }
-
-  function showToast(msg) {
-    var t = document.getElementById('adminToast');
-    t.textContent = msg || '✓ Modifications enregistrées';
-    t.classList.add('show');
-    setTimeout(function(){ t.classList.remove('show'); }, 2800);
-  }
-
   function initMap() {
     var lat = 47.1978, lng = -1.4301;
     var mapEl = document.getElementById('map');
@@ -1148,7 +796,6 @@ body { font-size: 1rem; font-weight: 400; }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    renderSite(getData());
     var gmScript = document.createElement('script');
     gmScript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBLmUiCgW8_xKMqsSocMX87uc2NzOyJJuY&callback=initMap';
     gmScript.async = true; gmScript.defer = true;
@@ -1162,19 +809,25 @@ body { font-size: 1rem; font-weight: 400; }
     var tel = document.getElementById('cf-tel').value.trim() || '—';
     var message = document.getElementById('cf-message').value.trim();
     var err = document.getElementById('cf-error');
+    var echec = document.getElementById('cf-echec');
     if (!nom || !message) { err.style.display = 'block'; return; }
     err.style.display = 'none';
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: 'RbxwnaUkV8uP7M3-z' });
-      emailjs.send('service_uvlzhn4', 'template_aitdh27', {
-        to_email: 'gratonmelissa.cabinethg@gmail.com', prenom: nom, nom: '', tel: tel,
-        ddn: '—', adresse: '—', notes: message, ordonnance: '—', carte_vitale: '—', mutuelle: '—',
-        reply_to: 'gratonmelissa.cabinethg@gmail.com'
-      }).then(function() {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('contactFormSuccess').style.display = 'block';
-      }).catch(function(e) { console.warn('Erreur contact:', e); });
-    }
+    echec.style.display = 'none';
+
+    if (typeof emailjs === 'undefined') { echec.style.display = 'block'; return; }
+
+    emailjs.init({ publicKey: 'RbxwnaUkV8uP7M3-z' });
+    emailjs.send('service_uvlzhn4', 'template_aitdh27', {
+      to_email: 'gratonmelissa.cabinethg@gmail.com', prenom: nom, nom: '', tel: tel,
+      ddn: '—', adresse: '—', notes: message, ordonnance: '—', carte_vitale: '—', mutuelle: '—',
+      reply_to: 'gratonmelissa.cabinethg@gmail.com'
+    }).then(function() {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contactFormSuccess').style.display = 'block';
+    }).catch(function(e) {
+      console.warn('Erreur contact:', e);
+      echec.style.display = 'block';
+    });
   }
 
   function toggleDark() {

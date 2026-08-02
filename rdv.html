@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -96,11 +96,16 @@
     }
   </style>
 <style id="lisibilite-renforcee">
-/* Lisibilite renforcee - ajoute le 2026-07-15 (texte plus grand, plus fonce, plus lisible) */
-html { font-size: 17.5px; }
-:root { --black: #3A1E27; --black-soft: #2e1720; }
-body { font-size: 1rem; font-weight: 400; }
+/* Lisibilite renforcee v2 - plus grand, plus fonce, sans transparence */
+html { font-size: 18px; }
+:root { --black: #351018; --black-soft: #351018; }
+body { font-size: 1rem; font-weight: 400; color: #351018; }
+p, li { color: #351018 !important; opacity: 1 !important; font-weight: 400 !important; }
+.presentation-text p, .soin-desc, .faq-answer p, .contact-box p, .infos-block p,
+.hero-sub, .section-intro { color: #351018 !important; opacity: 1 !important; font-weight: 400 !important; }
+.blog-grid p, .blog-grid h3 { color: #351018 !important; opacity: 1 !important; }
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -194,74 +199,24 @@ body { font-size: 1rem; font-weight: 400; }
         </div>
       </div>
 
-      <!-- PIÈCES JOINTES -->
+      <!-- DOCUMENTS : transmis par WhatsApp, cf. vault/01-Conception.md §1.1 -->
       <div class="pj-section">
-        <div class="pj-title">Documents à joindre (facultatifs)</div>
-        <div class="pj-list">
+        <div class="pj-title">Vos documents</div>
+        <p style="font-size:0.88rem;line-height:1.7;color:#351018;margin-bottom:0.8rem;">
+          Pour préparer vos soins, Mélissa aura besoin de votre <strong>ordonnance</strong>,
+          de votre <strong>carte Vitale</strong> et de votre <strong>attestation de mutuelle</strong>.
+        </p>
+        <p style="font-size:0.88rem;line-height:1.7;color:#351018;margin-bottom:1.5rem;">
+          Vous pourrez les envoyer par WhatsApp juste après cette demande, ou simplement les
+          préparer pour le premier passage à votre domicile.
+        </p>
 
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">📋</span>
-              <div class="pj-info">
-                <div class="pj-name">Ordonnance médicale</div>
-                <div class="pj-hint">Prescription de votre médecin traitant ou spécialiste</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(0,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview0">
-              <span class="pj-preview-name" id="pjName0"></span>
-              <span class="pj-preview-size" id="pjSize0"></span>
-              <button class="pj-remove" onclick="removePJ(0)" type="button">✕</button>
-            </div>
-          </div>
-
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">💳</span>
-              <div class="pj-info">
-                <div class="pj-name">Carte Vitale</div>
-                <div class="pj-hint">Recto de votre carte d'assuré social</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(1,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview1">
-              <span class="pj-preview-name" id="pjName1"></span>
-              <span class="pj-preview-size" id="pjSize1"></span>
-              <button class="pj-remove" onclick="removePJ(1)" type="button">✕</button>
-            </div>
-          </div>
-
-          <div class="pj-item">
-            <div class="pj-item-header">
-              <span class="pj-icon">🛡️</span>
-              <div class="pj-info">
-                <div class="pj-name">Complémentaire santé / Mutuelle</div>
-                <div class="pj-hint">Attestation ou carte de votre mutuelle</div>
-              </div>
-              <span class="pj-badge optional">Facultatif</span>
-            </div>
-            <div class="pj-upload-zone">
-              <input type="file" accept="image/*,.pdf" onchange="handlePJ(2,this)" />
-              <span class="pj-upload-label">Photo ou PDF — max 5 Mo</span>
-              <button class="pj-upload-btn" type="button">Joindre</button>
-            </div>
-            <div class="pj-preview" id="pjPreview2">
-              <span class="pj-preview-name" id="pjName2"></span>
-              <span class="pj-preview-size" id="pjSize2"></span>
-              <button class="pj-remove" onclick="removePJ(2)" type="button">✕</button>
-            </div>
-          </div>
-
+        <div id="envoiErreur" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.88rem;line-height:1.7;padding:1.2rem 1.4rem;margin-bottom:1rem;">
+          <strong>Votre demande n'a pas pu être envoyée.</strong><br>
+          Merci d'appeler directement Mélissa au
+          <a href="tel:0672311279" style="color:#c0392b;font-weight:600;">06 72 31 12 79</a>
+          ou de la contacter
+          <a href="https://wa.me/33672311279" target="_blank" rel="noopener" style="color:#c0392b;font-weight:600;">par WhatsApp</a>.
         </div>
 
         <div id="formError" style="display:none;background:#fce8e8;border:1px solid #e57373;color:#c0392b;font-size:0.82rem;padding:0.9rem 1.2rem;margin-bottom:1rem;">
@@ -280,10 +235,15 @@ body { font-size: 1rem; font-weight: 400; }
       <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:0.4rem;">Choisissez votre créneau</h2>
       <p style="font-size:0.82rem;opacity:0.5;margin-bottom:2rem;">Sélectionnez une date et un horaire disponible. Mélissa Graton vous confirmera le rendez-vous.</p>
 
-      <!-- Note pièces jointes si uploadées -->
-      <div id="pjRecap" style="display:none;background:var(--cream-dark);border:1px solid rgba(0,0,0,0.08);padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--black-soft);line-height:1.7;">
-        📎 <span id="pjRecapText"></span><br>
-        <span style="opacity:0.5;font-size:0.75rem;">Ces documents seront transmis avec votre demande de rendez-vous.</span>
+      <!-- Envoi des documents par WhatsApp -->
+      <div style="background:var(--cream-dark);border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin-bottom:1.5rem;font-size:0.88rem;line-height:1.7;color:#351018;">
+        <strong>Envoyez vos documents</strong><br>
+        Ordonnance, carte Vitale et mutuelle — ou remettez-les à Mélissa lors du premier passage.
+        <div style="margin-top:0.9rem;">
+          <a id="waDocuments" href="https://wa.me/33672311279" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;display:inline-block;">
+            Envoyer mes documents par WhatsApp →
+          </a>
+        </div>
       </div>
 
       <div class="calendly-wrap">
@@ -294,7 +254,7 @@ body { font-size: 1rem; font-weight: 400; }
       </div>
 
       <div style="margin-top:1.5rem;">
-        <button class="btn-secondary" onclick="goStep2()">← Modifier les documents</button>
+        <button class="btn-secondary" onclick="goStep2()">← Modifier mes informations</button>
       </div>
     </div>
 
@@ -309,8 +269,8 @@ body { font-size: 1rem; font-weight: 400; }
   <script>
   var EJS_PUBLIC_KEY  = 'RbxwnaUkV8uP7M3-z';
   var EJS_SERVICE_ID  = 'service_uvlzhn4';
-  var EJS_TEMPLATE_ID = 'q5901bu';
-  var DEST_EMAIL      = 'melissagraton8@gmail.com';
+  var EJS_TEMPLATE_ID = 'template_aitdh27';
+  var DEST_EMAIL      = 'gratonmelissa.cabinethg@gmail.com';
   emailjs.init({ publicKey: EJS_PUBLIC_KEY });
 
   // ── MODE ──
@@ -362,74 +322,43 @@ body { font-size: 1rem; font-weight: 400; }
     }
     err.style.display = 'none';
 
-    // Récap pièces jointes + infos patient
-    var docs = [];
-    ['Ordonnance','Carte Vitale','Mutuelle'].forEach(function(n, i){
-      if (pjFiles[i]) docs.push(n);
+    if (typeof emailjs === 'undefined') {
+      showEnvoiErreur();
+      return;
+    }
+
+    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+      to_email: DEST_EMAIL,
+      prenom:   prenom,
+      nom:      nom,
+      tel:      tel,
+      ddn:      ddn,
+      adresse:  adresse,
+      notes:    notes,
+      ordonnance:   'À recevoir par WhatsApp',
+      carte_vitale: 'À recevoir par WhatsApp',
+      mutuelle:     'À recevoir par WhatsApp',
+      reply_to: DEST_EMAIL
+    }).then(function() {
+      construireLienWhatsApp(prenom, nom);
+      setStep(3);
+    }).catch(function(e) {
+      console.warn('Erreur envoi email:', e);
+      showEnvoiErreur();
     });
-
-    var recapLines = [];
-    recapLines.push('👤 ' + prenom + ' ' + nom + ' · 📞 ' + tel);
-    recapLines.push('📍 ' + adresse);
-    if (document.getElementById('f-notes').value.trim()) {
-      recapLines.push('💬 ' + document.getElementById('f-notes').value.trim());
-    }
-    if (docs.length > 0) {
-      recapLines.push('📎 ' + docs.join(', ') + ' joint(s)');
-    }
-
-    document.getElementById('pjRecapText').innerHTML = recapLines.join('<br>');
-    document.getElementById('pjRecap').style.display = 'block';
-
-    // Envoi email EmailJS
-    var params = {
-      to_email:     DEST_EMAIL,
-      prenom:       prenom,
-      nom:          nom,
-      tel:          tel,
-      ddn:          ddn,
-      adresse:      adresse,
-      notes:        notes,
-      ordonnance:   pjFiles[0] ? '✓ Jointe (' + pjNames[0] + ')' : 'Non fournie',
-      carte_vitale: pjFiles[1] ? '✓ Jointe (' + pjNames[1] + ')' : 'Non fournie',
-      mutuelle:     pjFiles[2] ? '✓ Jointe (' + pjNames[2] + ')' : 'Non fournie',
-      reply_to:     DEST_EMAIL
-    };
-
-    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params)
-      .then(function() {
-        console.log('Email envoyé avec succès');
-      })
-      .catch(function(e) {
-        console.warn('Erreur envoi email:', e);
-      });
-
-    setStep(3);
   }
 
-  // ── PIÈCES JOINTES ──
-  function handlePJ(idx, input) {
-    if (!input.files || !input.files[0]) return;
-    var f = input.files[0];
-    if (f.size > 5 * 1024 * 1024) {
-      alert('Fichier trop volumineux (max 5 Mo).');
-      input.value = ''; return;
-    }
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      pjFiles[idx] = e.target.result;
-      pjNames[idx] = f.name;
-      document.getElementById('pjName'+idx).textContent = f.name;
-      document.getElementById('pjSize'+idx).textContent = (f.size/1024).toFixed(0)+' Ko';
-      document.getElementById('pjPreview'+idx).classList.add('visible');
-    };
-    reader.readAsDataURL(f);
+  function construireLienWhatsApp(prenom, nom) {
+    var msg = 'Bonjour Mélissa, je viens de faire une demande de rendez-vous au nom de '
+            + prenom + ' ' + nom + '. Voici mes documents.';
+    document.getElementById('waDocuments').href =
+      'https://wa.me/33672311279?text=' + encodeURIComponent(msg);
   }
 
-  function removePJ(idx) {
-    pjFiles[idx] = null; pjNames[idx] = '';
-    document.querySelectorAll('.pj-upload-zone')[idx].querySelector('input').value = '';
-    document.getElementById('pjPreview'+idx).classList.remove('visible');
+  function showEnvoiErreur() {
+    var el = document.getElementById('envoiErreur');
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   </script>
 </body>

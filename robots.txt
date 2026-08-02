@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
 
-Sitemap: https://project-gyp0g.vercel.app/sitemap.xml
+Sitemap: https://infirmiere-haute-goulaine.fr/sitemap.xml

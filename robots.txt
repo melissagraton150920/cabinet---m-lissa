@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://infirmiere-haute-goulaine.fr/sitemap.xml
+Sitemap: https://www.infirmiere-haute-goulaine.fr/sitemap.xml

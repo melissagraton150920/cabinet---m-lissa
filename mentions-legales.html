@@ -141,9 +141,9 @@ p, li { color: #351018 !important; opacity: 1 !important; font-weight: 400 !impo
           <li>Numéro de téléphone</li>
           <li>Date de naissance</li>
           <li>Adresse postale</li>
-          <li>Documents médicaux (ordonnance, carte Vitale, attestation mutuelle) — transmis volontairement</li>
           <li>Informations complémentaires renseignées librement</li>
         </ul>
+        <p>Aucun document médical (ordonnance, carte Vitale, attestation de mutuelle) n'est collecté par ce site. Ces documents sont transmis directement à Mélissa Graton par WhatsApp, ou remis en main propre lors du premier passage à votre domicile.</p>
       </div>
 
       <div class="block">
@@ -194,14 +194,16 @@ p, li { color: #351018 !important; opacity: 1 !important; font-weight: 400 !impo
         <ul>
           <li><strong>Calendly</strong> (calendly.com) — prise de rendez-vous en ligne. Politique de confidentialité : <a href="https://calendly.com/privacy" style="color:var(--accent)">calendly.com/privacy</a></li>
           <li><strong>EmailJS</strong> (emailjs.com) — transmission des formulaires. Les données transitent de façon chiffrée et ne sont pas stockées.</li>
-          <li><strong>OpenStreetMap / Leaflet</strong> — affichage de la carte. Aucune donnée personnelle n'est collectée.</li>
+          <li><strong>Google Maps</strong> — affichage de la carte du cabinet sur la page d'accueil. Implique le transfert de votre adresse IP vers les serveurs Google et peut donner lieu au dépôt de cookies par Google. Politique de confidentialité : <a href="https://policies.google.com/privacy" style="color:var(--accent)">policies.google.com/privacy</a></li>
           <li><strong>Google Fonts</strong> — polices d'écriture. Peut impliquer le transfert de l'adresse IP vers les serveurs Google.</li>
+          <li><strong>Vercel Web Analytics</strong> — mesure de fréquentation du site. Aucun cookie n'est déposé et aucune donnée personnelle n'est conservée : les visiteurs sont distingués par une empreinte anonyme calculée à partir de la requête, valable une seule journée puis réinitialisée. Aucun suivi d'un jour à l'autre ni d'un site à l'autre n'est possible.</li>
         </ul>
       </div>
 
       <div class="block">
         <div class="block-title">Cookies</div>
-        <p>Ce site n'utilise pas de cookies de traçage ou publicitaires. Des données techniques peuvent être stockées localement dans votre navigateur (localStorage) uniquement pour le bon fonctionnement du site, sans collecte ni transmission à des tiers.</p>
+        <p>Ce site n'utilise aucun cookie publicitaire et ne pratique aucun suivi à des fins commerciales. Des données techniques sont conservées localement dans votre navigateur (localStorage) uniquement pour mémoriser vos préférences d'affichage, sans transmission à des tiers.</p>
+        <p>La carte affichée sur la page d'accueil est fournie par Google Maps, qui est susceptible de déposer ses propres cookies lors de son chargement (voir « Services tiers » ci-dessus).</p>
       </div>
 
       <div class="block">
@@ -225,5 +227,7 @@ p, li { color: #351018 !important; opacity: 1 !important; font-weight: 400 !impo
     <a href="mentions-legales.html">Mentions légales</a>
   </footer>
 
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
